@@ -1,0 +1,59 @@
+/* ResturantsDetails.css */
+.restaurant-details-page {
+  min-height: 100vh;
+  background-color: #0a0a0a;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+.details-content {
+  text-align: center;
+  background-color: #1f2937;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  animation: fadeIn 1s ease forwards;
+  max-width: 600px;
+}
+
+.details-title {
+  font-size: 40px;
+  margin-bottom: 20px;
+  color: #38bdf8;
+}
+
+.details-description {
+  font-size: 18px;
+  color: #94a3b8;
+  margin-bottom: 30px;
+}
+
+.back-button {
+  background-color: #38bdf8;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 10px;
+  color: #0a0a0a;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #0ea5e9;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}

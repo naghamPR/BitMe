@@ -1,0 +1,110 @@
+/* Home.css */
+.home {
+  height: 100vh;
+  background-color: #0a0a0a;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Top Left & Bottom Right images */
+.corner-image {
+  position: absolute;
+  width: 180px;
+  height: auto;
+  opacity: 0.8;
+  /* z-index: 1; */
+  border-radius: 50%; /* nice rounded corners */
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1); soft glow
+  transition: transform 0.5s ease;
+}
+
+.corner-image:hover {
+  transform: scale(1.05); /* small zoom on hover */
+}
+
+.top-left {
+  top: 40px;
+  left: -55px;
+}
+
+.bottom-right {
+  bottom: 90px;
+  right: -55px;
+}
+
+/* Home Content */
+.home-content {
+  text-align: center;
+  margin-top: 80px;
+  z-index: 2;
+}
+
+.slide-in {
+  font-size: 56px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  animation: slideIn 1s ease forwards;
+  opacity: 0;
+}
+
+.fade-in {
+  font-size: 20px;
+  color: #cbd5e1;
+  margin-bottom: 30px;
+  animation: fadeIn 2s ease forwards;
+  opacity: 0;
+}
+
+.home-button {
+  padding: 12px 32px;
+  font-size: 18px;
+  color: #0a0a0a;
+  background-color: #38bdf8;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.home-button:hover {
+  background-color: #0ea5e9;
+  transform: translateY(-2px);
+}
+
+/* Footer */
+.footer {
+  width: 100%;
+  padding: 20px 0;
+  text-align: center;
+  background: #0a0a0a;
+  font-size: 14px;
+  color: #7f8c8d;
+  z-index: 2;
+  border-top: 1px solid #1f2937;
+}
+
+/* Animations */
+@keyframes slideIn {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

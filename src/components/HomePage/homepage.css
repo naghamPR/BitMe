@@ -1,0 +1,38 @@
+body {
+  font-family: Arial, sans-serif; /* Font for the page */
+  background-color: #376dd9; /* Light gray background */
+  color: #333; /* Dark gray text color */
+  display: flex; /* Use flexbox for centering content */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  height: 100vh; /* Full viewport height */
+}
+
+/* Container styles */
+.container {
+  display: flex; /* Use flexbox for layout */
+  align-items: center; /* Center items vertically */
+  background-color: white; /* White background for the container */
+  padding: 20px; /* Padding inside the container */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  width: 90%; /* Full width with some margins */
+  max-width: 800px; /* Optional: Limit the maximum width of the container */
+}
+
+/* Image container styles */
+.image-container {
+  flex: 1; /* Allow image container to grow */
+}
+
+/* Animated image styles */
+.animated-image {
+  max-width: 100%; /* Make sure the image is responsive */
+  height: auto; /* Maintain aspect ratio */
+}
+
+/* Text container styles */
+.text-container {
+  flex: 1; /* Allow text container to grow */
+  padding-left: 20px; /* Space between image and text */
+}

@@ -1,0 +1,137 @@
+.register {
+    .header {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 15px;
+
+        h1 {
+            font-family: none;
+            font-size: 40px;
+            font-weight: bolder;
+        }
+
+        h3 {
+            font-size: 18px;
+
+            span {
+                color: rgb(45, 112, 220);
+            }
+        }
+    }
+
+    .box {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+        padding: 15px;
+        margin-bottom: auto;
+
+        .content {
+            form {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+
+                input {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 300px;
+                    border: none;
+                    border-bottom: 0.2px solid rgb(106, 103, 103);
+                    direction: none;
+                    padding: 15px;
+                    outline: none;
+                    font-size: large;
+
+                }
+
+                button {
+                    padding: 10px 40px;
+                    border-radius: 50px;
+                    border: 1px solid rgb(45, 112, 220);
+                    font-size: 20px;
+                    color: rgb(45, 112, 220);
+                }
+            }
+
+        }
+
+        .line-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+
+            .line {
+                height: 150px;
+                background-color: rgb(163, 161, 161);
+                width: 0.5px;
+            }
+
+            p {
+                padding: 1px;
+                font-size: 10px;
+                color: gray;
+            }
+        }
+
+        .social-option {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: flex-end;
+            padding: 10px;
+            gap: 10px;
+
+            .groub-1 {
+
+                display: flex;
+                flex-direction: row;
+
+                img {
+                    width: 40px;
+                }
+
+                .btn-1 {
+                    font-size: 15px;
+                    font-weight: 800px;
+                    border-radius: 3px;
+                    padding: 10px 40px;
+                    color: white;
+                    // border: 1px solid blue;
+                    background-color: rgb(58, 96, 173);
+                }
+
+                .btn-2 {
+                    border-radius: 3px;
+                    font-size: 15px;
+                    font-weight: 800px;
+                    padding: 10px 30px;
+                    color: white;
+                    // border: 1px solid blue;
+                    background-color: rgb(18, 60, 143);
+                }
+            }
+        }
+
+    }
+
+    .footor {
+        display: flex;
+        flex-direction: column;
+        padding: 5px;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+
+        p {
+            font-size: 11px;
+        }
+    }
+}
