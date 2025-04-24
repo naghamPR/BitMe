@@ -40,7 +40,7 @@ const Register = () => {
 
       <div className="header">
         <h1>
-          Sign Up to <span> HASHTAG </span> Platform
+          Sign Up to <span> BiteMe </span> WebSite
         </h1>
         <h3>
           Already have an account ?{" "}

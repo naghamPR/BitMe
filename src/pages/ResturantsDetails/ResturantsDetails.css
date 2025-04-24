@@ -1,59 +1,62 @@
-/* ResturantsDetails.css */
-.restaurant-details-page {
+.restaurants-page {
   min-height: 100vh;
-  background-color: #0a0a0a;
-  color: #ffffff;
+  background-color: #050403;
+}
+
+.restaurant-details-card {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 60px 20px;
+  background-color: #efe14e;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  width: 92%;
+  height: 350px;
+  padding: 20px 60px;
+  color: #050403;
 }
 
-.details-content {
-  text-align: center;
-  background-color: #1f2937;
-  padding: 40px;
+.restaurant-details-image {
+  width: 50%;
+  height: auto;
+  object-fit: cover;
   border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-  animation: fadeIn 1s ease forwards;
-  max-width: 600px;
+  box-shadow: 0 4px 10px #313020;
 }
 
-.details-title {
-  font-size: 40px;
-  margin-bottom: 20px;
-  color: #38bdf8;
+.restaurant-details-info {
+  padding: 30px;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.restaurant-gallery {
+  margin-top: 60px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 0 20px 60px 20px;
 }
 
-.details-description {
-  font-size: 18px;
-  color: #94a3b8;
-  margin-bottom: 30px;
+.gallery-img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
 }
 
-.back-button {
-  background-color: #38bdf8;
-  border: none;
-  padding: 12px 24px;
+.gallery-img:hover {
+  transform: scale(1.05);
+}
+.buttons {
   border-radius: 10px;
-  color: #0a0a0a;
-  font-weight: bold;
+  font-size: 18px;
+
+  gap: 20px;
+  background-color: #efe14e;
+  transform: translateY(-2px);
   cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.back-button:hover {
-  background-color: #0ea5e9;
-}
-
-/* Animation */
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0px);
-  }
+  box-shadow: 0 4px 10px #ce8703dc;
 }

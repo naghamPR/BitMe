@@ -5,8 +5,9 @@ const NavBar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-logo">
-        <Link to="/">BitMe</Link>
+        <Link to="/">BiteMe</Link>font-size: 18px;
       </div>
+
       <div className="navbar-links">
         <Link to="/">Home</Link>
         <Link to="/Resturants">Restaurants</Link>

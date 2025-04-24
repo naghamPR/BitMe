@@ -37,7 +37,7 @@ const Login = () => {
       <img src={""} alt="" />
       <div className="header">
         <h1>
-          Sign In to <span> HASHTAG </span> Platform
+          Sign In to <span> BiteMe </span> WebSite
         </h1>
         <h3>
           Don't have an account ?{" "}
