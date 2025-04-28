@@ -8,7 +8,7 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 2px 1px 8px rgb(184, 81, 3);
+  box-shadow: 2px 5px 8px rgb(184, 81, 3);
 }
 
 .navbar-logo a {

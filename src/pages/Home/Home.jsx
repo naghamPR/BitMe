@@ -14,7 +14,7 @@ const Home = () => {
       />
 
       <div className="corner-text top-left-text">
-        <p>Welcome to BiteMe, your best choice for smart dining solutions!</p>
+        <p>Welcome to BiteBook, your best choice for smart dining solutions!</p>
       </div>
 
       {/* ➔ New Paragraph at Bottom Right */}
@@ -26,7 +26,7 @@ const Home = () => {
       </div>
 
       <div className="home-content">
-        <h1 className="slide-in">Welcome to BiteMe</h1>
+        <h1 className="slide-in">Welcome to BiteBook</h1>
         <p className="fade-in">Your gateway to smart, modern web solutions.</p>
         <button className="home-button fade-in">Get Started</button>
       </div>

@@ -8,6 +8,7 @@ import {
   Error,
   Resturants,
   ResturantsDetails,
+  Menu,
 } from "./pages";
 
 export const createRoutes = (user) =>
@@ -30,6 +31,11 @@ export const createRoutes = (user) =>
         {
           path: "/Resturants/:id",
           element: <ResturantsDetails />,
+          errorElement: <Error />,
+        },
+        {
+          path: "/menu",
+          element: <Menu />,
           errorElement: <Error />,
         },
       ],

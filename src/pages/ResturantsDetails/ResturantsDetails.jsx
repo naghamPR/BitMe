@@ -28,6 +28,7 @@ const RestaurantDetails = () => {
       name: "Nona Cafe",
       title: "Fresh Italian Dishes",
       image: resturant1,
+      secondimg: [resturant1_1, resturant1_2, resturant1_3, resturant1_4],
     },
     {
       id: 2,
@@ -105,23 +106,26 @@ const RestaurantDetails = () => {
   }
 
   return (
-    <div className="restaurants-page">
-      <div className="restaurant-details-card">
-        <img
-          src={restaurant.image}
-          alt={restaurant.name}
-          className="restaurant-details-image"
-        />
-        <div className="restaurant-details-info">
-          <h1>{restaurant.name}</h1>
-          <p>{restaurant.title}</p>
-          <p>
-            Here you can add more details about the restaurant, menu, location,
-            etc!
-          </p>
-          <p>click to choose the suitable table :🤗</p>
-          <button className="buttons">reverse</button>
-          <p>add to favorite :</p> <button className="buttons">❤️</button>
+    <div className="restaurants-pagedatails">
+      <div
+        className="restaurant-details-card"
+        style={{ backgroundImage: `url(${restaurant.image})` }}
+      >
+        <div className="restaurant-details-overlay">
+          <div className="restaurant-details-info">
+            <h1>{restaurant.name}</h1>
+            <p>{restaurant.title}</p>
+            <p>
+              Here you can add more details about the restaurant, menu,
+              location, etc!
+            </p>
+            <div className="button-groupdetail ">
+              <button className="action-btn">Reserve</button>
+              <button className="action-btn">❤️</button>
+              <button className="action-btn">Menu</button>
+              <button className="action-btn">Bill</button>
+            </div>
+          </div>
         </div>
       </div>
 

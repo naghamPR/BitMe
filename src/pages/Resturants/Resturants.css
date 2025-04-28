@@ -1,7 +1,7 @@
 /* Resturants.css */
 .restaurants-page {
   min-height: 100vh;
-  background-color: #050403;
+  background-color: #ffffff;
   color: #ffffff;
 }
 
@@ -14,7 +14,7 @@
 
 .second-navbar {
   width: 97.7%;
-  background-color: #efe14e; /* or whatever matches your theme */
+  background-color: #713333; /* or whatever matches your theme */
   color: white;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -51,21 +51,21 @@
 }
 
 .restaurant-card {
-  background-color: #313020;
+  background-color: #623030;
   /*width: 90%; /* <-- control width here */
   /*max-width: 400px;*/
   padding: 20px;
   border-radius: 16px;
   text-align: center;
   text-decoration: none;
-  color: #efe14e;
+  color: #000000;
   transition: transform 0.3s ease, background-color 0.3s ease;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
 }
 
 .restaurant-card:hover {
   transform: translateY(-8px);
-  background-color: #313020;
+  background-color: #cec875;
 }
 
 .restaurant-image {
@@ -85,16 +85,16 @@
 
 .restaurant-card p {
   font-size: 16px;
-  color: #94a3b8;
+  color: #000000;
 }
 .buttons {
   border-radius: 10px;
-  size: 30px;
+  size: 250px;
   gap: 20px;
   background-color: #efe14e;
   transform: translateY(-2px);
   cursor: pointer;
-  box-shadow: 0 4px 10px #313020;
+  box-shadow: 0 4px 10px #c75e08;
 }
 
 /* Animation */

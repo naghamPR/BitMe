@@ -1,8 +1,8 @@
 /* Home.css */
 .home {
   height: 100vh;
-  background-color: #0a0a0a;
-  color: #ffffff;
+  background-color: #ffffff;
+  color: #000000;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -19,7 +19,7 @@
   /* z-index: 1; */
   border-radius: 50%; /* nice rounded corners */
   object-fit: cover;
-  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 20px rgba(210, 22, 22, 0.1);
   transition: transform 0.5s ease;
 }
 
@@ -30,8 +30,8 @@
   position: absolute;
   max-width: 300px;
   padding: 20px;
-  background: rgba(255, 255, 255, 0.236);
-  color: #ddd;
+  background: rgba(205, 164, 164, 0.236);
+  color: #050404;
   font-size: 14px;
   border-radius: 15px;
   backdrop-filter: blur(5px);
@@ -74,7 +74,7 @@
 
 .fade-in {
   font-size: 20px;
-  color: #cbd5e1;
+  color: #000000;
   margin-bottom: 30px;
   animation: fadeIn 2s ease forwards;
   opacity: 0;
@@ -104,9 +104,9 @@
   text-align: center;
   background: #0a0a0a;
   font-size: 14px;
-  color: #7f8c8d;
+  color: #2a3031;
   z-index: 2;
-  border-top: 1px solid #1f2937;
+  border-top: 1px solid #111214;
 }
 
 /* Animations */
