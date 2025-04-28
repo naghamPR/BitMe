@@ -9,6 +9,7 @@ import {
   Resturants,
   ResturantsDetails,
   Menu,
+  Addresturant,
 } from "./pages";
 
 export const createRoutes = (user) =>
@@ -36,6 +37,11 @@ export const createRoutes = (user) =>
         {
           path: "/menu",
           element: <Menu />,
+          errorElement: <Error />,
+        },
+        {
+          path: "/addresturant",
+          element: <Addresturant />,
           errorElement: <Error />,
         },
       ],
