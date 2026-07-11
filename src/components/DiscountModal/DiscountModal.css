@@ -1,0 +1,32 @@
+.modal-bg {
+  position: fixed; /* ensure it's full screen */
+  top: 0; /* correctly anchors the top */
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-content {
+  background-color: white; /* make sure it's visible */
+  padding: 2rem;
+  border-radius: 8px;
+  max-width: 600px;
+  width: 100%;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  font-size: 1.5rem;
+  border: none;
+  cursor: pointer;
+}

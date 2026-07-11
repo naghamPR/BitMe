@@ -1,3 +1,10 @@
+
+
+import {
+  LOGOUT_START,
+  LOGOUT_SUCCESS,
+  LOGOUT_FAIL,
+} from '../actions/authActions';
 const authReducer = (
   state = { authData: null, loading: false, error: false },
   action
@@ -21,9 +28,27 @@ const authReducer = (
     case "UPDATE_FAIL":
       return { ...state, loading: false, error: true };
 
+       case LOGOUT_START:
+      return { ...state, loading: true, error: null }; 
+    case LOGOUT_SUCCESS: 
+      return {
+        ...state,
+        authData: null, 
+        isLoggedIn: false,
+        loading: false,
+        error: null,
+      };
+    case LOGOUT_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+
     default:
       return state;
   }
 };
 
 export default authReducer;
+

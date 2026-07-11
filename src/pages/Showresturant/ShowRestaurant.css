@@ -1,0 +1,665 @@
+/* --- ShowRestaurant.css --- */
+
+/* --- Global Color Palette Variables (Ensuring consistency with other warm CSS files) --- */
+/* These variables are copied from the main warm color palette for local reference. */
+:root {
+  --color-primary-main: #d46a00; /* A rich burnt orange */
+  --color-primary-light: #ff9933; /* Brighter orange */
+  --color-primary-dark: #a34e00; /* Deeper burnt orange */
+
+  --color-accent-green: #808000; /* Olive Green for success/positive actions */
+  --color-accent-green-dark: #556b2f; /* Darker Olive Green */
+  --color-accent-purple: #8e44ad; /* A sophisticated amethyst/plum for special actions */
+  --color-accent-purple-dark: #6c3483; /* Darker amethyst */
+  --color-accent-red: #b22222; /* Firebrick red for danger/negative actions */
+  --color-accent-red-dark: #8b0000; /* Dark Red */
+
+  --color-neutral-white: #fffbf0; /* Warm off-white */
+  --color-neutral-light: #f8f5ef; /* Very light warm gray/cream for backgrounds */
+  --color-neutral-medium: #e0d9cc; /* Light warm gray/beige for borders/dividers */
+  --color-neutral-dark: #c2b7a8; /* Medium warm gray for subtle details */
+  --color-neutral-darker: #8a7f70; /* Dark warm gray for placeholder text */
+  --color-neutral-lightest: #fffdf8; /* Even lighter for specific backgrounds like lists */
+
+  --color-text-primary: #362f27; /* Dark warm charcoal for main text */
+  --color-text-secondary: #5e5346; /* Slightly lighter warm brown-gray for secondary text */
+  --color-text-light: #8a7f70; /* For less emphasis (same as neutral-darker) */
+
+  --color-star-filled: #ffc107; /* Bright yellow for stars */
+  --color-star-empty: var(--color-neutral-medium);
+  --color-heart-filled: var(--color-accent-red);
+  --color-error-message: var(--color-accent-red-dark);
+
+  --message-success-bg: #e6ffe6;
+  --message-success-color: #3b8a3b;
+  --message-error-bg: #ffebeb;
+  --message-error-color: #a73d3a;
+
+  --shadow-sm: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0px 8px 16px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0px 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Color Palette Variables (Now mapped to global warm palette) --- */
+:root {
+  --sr-primary-color: var(--color-primary-main);
+  --sr-primary-dark: var(--color-primary-dark);
+  --sr-accent-green: var(--color-accent-green);
+  --sr-accent-green-dark: var(--color-accent-green-dark);
+  --sr-accent-red: var(--color-accent-red);
+  --sr-accent-red-dark: var(--color-accent-red-dark);
+  --sr-accent-purple: var(--color-accent-purple);
+  --sr-accent-purple-dark: var(--color-accent-purple-dark);
+
+  --sr-neutral-light: var(--color-neutral-light);
+  --sr-neutral-lightest: var(--color-neutral-lightest);
+  --sr-neutral-medium: var(--color-neutral-medium);
+  --sr-neutral-dark: var(--color-neutral-dark);
+  --sr-neutral-darker: var(--color-neutral-darker);
+  --sr-neutral-white: var(--color-neutral-white);
+
+  --sr-text-primary: var(--color-text-primary);
+  --sr-text-secondary: var(--color-text-secondary);
+  --sr-text-light: var(--color-text-light);
+  --sr-text-placeholder: var(--color-neutral-darker);
+
+  --sr-error-message-bg: var(--message-error-bg);
+  --sr-error-message-color: var(--message-error-color);
+  --sr-yellow-star: var(--color-star-filled);
+
+  /* Shadows - using global shadow variables directly for consistency */
+  --sr-shadow-sm: var(--shadow-sm);
+  --sr-shadow-md: var(--shadow-md);
+  --sr-shadow-lg: var(--shadow-lg);
+  --sr-shadow-xl: var(--shadow-xl);
+}
+
+/* --- Base Styles --- */
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--sr-neutral-light);
+  color: var(--sr-text-secondary);
+  line-height: 1.5;
+}
+
+/* --- Global Utilities & Messages --- */
+.loading-message,
+.error-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 4rem); /* Account for navbar height */
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--sr-text-secondary);
+  text-align: center;
+  padding: 1rem;
+}
+
+.error-message {
+  color: var(--sr-error-message-color);
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* --- Restaurants Page Layout (ShowRestaurant.js) --- */
+.page-container {
+  min-height: calc(100vh - 4rem); /* Account for navbar height */
+  padding: 1.5rem;
+  background-color: var(--sr-neutral-light);
+}
+
+@media (min-width: 640px) {
+  .page-container {
+    padding: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-container {
+    padding: 3rem;
+  }
+}
+
+.page-title {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--sr-text-primary);
+  margin-bottom: 3rem;
+  line-height: 1.1;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 5.5rem; /* Increased gap for better separation */
+  max-width: 90rem;
+  margin: 0 auto;
+}
+
+.restaurant-card.show-restaurant-card {
+  /* Specific styles for ShowRestaurant cards */
+  background-color: var(--sr-neutral-white);
+  border-radius: 1rem;
+  box-shadow: var(--sr-shadow-lg); /* More prominent shadow */
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--sr-neutral-medium);
+}
+
+.restaurant-card.show-restaurant-card:hover {
+  transform: translateY(-0.75rem); /* More pronounced lift */
+  box-shadow: var(--sr-shadow-xl);
+}
+
+.restaurant-card.show-restaurant-card .restaurant-image {
+  width: 100%;
+  height: 14rem;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.restaurant-card.show-restaurant-card:hover .restaurant-image {
+  transform: scale(1.05);
+}
+
+.card-content-show-restaurant {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.card-content-show-restaurant h2 {
+  font-size: 1.75rem; /* text-3xl */
+  font-weight: 700;
+  color: var(--sr-text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.restaurant-description {
+  font-size: 1rem;
+  color: var(--sr-text-secondary);
+  margin-bottom: 1.25rem;
+  line-height: 1.6;
+  flex-grow: 1;
+}
+
+.card-actions-show-restaurant {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: auto; /* Pushes buttons to bottom */
+  padding-top: 1rem; /* Space from description */
+  border-top: 1px solid var(--sr-neutral-light);
+  justify-content: flex-start;
+  flex-wrap: wrap; /* Allow wrapping */
+}
+
+.card-actions-bottom {
+  /* For Add Menu/Add Table */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  justify-content: flex-start;
+}
+
+.action-button {
+  /* General style for action buttons */
+  padding: 0.625rem 1rem;
+  border-radius: 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: var(--sr-shadow-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.edit-btn {
+  background-color: var(--sr-primary-color);
+  color: var(--sr-neutral-white);
+}
+
+.edit-btn:hover {
+  background-color: var(--sr-primary-dark);
+  box-shadow: var(--sr-shadow-md);
+}
+
+.delete-btn {
+  background-color: var(--sr-accent-red);
+  color: var(--sr-neutral-white);
+}
+
+.delete-btn:hover {
+  background-color: var(--sr-accent-red-dark);
+  box-shadow: var(--sr-shadow-md);
+}
+
+.add-table-btn {
+  background-color: var(--sr-accent-green);
+  color: var(--sr-neutral-white);
+}
+
+.add-table-btn:hover {
+  background-color: var(--sr-accent-green-dark);
+  box-shadow: var(--sr-shadow-md);
+}
+
+.view-discounts-btn {
+  /* New style for View Discounts button */
+  background-color: var(--sr-primary-dark); /* Brighter orange for visibility */
+  color: var(--sr-text-primary); /* Dark text for contrast */
+  padding: 0.625rem 1rem;
+  border-radius: 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: var(--sr-shadow-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.view-discounts-btn:hover {
+  background-color: var(--sr-text-secondary);
+  color: var(--sr-neutral-white); /* White text on hover */
+  box-shadow: var(--sr-shadow-md);
+}
+
+.view-menus-toggle-btn {
+  background-color: var(--sr-neutral-medium);
+  color: var(--sr-text-primary);
+  padding: 0.75rem 1.25rem;
+  border: 1px solid var(--sr-neutral-medium); /* Use medium neutral for border */
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: var(--sr-shadow-sm);
+  width: 100%; /* Full width to toggle menus */
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.view-menus-toggle-btn:hover {
+  background-color: var(--sr-neutral-dark);
+  color: var(--sr-neutral-white); /* White text on hover for contrast */
+  box-shadow: var(--sr-shadow-md);
+}
+
+.restaurant-menus-expanded {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--sr-neutral-medium);
+  background-color: var(
+    --sr-neutral-light
+  ); /* Lighter background for expanded menus */
+  border-radius: 0.75rem;
+  padding: 1rem;
+}
+
+.no-restaurants-found {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 4rem 2rem;
+  background-color: var(--sr-neutral-white);
+  border-radius: 1rem;
+  box-shadow: var(--sr-shadow-md);
+  margin: 2rem auto;
+  color: var(--sr-text-secondary);
+  border: 1px solid var(--sr-neutral-medium);
+  font-size: 1.15rem;
+}
+
+/* --- AddResMenu.js Specific Styles --- */
+.add-menu-section {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem; /* Space around the add menu section */
+}
+
+.add-menu-toggle-button {
+  background-color: var(--sr-accent-purple);
+  color: var(--sr-neutral-white);
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: var(--sr-shadow-md);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.add-menu-toggle-button:hover {
+  background-color: var(--sr-accent-purple-dark);
+  box-shadow: var(--sr-shadow-lg);
+}
+
+.add-menu-form-card {
+  background-color: var(--sr-neutral-white);
+  border-radius: 1rem;
+  box-shadow: var(--sr-shadow-md);
+  padding: 1.5rem;
+  margin-top: 1rem;
+  border: 1px solid var(--sr-neutral-medium);
+}
+
+.form-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--sr-text-primary);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--sr-text-primary);
+  margin-bottom: 0.4rem;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--sr-neutral-dark);
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  color: var(--sr-text-primary);
+  background-color: var(--sr-neutral-lightest);
+  transition: all 0.2s ease-in-out;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: var(--sr-text-placeholder);
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--sr-primary-color);
+  box-shadow: 0 0 0 3px rgba(212, 106, 0, 0.3); /* Using primary color RGB */
+  background-color: var(--sr-neutral-white);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 5rem;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.form-cancel-button,
+.form-submit-button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: var(--sr-shadow-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.form-cancel-button {
+  background-color: var(--sr-neutral-dark);
+  color: var(--sr-neutral-white);
+}
+
+.form-cancel-button:hover {
+  background-color: var(--sr-neutral-darker);
+  box-shadow: var(--sr-shadow-md);
+}
+
+.form-submit-button {
+  background-color: var(--sr-primary-color);
+  color: var(--sr-neutral-white);
+}
+
+.form-submit-button:hover {
+  background-color: var(--sr-primary-dark);
+  box-shadow: var(--sr-shadow-md);
+}
+
+.form-submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* --- MenuList.js Specific Styles --- */
+.menu-list-container {
+  padding: 1rem;
+  background-color: var(--sr-neutral-light);
+  border-radius: 0.75rem;
+  border: 1px solid var(--sr-neutral-light);
+}
+
+.menu-list-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--sr-text-primary);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.menu-list-loading,
+.menu-list-error,
+.no-menus-message {
+  text-align: center;
+  font-style: italic;
+  color: var(--sr-text-light);
+  padding: 1rem;
+}
+
+.menus-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem; /* Gap between menu cards */
+}
+
+.menu-card.menu-list-card {
+  background-color: var(--sr-neutral-white);
+  border-radius: 0.75rem;
+  box-shadow: var(--sr-shadow-md);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--sr-neutral-medium);
+}
+
+.menu-card-header {
+  margin-bottom: 1rem;
+  flex-grow: 1; /* Allows it to expand */
+}
+
+.menu-card-header h3 {
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: var(--sr-text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.menu-card-description {
+  font-size: 0.95rem;
+  color: var(--sr-text-light);
+}
+
+.menu-items-section {
+  margin-top: 1rem;
+  border-top: 1px dashed var(--sr-neutral-light);
+  padding-top: 1rem;
+}
+
+.no-menu-items {
+  text-align: center;
+  color: var(--sr-text-light);
+  font-style: italic;
+  padding: 0.5rem;
+}
+
+.toggle-items-button {
+  width: 100%;
+  background-color: var(--sr-neutral-light);
+  color: var(--sr-text-primary);
+  padding: 0.75rem;
+  border: 1px solid var(--sr-neutral-medium);
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: var(--sr-shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.toggle-items-button:hover {
+  background-color: var(--sr-neutral-medium);
+  box-shadow: var(--sr-shadow-md);
+}
+
+.items-list-grid {
+  list-style: none;
+  padding: 0;
+  margin-top: 0.75rem;
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(200px, 1fr)
+  ); /* Responsive grid for items */
+  gap: 0.75rem;
+}
+
+.item-card {
+  background-color: var(--sr-neutral-white);
+  border-radius: 0.75rem;
+  padding: 0.8rem;
+  box-shadow: var(--sr-shadow-sm);
+  border: 1px solid var(--sr-neutral-light);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.item-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--sr-text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.item-price {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--sr-primary-dark);
+  margin-top: auto; /* Pushes price to bottom */
+}
+
+.item-description,
+.item-type {
+  font-size: 0.85rem;
+  color: var(--sr-text-light);
+}
+
+.menu-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Center buttons */
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--sr-neutral-light);
+}
+
+.action-btn {
+  /* Specific to MenuList */
+  padding: 0.625rem 1rem;
+  border-radius: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: var(--sr-shadow-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.menu-update-btn {
+  background-color: var(--sr-primary-color);
+  color: var(--sr-neutral-white);
+}
+
+.menu-update-btn:hover {
+  background-color: var(--sr-primary-dark);
+  box-shadow: var(--sr-shadow-md);
+}
+
+.menu-add-item-btn {
+  background-color: var(--sr-accent-green);
+  color: var(--sr-neutral-white);
+}
+
+.menu-add-item-btn:hover {
+  background-color: var(--sr-accent-green-dark);
+  box-shadow: var(--sr-shadow-md);
+}
+
+.menu-delete-btn {
+  background-color: var(--sr-accent-red);
+  color: var(--sr-neutral-white);
+}
+
+.menu-delete-btn:hover {
+  background-color: var(--sr-accent-red-dark);
+  box-shadow: var(--sr-shadow-md);
+}

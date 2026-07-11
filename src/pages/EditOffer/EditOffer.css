@@ -1,0 +1,105 @@
+.edite-offer-page {
+  background-color: #eae3dc;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-start; /* Align card left */
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding-left: 50px;
+}
+
+.input-card-editeoffer {
+  position: relative;
+  width: 450px;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: #f4e6d4;
+  box-shadow: 0 6px 25px #a35c38;
+  z-index: 2;
+}
+
+.editeoffer-floating-img {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  width: 30%;
+  height: 80%;
+  background-image: url("../../assets/addresturant.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  z-index: 1;
+  animation: floatImage2 6s ease-in-out infinite;
+  border-radius: 20px;
+}
+
+@keyframes floatImage2 {
+  0% {
+    transform: translateY(-50%) translateX(0px);
+  }
+  50% {
+    transform: translateY(-50%) translateX(-10px);
+  }
+  100% {
+    transform: translateY(-50%) translateX(0px);
+  }
+}
+
+.card-content-editeoffer {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 30px;
+  gap: 20px;
+  text-align: center;
+}
+
+.card-editeoffer-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 25px;
+}
+
+.input-field7 {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.input-field7:focus {
+  border-color: #000;
+}
+
+.textarea-field {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.submit-editeoffer-button {
+  width: 100%;
+  padding: 12px 20px;
+  background-color: #cc8b1a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.submit-editeoffer-button:hover {
+  background-color: #f1eb5294;
+}

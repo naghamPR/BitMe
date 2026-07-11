@@ -1,0 +1,70 @@
+.editresturant-subsection-title {
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.table-feature-group {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+}
+
+.preview-image {
+  max-width: 300px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+.preview-video {
+  max-width: 300px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+.editresturant-page {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+
+.editresturant-input-card {
+  width: 400px;
+  padding: 30px;
+  background-color: #f8f8f8;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.editresturant-card-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.input-label {
+  margin-top: 10px;
+  font-weight: 500;
+  display: block;
+}
+
+.input-field2 {
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.editresturant-submit-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.editresturant-submit-button:hover {
+  background-color: #0056b3;
+}

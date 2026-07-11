@@ -1,0 +1,42 @@
+/* App.css */
+.App {
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  color: #4caf50;
+}
+
+.reservation-list,
+.restaurant-reservations {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.reservation-item {
+  background-color: #f9f9f9;
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.reservation-item h3 {
+  color: #333;
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+  }
+}

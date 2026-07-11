@@ -1,0 +1,195 @@
+/* --- RestaurantEvents.css --- */
+
+/* --- Global Color Palette Variables (Ensuring consistency with other warm CSS files) --- */
+/* These variables are copied from the main warm color palette for local reference. */
+:root {
+  --color-primary-main: #d46a00; /* A rich burnt orange */
+  --color-primary-light: #ff9933; /* Brighter orange */
+  --color-primary-dark: #a34e00; /* Deeper burnt orange */
+
+  --color-accent-green: #808000; /* Olive Green for success/positive actions */
+  --color-accent-green-dark: #556b2f; /* Darker Olive Green */
+  --color-accent-purple: #8e44ad; /* A sophisticated amethyst/plum for special actions */
+  --color-accent-purple-dark: #6c3483; /* Darker amethyst */
+  --color-accent-red: #b22222; /* Firebrick red for danger/negative actions */
+  --color-accent-red-dark: #8b0000; /* Dark Red */
+
+  --color-neutral-white: #fffbf0; /* Warm off-white */
+  --color-neutral-light: #f8f5ef; /* Very light warm gray/cream for backgrounds */
+  --color-neutral-medium: #e0d9cc; /* Light warm gray/beige for borders/dividers */
+  --color-neutral-dark: #c2b7a8; /* Medium warm gray for subtle details */
+  --color-neutral-darker: #8a7f70; /* Dark warm gray for placeholder text */
+  --color-neutral-lightest: #fffdf8; /* Even lighter for specific backgrounds like lists */
+
+  --color-text-primary: #362f27; /* Dark warm charcoal for main text */
+  --color-text-secondary: #5e5346; /* Slightly lighter warm brown-gray for secondary text */
+  --color-text-light: #8a7f70; /* For less emphasis (same as neutral-darker) */
+
+  --color-star-filled: #ffc107; /* Bright yellow for stars */
+  --color-star-empty: var(--color-neutral-medium);
+  --color-heart-filled: var(--color-accent-red);
+  --color-error-message: var(--color-accent-red-dark);
+
+  --message-success-bg: #e6ffe6;
+  --message-success-color: #3b8a3b;
+  --message-error-bg: #ffebeb;
+  --message-error-color: #a73d3a;
+
+  --shadow-sm: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0px 8px 16px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0px 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.restaurant-events-container {
+  padding: 20px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+  margin: auto;
+}
+
+.event-card {
+  background: var(--color-neutral-lightest); /* Warm light background */
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-md); /* Use existing shadow variable */
+}
+
+.event-title {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: var(--color-text-primary); /* Warm dark text */
+}
+
+.event-info,
+.event-date {
+  margin: 5px 0;
+  color: var(--color-text-secondary); /* Warm medium text */
+}
+
+.booking-list {
+  margin-top: 10px;
+}
+
+.booking-card {
+  background: var(--color-neutral-white); /* Warm white */
+  border: 1px solid var(--color-neutral-medium); /* Warm border */
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.booking-info p {
+  margin: 3px 0;
+  color: var(--color-text-secondary); /* Warm medium text */
+}
+
+.booking-status {
+  font-weight: bold;
+  color: var(--color-primary-main); /* Warm primary color */
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.accept-btn {
+  background-color: var(--color-accent-green); /* Warm green */
+  color: var(--color-neutral-white);
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.accept-btn:disabled {
+  background-color: var(
+    --color-accent-green-dark
+  ); /* Darker warm green for disabled */
+  opacity: 0.6; /* Retain opacity for disabled state */
+  cursor: not-allowed;
+}
+
+.finish-btn {
+  background-color: var(--color-primary-main); /* Warm primary (orange) */
+  color: var(--color-neutral-white); /* Change to white for better contrast */
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.finish-btn:disabled {
+  background-color: var(
+    --color-primary-dark
+  ); /* Darker warm orange for disabled */
+  opacity: 0.6; /* Retain opacity for disabled state */
+  cursor: not-allowed;
+}
+
+.success-message {
+  color: var(--message-success-color); /* Warm green success message */
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.error-message {
+  color: var(--message-error-color); /* Warm red error message */
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+/* Duplicated button styles, consolidating with the above where possible */
+.accept-btn,
+.reject-btn,
+.finish-btn {
+  margin-right: 10px; /* This will be overridden by the .button-group gap if it's a child */
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.accept-btn {
+  background-color: var(--color-accent-green); /* Warm green */
+  color: var(--color-neutral-white);
+}
+
+.reject-btn {
+  background-color: var(--color-accent-red); /* Warm red */
+  color: var(--color-neutral-white);
+}
+
+.finish-btn {
+  background-color: var(--color-primary-main); /* Warm primary (orange) */
+  color: var(--color-neutral-white);
+}
+
+.accept-btn:disabled,
+.reject-btn:disabled,
+.finish-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.success-message {
+  color: var(--message-success-color);
+  margin-top: 1rem;
+}
+
+.error-message {
+  color: var(--message-error-color);
+  margin-top: 1rem;
+}
+
+.button-group {
+  display: flex;
+  gap: 8px; /* This is already defined above, but keeping here for explicit instruction adherence */
+  margin-top: 10px;
+}

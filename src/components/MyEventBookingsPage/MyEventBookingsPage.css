@@ -1,0 +1,588 @@
+/* --- MyEventBookingsPage.css --- */
+
+/* --- Global Color Palette Variables (Ensuring consistency with other warm CSS files) --- */
+/* These variables are copied from the main warm color palette for local reference. */
+:root {
+  --color-primary-main: #d46a00; /* A rich burnt orange */
+  --color-primary-light: #ff9933; /* Brighter orange */
+  --color-primary-dark: #a34e00; /* Deeper burnt orange */
+
+  --color-accent-green: #808000; /* Olive Green for success/positive actions */
+  --color-accent-green-dark: #556b2f; /* Darker Olive Green */
+  --color-accent-purple: #8e44ad; /* A sophisticated amethyst/plum for special actions */
+  --color-accent-purple-dark: #6c3483; /* Darker amethyst */
+  --color-accent-red: #b22222; /* Firebrick red for danger/negative actions */
+  --color-accent-red-dark: #8b0000; /* Dark Red */
+
+  --color-neutral-white: #fffbf0; /* Warm off-white */
+  --color-neutral-light: #f8f5ef; /* Very light warm gray/cream for backgrounds */
+  --color-neutral-medium: #e0d9cc; /* Light warm gray/beige for borders/dividers */
+  --color-neutral-dark: #c2b7a8; /* Medium warm gray for subtle details */
+  --color-neutral-darker: #8a7f70; /* Dark warm gray for placeholder text */
+  --color-neutral-lightest: #fffdf8; /* Even lighter for specific backgrounds like lists */
+
+  --color-text-primary: #362f27; /* Dark warm charcoal for main text */
+  --color-text-secondary: #5e5346; /* Slightly lighter warm brown-gray for secondary text */
+  --color-text-light: #8a7f70; /* For less emphasis (same as neutral-darker) */
+
+  --color-star-filled: #ffc107; /* Bright yellow for stars */
+  --color-star-empty: var(--color-neutral-medium);
+  --color-heart-filled: var(--color-accent-red);
+  --color-error-message: var(--color-accent-red-dark);
+
+  --message-success-bg: #e6ffe6;
+  --message-success-color: #3b8a3b;
+  --message-error-bg: #ffebeb;
+  --message-error-color: #a73d3a;
+
+  --shadow-sm: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0px 8px 16px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0px 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* --- General & Page Layout --- */
+body {
+  font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--color-neutral-light); /* Very light warm background */
+  color: var(--color-text-secondary); /* Darker warm text for readability */
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+.mebp-page-container {
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: var(--color-neutral-white);
+  border-radius: 12px;
+  box-shadow: var(--shadow-lg);
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.mebp-page-title {
+  font-size: 3em;
+  color: var(--color-text-primary); /* Very dark warm gray */
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: 700;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.mebp-page-title::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background-color: var(
+    --color-accent-purple
+  ); /* A rich warm purple for emphasis */
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+.mebp-page-description {
+  font-size: 1.1em;
+  color: var(--color-text-light); /* Medium warm gray */
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* --- Loading and Error States --- */
+.mebp-loading-message,
+.mebp-error-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 30px;
+  margin: 30px auto;
+  background-color: var(--color-neutral-medium); /* Warm medium gray */
+  color: var(--color-text-secondary);
+  border-radius: 8px;
+  font-size: 1.1em;
+  font-weight: 500;
+  box-shadow: var(--shadow-sm);
+}
+
+.mebp-error-message {
+  background-color: var(--message-error-bg);
+  color: var(--message-error-color);
+  border: 1px solid var(--message-error-bg);
+}
+
+.mebp-loading-message .spinner {
+  animation: spin 1s linear infinite;
+  color: var(--color-primary-main); /* Warm primary color for spinner */
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* --- No Bookings Found --- */
+.mebp-no-bookings-found {
+  text-align: center;
+  padding: 60px 30px;
+  background-color: var(--color-neutral-light);
+  border: 2px dashed var(--color-neutral-medium);
+  border-radius: 10px;
+  margin-top: 30px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.02);
+}
+
+.mebp-no-bookings-found h3 {
+  font-size: 1.8em;
+  color: var(--color-text-secondary);
+  margin-bottom: 15px;
+}
+
+.mebp-no-bookings-found p {
+  font-size: 1.1em;
+  color: var(--color-text-light);
+  margin-bottom: 30px;
+}
+
+.mebp-browse-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 25px;
+  background-color: var(--color-accent-purple); /* Warm primary action color */
+  color: var(--color-neutral-white);
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 12px rgba(142, 68, 173, 0.25); /* Shadow with warm purple RGB */
+}
+
+.mebp-browse-button:hover {
+  background-color: var(
+    --color-accent-purple-dark
+  ); /* Darker warm purple on hover */
+  transform: translateY(-2px);
+}
+
+/* --- Bookings Grid --- */
+.mebp-bookings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+  margin-top: 20px;
+}
+
+/* --- Booking Card --- */
+.mebp-booking-card {
+  background-color: var(--color-neutral-white);
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  border: 1px solid var(--color-neutral-light); /* Light warm border */
+  overflow: hidden; /* Ensures no content spills out */
+}
+
+.mebp-booking-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.mebp-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid var(--color-neutral-medium);
+}
+
+.mebp-event-title {
+  font-size: 1.8em;
+  color: var(--color-text-primary);
+  margin: 0;
+  font-weight: 600;
+}
+
+/* Status Badge */
+.mebp-booking-status {
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 0.9em;
+  font-weight: 700;
+  text-transform: uppercase;
+  white-space: nowrap; /* Prevent wrapping */
+}
+
+.mebp-status-pending {
+  background-color: var(--color-primary-light); /* Light warm orange */
+  color: var(--color-primary-dark); /* Dark warm orange text */
+}
+
+.mebp-status-cancelled {
+  background-color: var(--message-error-bg); /* Light warm red */
+  color: var(--message-error-color); /* Dark warm red text */
+}
+
+.mebp-status-completed {
+  /* Assuming 'completed' status might exist for past events */
+  background-color: var(--message-success-bg); /* Light warm green */
+  color: var(--message-success-color); /* Dark warm green text */
+}
+
+/* Info Text */
+.mebp-info-text {
+  font-size: 1em;
+  color: var(--color-text-secondary);
+  margin-bottom: 10px;
+  display: flex; /* For label alignment */
+  align-items: baseline;
+}
+
+.mebp-info-label {
+  font-weight: 600;
+  color: var(--color-text-primary);
+  min-width: 120px; /* Align labels */
+  flex-shrink: 0;
+}
+
+.mebp-details-text {
+  font-style: italic;
+  color: var(--color-text-light);
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px dashed var(--color-neutral-light);
+}
+
+/* Card Actions */
+.mebp-card-actions {
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 1px solid var(--color-neutral-light);
+  display: flex;
+  justify-content: flex-end; /* Align buttons to the right */
+  gap: 15px;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.mebp-action-button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95em;
+  font-weight: 600;
+  transition: background-color 0.2s ease, transform 0.2s ease,
+    box-shadow 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: var(--shadow-sm);
+}
+
+.mebp-action-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.mebp-edit-btn {
+  background-color: var(--color-primary-main); /* Warm primary (orange) */
+  color: var(--color-neutral-white);
+}
+.mebp-edit-btn:hover:not(:disabled) {
+  background-color: var(--color-primary-dark);
+}
+
+.mebp-cancel-btn {
+  background-color: var(--color-accent-red); /* Warm red */
+  color: var(--color-neutral-white);
+}
+.mebp-cancel-btn:hover:not(:disabled) {
+  background-color: var(--color-accent-red-dark);
+}
+
+.mebp-action-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.mebp-status-message {
+  padding: 8px 15px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1em;
+  display: inline-block;
+}
+
+.mebp-status-message-cancelled {
+  background-color: var(--message-error-bg);
+  color: var(--message-error-color);
+  border: 1px solid var(--message-error-bg);
+}
+
+.mebp-status-message-completed {
+  background-color: var(--message-success-bg);
+  color: var(--message-success-color);
+  border: 1px solid var(--message-success-bg);
+}
+
+.mebp-notification {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  margin-top: 20px;
+  font-weight: 500;
+  font-size: 1em;
+  justify-content: center; /* Center the message */
+  text-align: center;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: var(--shadow-sm);
+}
+
+.mebp-notification-success {
+  background-color: var(--message-success-bg);
+  color: var(--message-success-color);
+  border: 1px solid var(--message-success-bg);
+}
+
+.mebp-notification-error {
+  background-color: var(--message-error-bg);
+  color: var(--message-error-color);
+  border: 1px solid var(--message-error-bg);
+}
+
+/* --- MODAL STYLES (for Update Event Modal) --- */
+
+.mebp-modal-overlay {
+  position: fixed; /* Covers the entire viewport */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent dark background */
+  display: flex; /* Flexbox for centering */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  z-index: 1000; /* Ensures it's on top of other content */
+  opacity: 0; /* Start hidden for fade-in */
+  visibility: hidden; /* Start hidden for visibility transition */
+  transition: opacity 0.3s ease, visibility 0.3s ease; /* Smooth fade effect */
+  padding: 20px; /* Padding for smaller screens */
+  box-sizing: border-box;
+}
+
+.mebp-modal-overlay.open {
+  opacity: 1; /* Fade in */
+  visibility: visible; /* Make visible */
+}
+
+.mebp-modal-content {
+  background-color: var(--color-neutral-white);
+  border-radius: 12px;
+  box-shadow: var(--shadow-lg);
+  padding: 30px;
+  position: relative; /* For the close button */
+  max-height: 90vh; /* Max height to allow scrolling if content is long */
+  overflow-y: auto; /* Enable scrolling for content if it overflows */
+  transform: scale(0.9); /* Start slightly smaller for scale animation */
+  opacity: 0; /* Start hidden for fade-in */
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out; /* Smooth scale and fade */
+}
+
+.mebp-modal-overlay.open .mebp-modal-content {
+  transform: scale(1); /* Scale up to full size */
+  opacity: 1; /* Fade in */
+}
+
+.mebp-modal-content.mebp-medium-modal {
+  max-width: 600px; /* Optimized width for the form */
+  width: 95%; /* Responsive width */
+}
+
+.mebp-modal-close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  color: var(--color-text-light); /* Warm light gray X */
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%; /* Make it round */
+}
+
+.mebp-modal-close-button:hover {
+  color: var(--color-text-primary); /* Darker on hover */
+  background-color: var(--color-neutral-light);
+}
+
+.mebp-modal-title {
+  font-size: 2em;
+  color: var(--color-text-primary);
+  margin-bottom: 25px;
+  text-align: center;
+  font-weight: 700;
+}
+
+/* Form elements within the modal */
+.mebp-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Space between form groups */
+}
+
+.mebp-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+}
+
+.mebp-form-label {
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  font-size: 0.95em;
+}
+
+.mebp-form-input,
+.mebp-form-textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid var(--color-neutral-medium);
+  border-radius: 8px;
+  font-size: 1em;
+  color: var(--color-text-secondary);
+  background-color: var(--color-neutral-lightest);
+  transition: all 0.2s ease-in-out;
+  box-sizing: border-box; /* Include padding in width */
+}
+
+.mebp-form-input::placeholder,
+.mebp-form-textarea::placeholder {
+  color: var(--color-neutral-darker);
+}
+
+.mebp-form-input:focus,
+.mebp-form-textarea:focus {
+  outline: none;
+  border-color: var(--color-accent-purple); /* Warm primary purple on focus */
+  box-shadow: 0 0 0 3px rgba(142, 68, 173, 0.25); /* Shadow with warm purple RGB */
+  background-color: var(--color-neutral-white);
+}
+
+.mebp-form-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.mebp-submission-message {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 15px;
+  border-radius: 8px;
+  margin-top: 20px;
+  font-weight: 500;
+  font-size: 0.95em;
+}
+
+.mebp-submission-message.success {
+  background-color: var(--message-success-bg);
+  color: var(--message-success-color);
+  border: 1px solid var(--message-success-bg);
+}
+
+.mebp-submission-message.error {
+  background-color: var(--message-error-bg);
+  color: var(--message-error-color);
+  border: 1px solid var(--message-error-bg);
+}
+
+/* Modal Action Buttons */
+.mebp-modal-actions {
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+.mebp-modal-actions .mebp-action-button {
+  /* Inherit general action button styles, but override for modal context */
+  padding: 10px 20px;
+  font-size: 1em;
+  box-shadow: var(--shadow-sm);
+}
+
+.mebp-modal-actions .mebp-cancel-button {
+  background-color: var(--color-neutral-dark);
+  color: var(--color-neutral-white);
+}
+.mebp-modal-actions .mebp-cancel-button:hover:not(:disabled) {
+  background-color: var(--color-neutral-darker);
+}
+
+.mebp-modal-actions .mebp-submit-button {
+  background-color: var(
+    --color-accent-purple
+  ); /* Warm primary purple for submit */
+  color: var(--color-neutral-white);
+}
+.mebp-modal-actions .mebp-submit-button:hover:not(:disabled) {
+  background-color: var(--color-accent-purple-dark);
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+  .mebp-page-container {
+    margin: 20px auto;
+    padding: 15px;
+  }
+
+  .mebp-page-title {
+    font-size: 2.2em;
+  }
+
+  .mebp-bookings-grid {
+    grid-template-columns: 1fr; /* Stack cards on small screens */
+  }
+
+  .mebp-booking-card {
+    padding: 20px;
+  }
+
+  .mebp-card-actions {
+    flex-direction: column; /* Stack action buttons */
+    gap: 10px;
+  }
+
+  .mebp-modal-content {
+    padding: 20px;
+    max-height: 85vh; /* Adjust for smaller screens */
+  }
+
+  .mebp-modal-title {
+    font-size: 1.6em;
+  }
+}

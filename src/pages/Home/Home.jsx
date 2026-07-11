@@ -1,41 +1,76 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "./Home.css";
-import waiter from "../../assets/waiter.jpg"; // adjust path if needed
+import waiter from "../../assets/waiter.jpg";
 import chef from "../../assets/chef.jpg";
+import offersstaf from "../../assets/offersstaf.jpg";
 
-const Home = () => {
+const slides = [
+  {
+    img: waiter,
+    title: "Welcome to BiteBook",
+    text: "Indulge in traditional dishes made with the freshest locally sourced ingredients.",
+  },
+  {
+    img: chef,
+    title: "Delicious Dining Awaits",
+    text: "Experience gourmet meals in a cozy ambiance.",
+  },
+];
+
+const offerSlide = {
+  img: offersstaf,
+  title: "Today's Special Offer",
+  text: "Get 20% off on all reservations made before 6 PM!",
+};
+
+const HomePage = () => {
+  const [index, setIndex] = useState(0);
+  const [showOffer, setShowOffer] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (index < slides.length - 1) {
+        setIndex((prev) => prev + 1);
+      }
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [index]);
+
+  const handleShowOffer = () => {
+    setShowOffer(true);
+  };
+
+  const currentSlide = showOffer ? offerSlide : slides[index];
+
   return (
-    <div className="home">
-      <img src={waiter} alt="Top Left" className="corner-image top-left" />
+    <div className="body">
+      <div className="main-content">
+        <div className="container">
+          <div className="image-container">
+            <img
+              src={currentSlide.img}
+              alt={currentSlide.title}
+              className="animated-image"
+            />
+          </div>
+          <div className="text-container">
+            <h1>{currentSlide.title}</h1>
+            <p>{currentSlide.text}</p>
 
-      <img
-        src={chef}
-        alt="Bottom Right"
-        className="corner-image bottom-right"
-      />
-
-      <div className="corner-text top-left-text">
-        <p>Welcome to BiteBook, your best choice for smart dining solutions!</p>
+            <div className="button-group">
+              <Link to="/Resturants">
+                <button className="reserve-button">Make a Reservation</button>
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
-
-      {/* ➔ New Paragraph at Bottom Right */}
-      <div className="corner-text bottom-right-text">
-        <p>
-          Explore our platform for the finest restaurants, top chefs, and the
-          best dining experience!
-        </p>
-      </div>
-
-      <div className="home-content">
-        <h1 className="slide-in">Welcome to BiteBook</h1>
-        <p className="fade-in">Your gateway to smart, modern web solutions.</p>
-        <button className="home-button fade-in">Get Started</button>
-      </div>
-
       <footer className="footer">
-        <p>© 2025 BitMe. All rights reserved.</p>
+        &copy; {new Date().getFullYear()} Fjordsmaken. All rights reserved.
       </footer>
     </div>
   );
 };
 
-export default Home;
+export default HomePage;

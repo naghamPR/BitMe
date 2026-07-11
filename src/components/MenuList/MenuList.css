@@ -1,0 +1,410 @@
+/* --- MenuList.css --- */
+
+/* --- Global Color Palette Variables (Ensuring consistency with other warm CSS files) --- */
+/* These variables are copied from the main warm color palette for local reference. */
+:root {
+  --color-primary-main: #c17c37; /* A rich burnt orange */
+  --color-primary-light: #e1b080; /* Brighter orange */
+  --color-primary-dark: #c79668; /* Deeper burnt orange */
+
+  --color-accent-green: #808000; /* Olive Green for success/positive actions */
+  --color-accent-green-dark: #556b2f; /* Darker Olive Green */
+  --color-accent-purple: #8e44ad; /* A sophisticated amethyst/plum for special actions */
+  --color-accent-purple-dark: #6c3483; /* Darker amethyst */
+  --color-accent-red: #b22222; /* Firebrick red for danger/negative actions */
+  --color-accent-red-dark: #8b0000; /* Dark Red */
+
+  --color-neutral-white: #fffbf0; /* Warm off-white */
+  --color-neutral-light: #f8f5ef; /* Very light warm gray/cream for backgrounds */
+  --color-neutral-medium: #e0d9cc; /* Light warm gray/beige for borders/dividers */
+  --color-neutral-dark: #c2b7a8; /* Medium warm gray for subtle details */
+  --color-neutral-darker: #8a7f70; /* Dark warm gray for placeholder text */
+  --color-neutral-lightest: #fffdf8; /* Even lighter for specific backgrounds like lists */
+
+  --color-text-primary: #362f27; /* Dark warm charcoal for main text */
+  --color-text-secondary: #5e5346; /* Slightly lighter warm brown-gray for secondary text */
+  --color-text-light: #8a7f70; /* For less emphasis (same as neutral-darker) */
+
+  --color-star-filled: #ffc107; /* Bright yellow for stars */
+  --color-star-empty: var(--color-neutral-medium);
+  --color-heart-filled: var(--color-accent-red);
+  --color-error-message: var(--color-accent-red-dark);
+
+  --message-success-bg: #e6ffe6;
+  --message-success-color: #3b8a3b;
+  --message-error-bg: #ffebeb;
+  --message-error-color: #a73d3a;
+
+  --shadow-sm: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0px 8px 16px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0px 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* --- General Layout & Messages --- */
+.ml-container {
+  padding: 0;
+  box-shadow: none;
+  background-color: transparent;
+}
+
+/* Message Styles (Loading, Error) */
+.ml-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Tighter gap */
+  padding: 18px; /* Reduced padding */
+  margin: 12px 0; /* Reduced margin */
+  background-color: var(--color-neutral-white); /* Warm white */
+  border-radius: 8px; /* Smaller border-radius */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04); /* Softer, lighter shadow */
+  font-size: 0.9em; /* Smaller font size */
+  color: var(
+    --color-text-secondary
+  ); /* Slightly darker warm text for contrast */
+  text-align: center;
+  border: 1px solid var(--color-neutral-light); /* Very light warm border */
+}
+
+.ml-loading-message .spinner {
+  animation: spin 1s linear infinite;
+  color: var(--color-primary-main); /* Warm accent color */
+}
+
+.ml-error-message {
+  background-color: var(--message-error-bg); /* Warm error background */
+  color: var(--message-error-color); /* Warm error text */
+  border: 1px solid var(--message-error-bg); /* Warm error border */
+}
+
+/* No Menus Found Message */
+.ml-no-menus-found {
+  text-align: center;
+  padding: 25px 15px; /* Reduced padding */
+  background-color: var(
+    --color-neutral-lightest
+  ); /* Warm very light background */
+  border: 1px dashed var(--color-neutral-medium); /* Thinner, lighter warm dashed border */
+  border-radius: 8px; /* Smaller border-radius */
+  margin-top: 15px;
+  color: var(--color-text-light); /* Softer warm text color */
+  font-size: 0.95em; /* Adjusted font size */
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.01); /* Even more subtle inner shadow */
+}
+
+.ml-no-menus-found h3 {
+  font-size: 1.3em; /* Smaller heading */
+  color: var(--color-text-secondary); /* Warm text */
+  margin-bottom: 6px; /* Reduced margin */
+}
+
+/* --- Menus Grid --- */
+.ml-menus-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(280px, 1fr)
+  ); /* Even smaller min-width for cards */
+  gap: 20px; /* Reduced space between cards */
+  margin-top: 15px;
+}
+
+/* --- Individual Menu Card --- */
+.ml-menu-card {
+  background-color: var(--color-neutral-white); /* Warm white */
+  border-radius: 10px; /* Smaller rounded corners */
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05); /* Softer, lighter shadow */
+  padding: 18px; /* Reduced padding inside cards */
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Faster, snappier hover */
+  border: 1px solid var(--color-neutral-light); /* Lighter warm border */
+  overflow: hidden;
+}
+
+.ml-menu-card:hover {
+  transform: translateY(-4px); /* Less dramatic lift on hover */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.09); /* Lighter hover shadow */
+}
+
+/* Menu Header (Name & Description) */
+.ml-menu-header {
+  margin-bottom: 12px; /* Reduced margin */
+  padding-bottom: 10px; /* Reduced padding */
+  border-bottom: 1px solid var(--color-neutral-light); /* Very light warm border */
+  text-align: center;
+}
+
+.ml-menu-title {
+  font-size: 1.6em; /* Smaller title */
+  color: var(--color-text-primary); /* Warm text */
+  margin: 0 0 6px 0; /* Adjusted margin */
+  font-weight: 700;
+}
+
+.ml-menu-description {
+  font-size: 0.85em; /* Smaller description */
+  color: var(--color-text-light); /* Warm text */
+  font-style: italic;
+  margin: 0;
+  line-height: 1.3;
+}
+
+/* --- Menu Items Section --- */
+.ml-menu-items-section {
+  flex-grow: 1;
+  margin-bottom: 18px; /* Reduced space before actions */
+  padding-top: 10px; /* Reduced padding */
+}
+
+.ml-section-title {
+  font-size: 1em; /* Smaller section title */
+  color: var(--color-text-primary); /* Warm text */
+  margin-bottom: 10px; /* Reduced margin */
+  font-weight: 600;
+  text-align: center;
+  border-bottom: 1px dashed var(--color-neutral-medium); /* Lighter warm dashed separator */
+  padding-bottom: 6px; /* Reduced padding */
+}
+
+.ml-items-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px; /* Reduced gap between items */
+}
+
+.ml-item-card {
+  background-color: var(
+    --color-neutral-lightest
+  ); /* Warm very light background */
+  border: 1px solid var(--color-neutral-light); /* Lighter warm border */
+  border-radius: 5px; /* Smaller rounded corners for items */
+  padding: 8px 10px; /* Reduced padding */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02); /* Even more subtle shadow */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px; /* Reduced gap */
+  transition: background-color 0.15s ease;
+}
+
+.ml-item-card:hover {
+  background-color: var(
+    --color-neutral-light
+  ); /* Subtle warm highlight on hover */
+}
+
+.ml-item-info {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.ml-item-name {
+  font-size: 0.95em; /* Base font size for name */
+  font-weight: 600;
+  color: var(--color-text-primary); /* Warm text */
+  margin-bottom: 2px;
+}
+
+.ml-item-type {
+  font-size: 0.75em; /* Smaller type text */
+  font-weight: 500;
+  color: var(--color-text-light); /* Warm text */
+  background-color: var(--color-neutral-light); /* Warm light background */
+  padding: 2px 5px; /* Reduced padding */
+  border-radius: 4px; /* Smaller rounding */
+  display: inline-flex;
+  align-items: center;
+  gap: 3px; /* Reduced gap */
+}
+
+.ml-item-description {
+  font-size: 0.75em; /* Smaller description */
+  color: var(--color-neutral-darker); /* Warm text */
+  margin: 3px 0 0 0; /* Reduced margin */
+  line-height: 1.2;
+  max-height: 2.5em; /* Adjusted max height for compactness */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ml-item-actions {
+  display: flex;
+  flex-shrink: 0;
+  gap: 4px; /* Reduced gap between item buttons */
+}
+
+.ml-item-price {
+  font-weight: 700;
+  color: var(--color-accent-green); /* Warm green */
+  font-size: 1em; /* Adjusted price font size */
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 3px; /* Reduced gap */
+}
+
+.ml-no-items-message {
+  text-align: center;
+  font-style: italic;
+  color: var(--color-neutral-darker); /* Warm text */
+  padding: 18px; /* Reduced padding */
+  background-color: var(--color-neutral-light); /* Warm light background */
+  border-radius: 8px;
+  border: 1px dashed var(--color-neutral-medium); /* Warm dashed border */
+  font-size: 0.9em;
+}
+
+/* --- Menu Actions (Buttons at bottom of card) --- */
+.ml-menu-actions {
+  margin-top: 18px; /* Reduced margin */
+  padding-top: 15px; /* Reduced padding */
+  border-top: 1px solid var(--color-neutral-medium); /* Lighter warm border */
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; /* Allows buttons to wrap to the next line if space is limited */
+  gap: 12px; /* Increased gap between menu action buttons for better spacing */
+}
+
+.ml-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px; /* Reduced gap for icon */
+  padding: 12px 24px; /* Increased padding for bigger buttons */
+  border: none;
+  border-radius: 16px; /* Increased rounding for more rounded buttons */
+  font-size: 1em; /* Adjusted font size for new padding */
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.15s ease,
+    box-shadow 0.15s ease; /* Faster transitions */
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05); /* Softer shadow */
+  color: var(--color-neutral-white); /* Warm white for button text */
+  min-width: 100px; /* Ensure a minimum width so text doesn't become too cramped */
+}
+
+.ml-action-btn:hover {
+  transform: translateY(-1px); /* Less dramatic lift */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Lighter hover shadow */
+}
+
+/* Specific button colors (retained but mapped to warm palette) */
+/* Removed fixed width/height and radius from specific buttons to allow .ml-action-btn styles to apply */
+.ml-update-menu-btn {
+  background-color: var(--color-primary-main);
+} /* Warm primary (orange) */
+.ml-update-menu-btn:hover {
+  background-color: var(--color-primary-dark);
+} /* Darker warm primary (dark orange) */
+.ml-add-item-to-menu-btn {
+  background-color: var(--color-accent-green);
+} /* Warm green */
+.ml-add-item-to-menu-btn:hover {
+  background-color: var(--color-accent-green-dark);
+} /* Darker warm green */
+.ml-delete-menu-btn,
+.ml-delete-item-btn {
+  background-color: var(--color-accent-red);
+} /* Warm red */
+.ml-delete-menu-btn:hover {
+  background-color: var(--color-accent-red-dark);
+} /* Darker warm red */
+
+.ml-edit-item-btn {
+  background-color: var(--color-star-filled); /* Warm yellow */
+  color: var(--color-text-primary); /* Warm primary text for contrast */
+  padding: 4px 6px; /* Very small inline buttons */
+  font-size: 0.65em; /* Even smaller font for inline buttons */
+  gap: 3px;
+  box-shadow: none;
+}
+.ml-edit-item-btn:hover {
+  background-color: #e0a800; /* Original amber hover, as it's a good match */
+  transform: none;
+  box-shadow: none;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+  .ml-menus-grid {
+    grid-template-columns: 1fr; /* Stack menu cards vertically */
+    gap: 15px; /* Reduced gap */
+  }
+
+  .ml-menu-card {
+    padding: 15px; /* Further reduced padding */
+  }
+
+  .ml-menu-title {
+    font-size: 1.4em; /* Smaller title on mobile */
+  }
+
+  .ml-menu-actions {
+    flex-direction: column; /* Stack buttons vertically on small screens */
+    gap: 10px; /* Adjusted gap for vertical stacking */
+  }
+
+  .ml-action-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 10px 15px; /* Adjusted padding for mobile */
+    font-size: 0.9em; /* Adjusted font size for mobile */
+  }
+
+  .ml-item-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px; /* Reduced item card padding */
+    gap: 6px;
+  }
+
+  .ml-item-header {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3px; /* Reduced gap */
+    padding-bottom: 6px; /* Reduced padding */
+    margin-bottom: 6px; /* Reduced margin */
+  }
+
+  .ml-item-name {
+    font-size: 0.9em;
+  }
+
+  .ml-item-price {
+    font-size: 0.95em;
+    width: 100%;
+    text-align: right;
+  }
+
+  .ml-item-actions {
+    width: 100%;
+    justify-content: flex-end;
+    margin-left: 0;
+    gap: 4px; /* Reduced gap */
+  }
+
+  .ml-edit-item-btn,
+  .ml-delete-item-btn {
+    padding: 3px 5px; /* Very small inline buttons */
+    font-size: 0.6em;
+  }
+
+  .ml-item-description {
+    max-height: 2.4em; /* Adjust max height for smaller screens */
+  }
+}
+
+/* Spinner Animation (re-used) */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

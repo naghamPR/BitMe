@@ -1,0 +1,610 @@
+/* --- RestaurantProfile.css --- */
+
+/* --- Global Color Palette Variables (Ensuring consistency with other warm CSS files) --- */
+/* These variables are copied from the main warm color palette for local reference. */
+:root {
+  --color-primary-main: #d46a00; /* A rich burnt orange */
+  --color-primary-light: #ff9933; /* Brighter orange */
+  --color-primary-dark: #a34e00; /* Deeper burnt orange */
+
+  --color-accent-green: #808000; /* Olive Green for success/positive actions */
+  --color-accent-green-dark: #556b2f; /* Darker Olive Green */
+  --color-accent-purple: #8e44ad; /* A sophisticated amethyst/plum for special actions */
+  --color-accent-purple-dark: #6c3483; /* Darker amethyst */
+  --color-accent-red: #b22222; /* Firebrick red for danger/negative actions */
+  --color-accent-red-dark: #8b0000; /* Dark Red */
+
+  --color-neutral-white: #fffbf0; /* Warm off-white */
+  --color-neutral-light: #f8f5ef; /* Very light warm gray/cream for backgrounds */
+  --color-neutral-medium: #e0d9cc; /* Light warm gray/beige for borders/dividers */
+  --color-neutral-dark: #c2b7a8; /* Medium warm gray for subtle details */
+  --color-neutral-darker: #8a7f70; /* Dark warm gray for placeholder text */
+  --color-neutral-lightest: #fffdf8; /* Even lighter for specific backgrounds like lists */
+
+  --color-text-primary: #362f27; /* Dark warm charcoal for main text */
+  --color-text-secondary: #5e5346; /* Slightly lighter warm brown-gray for secondary text */
+  --color-text-light: #8a7f70; /* For less emphasis (same as neutral-darker) */
+
+  --color-star-filled: #ffc107; /* Bright yellow for stars */
+  --color-star-empty: var(--color-neutral-medium);
+  --color-heart-filled: var(--color-accent-red);
+  --color-error-message: var(--color-accent-red-dark);
+
+  --message-success-bg: #e6ffe6;
+  --message-success-color: #3b8a3b;
+  --message-error-bg: #ffebeb;
+  --message-error-color: #a73d3a;
+
+  --shadow-sm: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0px 8px 16px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0px 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Page Container --- */
+.rp-page-container {
+  font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(
+    --color-neutral-light
+  ); /* Light warm background for the page */
+  color: var(--color-text-secondary);
+  min-height: calc(100vh - 80px); /* Adjust based on navbar height */
+  padding: 40px 20px;
+  box-sizing: border-box;
+
+  margin: 0 auto; /* Center the page content */
+}
+
+/* --- Profile Card (Main Content Wrapper) --- */
+.rp-profile-card {
+  background-color: var(--color-neutral-white);
+  border-radius: 15px; /* Softly rounded corners */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08); /* Prominent, floating shadow */
+  padding: 30px;
+  border: 1px solid var(--color-neutral-medium); /* Subtle warm border */
+  display: flex;
+  flex-direction: column;
+  gap: 30px; /* Space between major sections */
+}
+
+/* --- Title --- */
+.rp-profile-title {
+  font-size: 2.8em;
+  color: var(--color-text-primary);
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 0; /* Gap handled by parent .rp-profile-card */
+  font-weight: 700;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.rp-profile-title::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background-color: var(--color-primary-main); /* Warm primary accent */
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+/* --- Loading & Error Messages (Page Level) --- */
+.rp-loading-message,
+.rp-error-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 50px 20px;
+  margin: 30px auto;
+  background-color: var(--color-neutral-white);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  font-size: 1.1em;
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+.rp-loading-message .spinner {
+  animation: spin 1s linear infinite;
+  color: var(--color-primary-main);
+}
+
+.rp-error-message {
+  background-color: var(--message-error-bg);
+  color: var(--message-error-color);
+  border: 1px solid var(--message-error-bg);
+}
+.rp-error-message .icon {
+  margin-right: 8px; /* Space between icon and text */
+}
+
+/* --- Media Section (Image & Video) --- */
+.rp-media-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px; /* Space between image and video/upload controls */
+  border-bottom: 1px solid var(--color-neutral-light);
+  padding-bottom: 30px;
+}
+
+.rp-image-wrapper,
+.rp-video-wrapper {
+  width: 100%;
+  max-width: 300px; /* Max width for image/video containers */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rp-restaurant-image,
+.rp-image-preview {
+  width: 200px; /* Fixed size for circular image */
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%; /* Circular shape */
+  border: 4px solid var(--color-neutral-white); /* Warm white border */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* Stronger shadow for profile pic */
+  margin-bottom: 15px; /* Space below image */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.rp-restaurant-image:hover {
+  transform: scale(1.03);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.rp-restaurant-video,
+.rp-video-preview {
+  width: 100%;
+  height: auto;
+  border-radius: 10px; /* Rounded corners for video player */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  background-color: var(
+    --color-text-primary
+  ); /* Warm dark charcoal fallback for video player */
+  margin-bottom: 15px; /* Space below video */
+}
+
+.rp-file-upload-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background-color: var(--color-neutral-dark); /* Warm gray for file upload */
+  color: var(--color-neutral-white);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95em;
+  font-weight: 600;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.rp-file-upload-label:hover {
+  background-color: var(--color-neutral-darker);
+  transform: translateY(-2px);
+}
+
+.rp-file-input {
+  display: none; /* Hide original file input */
+}
+
+/* --- Info Section (Main Restaurant Details) --- */
+.rp-info-section {
+  display: grid;
+  grid-template-columns: 1fr; /* Single column layout for info */
+  gap: 20px; /* Space between info groups */
+}
+
+.rp-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+}
+
+.rp-form-label {
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  font-size: 1em;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rp-label-icon {
+  color: var(--color-primary-main); /* Warm primary icon color */
+}
+
+.rp-form-input,
+.rp-form-textarea {
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid var(--color-neutral-medium);
+  border-radius: 8px;
+  font-size: 1em;
+  color: var(--color-text-primary);
+  background-color: var(--color-neutral-lightest);
+  transition: all 0.2s ease-in-out;
+  box-sizing: border-box;
+}
+
+.rp-form-input::placeholder,
+.rp-form-textarea::placeholder {
+  color: var(--color-neutral-darker);
+}
+
+.rp-form-input:focus,
+.rp-form-textarea:focus {
+  outline: none;
+  border-color: var(--color-primary-main);
+  box-shadow: 0 0 0 3px rgba(212, 106, 0, 0.25); /* Warm primary shadow */
+  background-color: var(--color-neutral-white);
+}
+
+.rp-display-value {
+  padding: 10px 15px;
+  background-color: var(
+    --color-neutral-light
+  ); /* Light warm gray background for display mode */
+  border-radius: 8px;
+  color: var(--color-text-primary);
+  font-size: 1em;
+  min-height: 42px; /* Match input height */
+  display: flex;
+  align-items: center;
+}
+
+/* Rating specific display */
+.rp-rating-display {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rp-star-rating {
+  display: flex;
+  gap: 2px;
+  color: var(--color-neutral-darker); /* Default star color */
+}
+
+.rp-star-filled {
+  color: var(--color-star-filled); /* Gold for filled stars */
+}
+.rp-star-empty {
+  /* Explicitly define empty star color if fill="currentColor" on SVG doesn't handle it */
+  color: var(--color-neutral-medium);
+}
+
+.rp-rating-value {
+  font-weight: 700;
+  color: var(--color-accent-green); /* Warm green for rating value */
+}
+
+/* --- Section Separators (Features, Tables) --- */
+.rp-section-separator {
+  padding-top: 25px;
+  border-top: 1px solid var(--color-neutral-light);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.rp-section-title {
+  font-size: 1.5em;
+  color: var(--color-text-primary);
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+}
+
+.rp-features-grid,
+.rp-tables-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Space between feature/table items */
+}
+
+.rp-feature-item,
+.rp-table-item {
+  background-color: var(--color-neutral-lightest);
+  border: 1px solid var(--color-neutral-light);
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+  text-align: left;
+}
+
+.rp-no-data-message {
+  font-style: italic;
+  color: var(--color-text-light);
+  text-align: center;
+  padding: 15px;
+  background-color: var(--color-neutral-light);
+  border-radius: 8px;
+  border: 1px dashed var(--color-neutral-medium);
+}
+
+.rp-add-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background-color: var(--color-accent-green); /* Warm green for add button */
+  color: var(--color-neutral-white);
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  align-self: flex-start; /* Align to left */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.rp-add-button:hover {
+  background-color: var(--color-accent-green-dark);
+  transform: translateY(-2px);
+}
+
+/* Edit group styles for features/tables */
+.rp-feature-edit-group,
+.rp-table-edit-group {
+  display: flex;
+  flex-wrap: wrap; /* Allow inputs to wrap */
+  gap: 10px; /* Space between inputs */
+  align-items: center;
+}
+
+.rp-feature-edit-group .rp-form-input,
+.rp-feature-edit-group .rp-form-textarea,
+.rp-table-edit-group .rp-form-input {
+  flex: 1; /* Allow inputs to grow */
+  min-width: 120px; /* Minimum width for inputs */
+}
+
+.rp-feature-edit-group .rp-form-textarea {
+  flex-basis: 100%; /* Textarea takes full width */
+}
+
+.rp-remove-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-accent-red); /* Warm red X icon */
+  padding: 5px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0; /* Don't shrink the button */
+}
+
+.rp-remove-button:hover {
+  background-color: var(--message-error-bg);
+}
+
+/* Display styles for features/tables */
+.rp-feature-type,
+.rp-table-type {
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-right: 5px;
+}
+
+.rp-feature-description,
+.rp-table-details-display {
+  color: var(--color-text-secondary);
+}
+
+/* --- Form Actions (Save/Edit/Cancel) --- */
+.rp-actions-section {
+  padding-top: 25px;
+  border-top: 1px solid var(--color-neutral-light);
+  display: flex;
+  justify-content: flex-end; /* Align buttons to the right */
+  gap: 15px;
+  flex-wrap: wrap; /* Allow buttons to wrap */
+}
+
+.rp-action-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease,
+    box-shadow 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  color: var(--color-neutral-white);
+}
+
+.rp-action-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.rp-action-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.rp-save-button {
+  background-color: var(--color-accent-green); /* Warm green for save */
+}
+.rp-save-button:hover {
+  background-color: var(--color-accent-green-dark);
+}
+
+.rp-cancel-button {
+  background-color: var(--color-neutral-dark); /* Warm gray for cancel */
+}
+.rp-cancel-button:hover {
+  background-color: var(--color-neutral-darker);
+}
+
+.rp-edit-button {
+  background-color: var(
+    --color-primary-main
+  ); /* Warm primary for edit profile */
+}
+.rp-edit-button:hover {
+  background-color: var(--color-primary-dark);
+}
+
+/* Submission Message */
+.rp-submission-message {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 15px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.95em;
+  justify-content: center;
+  text-align: center;
+  flex-grow: 1; /* Allow message to take space */
+  margin-right: 15px; /* Space between message and buttons */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.rp-message-success {
+  background-color: var(--message-success-bg);
+  color: var(--message-success-color);
+  border: 1px solid var(--message-success-bg);
+}
+
+.rp-message-error {
+  background-color: var(--message-error-bg);
+  color: var(--message-error-color);
+  border: 1px solid var(--message-error-bg);
+}
+
+/* Spinner (reused) */
+.spinner {
+  animation: spin 1s linear infinite;
+  margin-right: 8px;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+  .rp-page-container {
+    padding: 20px 15px;
+  }
+
+  .rp-profile-card {
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .rp-profile-title {
+    font-size: 2.2em;
+    padding-bottom: 10px;
+  }
+
+  .rp-media-section {
+    flex-direction: column;
+    gap: 20px;
+    padding-bottom: 20px;
+  }
+
+  .rp-image-wrapper,
+  .rp-video-wrapper {
+    max-width: 250px;
+  }
+
+  .rp-restaurant-image,
+  .rp-image-preview {
+    width: 180px;
+    height: 180px;
+  }
+
+  .rp-info-section {
+    gap: 15px;
+  }
+
+  .rp-form-label {
+    font-size: 0.9em;
+  }
+
+  .rp-form-input,
+  .rp-form-textarea,
+  .rp-display-value {
+    padding: 8px 12px;
+    font-size: 0.9em;
+  }
+
+  .rp-section-separator {
+    padding-top: 20px;
+    gap: 15px;
+  }
+
+  .rp-section-title {
+    font-size: 1.3em;
+  }
+
+  .rp-features-grid,
+  .rp-tables-grid {
+    gap: 10px;
+  }
+
+  .rp-feature-edit-group,
+  .rp-table-edit-group {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .rp-feature-edit-group .rp-form-input,
+  .rp-feature-edit-group .rp-form-textarea,
+  .rp-table-edit-group .rp-form-input {
+    min-width: unset;
+    width: 100%;
+  }
+
+  .rp-remove-button {
+    align-self: flex-end; /* Push remove button to the right */
+    margin-top: -30px; /* Adjust as needed for overlap */
+    margin-right: -10px;
+  }
+
+  .rp-actions-section {
+    flex-direction: column;
+    gap: 15px;
+    padding-top: 20px;
+  }
+
+  .rp-action-button {
+    width: 100%;
+    justify-content: center;
+    padding: 10px 20px;
+    font-size: 0.95em;
+  }
+
+  .rp-submission-message {
+    margin-right: 0;
+    width: 100%;
+  }
+}

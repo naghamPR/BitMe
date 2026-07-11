@@ -1,0 +1,216 @@
+/* Order.css - Styled to match Menu.css */
+.order-page {
+  background-color: #eae3dc; /* Match menu page background */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding: 20px; /* Add some padding */
+}
+
+.order-card {
+  /* Use a card similar to menu */
+  position: relative;
+  background-color: #f4e6d4; /* Match menu card background */
+  width: 500px; /* Match menu card width */
+  min-height: 90vh; /* Match menu card height */
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px #a35c38; /* Match menu shadow */
+  overflow: hidden;
+  z-index: 1; /* Ensure content is above background */
+}
+
+.order-background-image {
+  /* Background image like menu */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.3; /* Match menu opacity */
+  z-index: 0; /* Stay behind */
+}
+
+.order-title {
+  /* Title style like menu */
+  text-align: center; /* Center title */
+  font-size: 24px;
+  font-weight: bold;
+  color: black; /* Match menu title color */
+  margin-bottom: 20px; /* Add some space below title */
+  position: relative; /* Ensure it's above background */
+  z-index: 1;
+}
+
+/* Keep category styling simple for now, can enhance later */
+.order-category {
+  margin-bottom: 20px;
+  position: relative; /* Ensure it's above background */
+  z-index: 1;
+}
+
+.order-category h2 {
+  font-size: 20px;
+  color: black; /* Match menu text color */
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ddd; /* Match menu item border */
+  padding-bottom: 5px;
+}
+
+.order-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Space between items */
+}
+
+.order-item {
+  /* Style like menu item */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd; /* Match menu item border */
+}
+
+.item-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-name {
+  font-weight: bold; /* Match menu item text */
+  color: black;
+  font-size: 16px;
+}
+
+.item-price {
+  font-weight: normal; /* Slightly less emphasis than name */
+  color: #555; /* Dark gray for price */
+  font-size: 14px;
+}
+
+.item-selector {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Adjust gap */
+}
+
+.quantity-button {
+  /* Style buttons like menu buttons */
+  background-color: #333; /* Dark gray */
+  color: white;
+  border: none;
+  border-radius: 50%; /* Keep circular */
+  width: 28px; /* Adjust size */
+  height: 28px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.quantity-button:hover {
+  background-color: #ed8f14; /* Orange hover */
+}
+
+.quantity-button:disabled {
+  background-color: #ccc; /* Lighter gray for disabled */
+  color: #888;
+  cursor: not-allowed;
+}
+
+.item-quantity {
+  font-size: 16px;
+  font-weight: bold;
+  min-width: 20px;
+  text-align: center;
+  color: black; /* Match menu text color */
+}
+
+.order-summary {
+  /* Style summary section */
+  margin-top: 30px; /* Space above summary */
+  padding-top: 20px;
+  border-top: 1px solid #ddd; /* Separator */
+  text-align: center;
+  position: relative; /* Ensure it's above background */
+  z-index: 1;
+}
+
+.order-summary p {
+  font-size: 16px;
+  color: black; /* Match menu text color */
+  margin-bottom: 20px;
+}
+
+.order-actions {
+  /* Style action buttons */
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.action-button {
+  /* Base style for action buttons */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: white;
+}
+
+.calculate-button {
+  background-color: #ed8f14; /* Orange like menu order button */
+}
+.calculate-button:hover {
+  background-color: #d47f12; /* Darker orange hover */
+}
+
+.split-button {
+  background-color: #333; /* Dark gray like other menu buttons */
+}
+.split-button:hover {
+  background-color: #ed8f14; /* Orange hover */
+}
+
+.action-button:disabled {
+  background-color: #ccc;
+  color: #888;
+  cursor: not-allowed;
+}
+
+/* Responsive adjustments (optional, but good practice) */
+@media (max-width: 600px) {
+  .order-card {
+    width: 95%; /* Make card wider on small screens */
+    min-height: auto; /* Adjust height */
+  }
+  .item-selector {
+    gap: 5px;
+  }
+  .quantity-button {
+    width: 24px;
+    height: 24px;
+    font-size: 16px;
+  }
+  .action-button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,285 @@
+/* --- ReservationModal.css --- */
+
+/* Note: This CSS file styles the *content* of the reservation modal.
+ * The overlay (`.rd-modal-overlay`) and its open/close animations are 
+ * controlled by the parent's stylesheet (`ResturantsDetails.css`).
+ * This component's root element is `.rd-modal-content`.
+*/
+
+/* --- Global Color Palette Variables (Ensuring consistency with other warm CSS files) --- */
+/* These variables are copied from the main warm color palette for local reference. */
+:root {
+  --color-primary-main: #d46a00; /* A rich burnt orange */
+  --color-primary-light: #ff9933; /* Brighter orange */
+  --color-primary-dark: #a34e00; /* Deeper burnt orange */
+
+  --color-accent-green: #808000; /* Olive Green for success/positive actions */
+  --color-accent-green-dark: #556b2f; /* Darker Olive Green */
+  --color-accent-purple: #8e44ad; /* A sophisticated amethyst/plum for special actions */
+  --color-accent-purple-dark: #6c3483; /* Darker amethyst */
+  --color-accent-red: #b22222; /* Firebrick red for danger/negative actions */
+  --color-accent-red-dark: #8b0000; /* Dark Red */
+
+  --color-neutral-white: #fffbf0; /* Warm off-white */
+  --color-neutral-light: #f8f5ef; /* Very light warm gray/cream for backgrounds */
+  --color-neutral-medium: #e0d9cc; /* Light warm gray/beige for borders/dividers */
+  --color-neutral-dark: #c2b7a8; /* Medium warm gray for subtle details */
+  --color-neutral-darker: #8a7f70; /* Dark warm gray for placeholder text */
+  --color-neutral-lightest: #fffdf8; /* Even lighter for specific backgrounds like lists */
+
+  --color-text-primary: #362f27; /* Dark warm charcoal for main text */
+  --color-text-secondary: #5e5346; /* Slightly lighter warm brown-gray for secondary text */
+  --color-text-light: #8a7f70; /* For less emphasis (same as neutral-darker) */
+
+  --color-star-filled: #ffc107; /* Bright yellow for stars */
+  --color-star-empty: var(--color-neutral-medium);
+  --color-heart-filled: var(--color-accent-red);
+  --color-error-message: var(--color-accent-red-dark);
+
+  --message-success-bg: #e6ffe6;
+  --message-success-color: #3b8a3b;
+  --message-error-bg: #ffebeb;
+  --message-error-color: #a73d3a;
+
+  --shadow-sm: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0px 8px 16px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0px 12px 24px rgba(0, 0, 0, 0.2);
+
+  /* Specific modal variables using the warm palette */
+  --modal-overlay-bg: rgba(0, 0, 0, 0.7);
+  --modal-content-bg: var(--color-neutral-white);
+  --modal-content-border: var(--color-neutral-medium);
+  --modal-content-shadow: var(--shadow-xl);
+  --modal-close-btn-color: var(--color-text-light);
+  --modal-close-btn-hover-bg: var(--color-neutral-light);
+  --modal-close-btn-hover-color: var(--color-text-primary);
+  --modal-title-color: var(--color-text-primary);
+  --star-color-filled: var(--color-star-filled);
+  --star-color-empty: var(--color-neutral-medium);
+
+  --submit-btn-bg: var(--color-primary-main);
+  --submit-btn-hover-bg: var(--color-primary-dark);
+  /* Unused in this file, but defined for consistency with other modals */
+  --unrate-btn-bg: var(--color-accent-red);
+  --unrate-btn-hover-bg: var(--color-accent-red-dark);
+  --cancel-btn-bg: var(--color-neutral-dark);
+  --cancel-btn-hover-bg: var(--color-neutral-darker);
+
+  --message-success-bg-local: var(--message-success-bg);
+  --message-success-color-local: var(--message-success-color);
+  --message-error-bg-local: var(--message-error-bg);
+  --message-error-color-local: var(--message-error-color);
+}
+
+/* --- Modal Content & Base Layout --- */
+.rd-modal-content {
+  /* Inherits background, box-shadow, and initial animation from parent CSS. */
+  /* This ensures consistency across all modals. */
+  text-align: center;
+  max-width: 550px; /* Optimal width for a form modal */
+  width: 95%;
+  position: relative; /* Required for the close button positioning */
+}
+
+/* --- Modal Title --- */
+.rd-modal-content h2 {
+  font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 2em;
+  font-weight: 700;
+  color: var(--modal-title-color); /* Using warm primary text color */
+  margin-top: 0;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid var(--color-neutral-light); /* Warm light border */
+}
+
+/* --- Reservation Container (Wraps info and form) --- */
+.reservation-container {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  text-align: left; /* Align form labels and inputs to the left */
+}
+
+/* --- Table Info Section --- */
+.table-info {
+  background-color: var(--color-neutral-lightest); /* Warm creamy beige */
+  border: 1px solid var(--color-neutral-medium); /* Warm light border */
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.table-info h3 {
+  font-size: 1.5em;
+  color: var(--color-text-primary); /* Warm dark text */
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.table-info p {
+  margin: 5px 0 0;
+  font-size: 1em;
+  color: var(--color-text-secondary); /* Warm secondary text */
+}
+
+/* --- Form Elements --- */
+.modal-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  font-weight: 600;
+  color: #443a30; /* Explicitly set a darker warm brown for visibility */
+  font-size: 0.95em;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid var(--color-neutral-medium); /* Warm border */
+  border-radius: 8px;
+  font-size: 1em;
+  font-family: inherit;
+  color: #221c14; /* Explicitly set a very dark charcoal brown for text */
+  background-color: var(--color-neutral-white); /* Warm white background */
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box; /* Important for consistent sizing */
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: #6f6456; /* Explicitly set a darker warm gray for placeholder */
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  color: #000000;
+  border-color: var(
+    --color-accent-purple
+  ); /* Using warm accent purple for focus */
+  box-shadow: 0 0 0 3px rgba(142, 68, 173, 0.15); /* Shadow with warm accent purple */
+}
+
+.form-row {
+  display: flex;
+  gap: 15px;
+}
+
+.form-row .form-group {
+  flex: 1; /* Make time inputs share space equally */
+}
+
+.special-textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+/* --- Form Actions (Buttons) --- */
+.form-actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  padding-top: 20px;
+  border-top: 1px solid var(--color-neutral-medium); /* Warm border */
+}
+
+.form-actions button {
+  padding: 12px 25px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.form-actions button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.form-actions .cancel-button {
+  background-color: var(--cancel-btn-bg); /* Warm gray for cancel */
+  color: var(--color-neutral-white); /* Warm white text */
+  border: 1px solid var(--cancel-btn-bg);
+}
+
+.form-actions .cancel-button:hover {
+  background-color: var(--cancel-btn-hover-bg); /* Darker warm gray on hover */
+}
+
+.form-actions .submit-button {
+  background-color: var(--submit-btn-bg); /* Warm primary brand color */
+  color: var(--color-neutral-white); /* Warm white text */
+}
+
+.form-actions .submit-button:hover {
+  background-color: var(
+    --submit-btn-hover-bg
+  ); /* Darker warm primary on hover */
+}
+
+.form-actions button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* --- Spinner Animation --- */
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 600px) {
+  .rd-modal-content h2 {
+    font-size: 1.6em;
+  }
+
+  .table-info h3 {
+    font-size: 1.3em;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .form-actions button {
+    width: 100%;
+    justify-content: center;
+  }
+}

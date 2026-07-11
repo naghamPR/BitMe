@@ -1,0 +1,204 @@
+/* --- Offers.css --- */
+
+/* --- Global Color Palette Variables (Ensuring consistency with other warm CSS files) --- */
+/* These variables are copied from the main warm color palette for local reference. */
+:root {
+  --color-primary-main: #d46a00; /* A rich burnt orange */
+  --color-primary-light: #ff9933; /* Brighter orange */
+  --color-primary-dark: #a34e00; /* Deeper burnt orange */
+
+  --color-accent-green: #808000; /* Olive Green for success/positive actions */
+  --color-accent-green-dark: #566935; /* Darker Olive Green */
+  --color-accent-purple: #8e44ad; /* A sophisticated amethyst/plum for special actions */
+  --color-accent-purple-dark: #6c3483; /* Darker amethyst */
+  --color-accent-red: #b22222; /* Firebrick red for danger/negative actions */
+  --color-accent-red-dark: #8b0000; /* Dark Red */
+
+  --color-neutral-white: #fffbf0; /* Warm off-white */
+  --color-neutral-light: #f8f5ef; /* Very light warm gray/cream for backgrounds */
+  --color-neutral-medium: #e0d9cc; /* Light warm gray/beige for borders/dividers */
+  --color-neutral-dark: #c2b7a8; /* Medium warm gray for subtle details */
+  --color-neutral-darker: #8a7f70; /* Dark warm gray for placeholder text */
+  --color-neutral-lightest: #fffdf8; /* Even lighter for specific backgrounds like lists */
+
+  --color-text-primary: #362f27; /* Dark warm charcoal for main text */
+  --color-text-secondary: #5e5346; /* Slightly lighter warm brown-gray for secondary text */
+  --color-text-light: #8a7f70; /* For less emphasis (same as neutral-darker) */
+
+  --color-star-filled: #ffc107; /* Bright yellow for stars */
+  --color-star-empty: var(--color-neutral-medium);
+  --color-heart-filled: var(--color-accent-red);
+  --color-error-message: var(--color-accent-red-dark);
+
+  --message-success-bg: #e6ffe6;
+  --message-success-color: #3b8a3b;
+  --message-error-bg: #ffebeb;
+  --message-error-color: #a73d3a;
+
+  --shadow-sm: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0px 8px 16px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0px 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+.offers-container {
+  width: 100%; /* Fill the full width */
+  min-height: 100vh; /* Fill the full height of the viewport */
+  margin: 0; /* Remove auto margins to ensure full width/height adherence */
+  padding: 20px;
+  background-color: var(
+    --color-neutral-white
+  ); /* Warm medium gray background */
+  box-sizing: border-box;
+  /* Include padding in the element's total width and height */
+}
+
+.offers-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.add-offer-btn {
+  background-color: var(--color-accent-green); /* Warm green */
+  color: var(--color-neutral-white); /* Warm white */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.add-offer-btn:hover {
+  background-color: var(--color-accent-green-dark); /* Darker warm green */
+}
+
+.offers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.offer-card {
+  background: var(--color-neutral-medium); /* Warm white */
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.offer-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.offer-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.offer-header h3 {
+  margin: 0;
+  color: var(--color-text-primary); /* Warm primary text */
+}
+
+.offer-type {
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.offer-type.percentage {
+  background-color: var(--color-star-filled); /* Warm yellow */
+  color: var(--color-primary-dark); /* Deeper warm primary for contrast */
+}
+
+.offer-type.fixed_price {
+  background-color: var(--color-neutral-light); /* Light warm background */
+  color: var(--color-primary-main); /* Warm primary */
+}
+
+.offer-description {
+  color: var(--color-text-secondary); /* Warm secondary text */
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.offer-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.discount {
+  color: var(--color-primary-dark); /* Deeper warm primary */
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.fixed-price {
+  color: var(--color-accent-green); /* Warm green */
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.valid-dates {
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+  color: var(--color-text-light); /* Warm light text */
+}
+
+.offer-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.view-btn,
+.delete-btn {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: opacity 0.3s;
+  color: var(--color-neutral-white); /* Warm white for button text */
+}
+
+.view-btn {
+  background-color: var(--color-primary-main); /* Warm primary */
+}
+
+.delete-btn {
+  background-color: var(--color-accent-red); /* Warm red */
+}
+
+.view-btn:hover,
+.delete-btn:hover {
+  opacity: 0.8;
+}
+
+.loading,
+.error {
+  text-align: center;
+  padding: 20px;
+  font-size: 18px;
+}
+
+.error {
+  color: var(--color-error-message); /* Warm error message color */
+}

@@ -1,0 +1,337 @@
+/* --- Stafhom.css --- */
+
+/* --- Global Color Palette Variables (Ensuring consistency with other warm CSS files) --- */
+/* These variables are copied from the main warm color palette for local reference. */
+:root {
+  --color-primary-main: #d46a00; /* A rich burnt orange */
+  --color-primary-light: #ff9933; /* Brighter orange */
+  --color-primary-dark: #a34e00; /* Deeper burnt orange */
+
+  --color-accent-green: #808000; /* Olive Green for success/positive actions */
+  --color-accent-green-dark: #556b2f; /* Darker Olive Green */
+  --color-accent-purple: #8e44ad; /* A sophisticated amethyst/plum for special actions */
+  --color-accent-purple-dark: #6c3483; /* Darker amethyst */
+  --color-accent-red: #b22222; /* Firebrick red for danger/negative actions */
+  --color-accent-red-dark: #8b0000; /* Dark Red */
+
+  --color-neutral-white: #fffbf0; /* Warm off-white */
+  --color-neutral-light: #f8f5ef; /* Very light warm gray/cream for backgrounds */
+  --color-neutral-medium: #e0d9cc; /* Light warm gray/beige for borders/dividers */
+  --color-neutral-dark: #c2b7a8; /* Medium warm gray for subtle details */
+  --color-neutral-darker: #8a7f70; /* Dark warm gray for placeholder text */
+  --color-neutral-lightest: #fffdf8; /* Even lighter for specific backgrounds like lists */
+
+  --color-text-primary: #362f27; /* Dark warm charcoal for main text */
+  --color-text-secondary: #5e5346; /* Slightly lighter warm brown-gray for secondary text */
+  --color-text-light: #8a7f70; /* For less emphasis (same as neutral-darker) */
+
+  --color-star-filled: #ffc107; /* Bright yellow for stars */
+  --color-star-empty: var(--color-neutral-medium);
+  --color-heart-filled: var(--color-accent-red);
+  --color-error-message: var(--color-accent-red-dark);
+
+  --message-success-bg: #e6ffe6;
+  --message-success-color: #3b8a3b;
+  --message-error-bg: #ffebeb;
+  --message-error-color: #a73d3a;
+
+  --shadow-sm: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0px 8px 16px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0px 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Base styles for the page */
+.stafhom-page {
+  font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(
+    --color-neutral-light
+  ); /* Warm light background for the page */
+  color: var(--color-text-secondary); /* Warm text */
+  min-height: calc(100vh - 80px); /* Adjust based on navbar height */
+  padding: 40px 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Page Title */
+.stafhom-title {
+  font-size: 2.8em;
+  color: var(--color-text-primary); /* Warm primary text */
+  text-align: center;
+  margin-bottom: 40px;
+  font-weight: 700;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.stafhom-title::after {
+  content: "";
+  display: block;
+  width: 120px;
+  height: 4px;
+  background-color: var(--color-accent-green); /* Warm green accent color */
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+/* Cards Wrapper - Grid Layout */
+.stafhom-cards-wrapper {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(400px, 1fr)
+  ); /* Responsive grid */
+  gap: 30px; /* Space between cards */
+  max-width: 1400px; /* Limit overall width of cards */
+  width: 100%;
+}
+
+/* Individual Card */
+.stafhom-card {
+  background-color: var(--color-neutral-white); /* Warm white background */
+  border-radius: 10px; /* More pronounced border-radius */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); /* Soft, prominent shadow */
+  overflow: hidden; /* Ensures image and content fit */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effects */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: 1px solid var(--color-neutral-medium); /* Warm medium gray border */
+}
+
+.stafhom-card:hover {
+  transform: translateY(-8px); /* Lift card on hover */
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+}
+
+.stafhom-card-content {
+  padding: 20px;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stafhom-card-content h2 {
+  font-size: 1.8em;
+  color: var(--color-text-primary); /* Warm primary text */
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+/* Card Image */
+.stafhom-card-img {
+  width: 280px; /* Size of the image */
+  height: 280px; /* Make it square */
+  object-fit: cover; /* Ensures image covers the area */
+  border-radius: 12px; /* Rounded corners for the image itself */
+  margin-bottom: 25px;
+  border: 3px solid var(--color-neutral-light); /* Subtle warm border around image */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* Shadow for image */
+}
+
+/* Actions Container */
+.stafhom-actions {
+  display: flex;
+  flex-direction: column; /* Stack buttons vertically */
+  gap: 15px; /* Space between buttons */
+  width: 100%; /* Make actions take full width */
+  padding-top: 20px;
+  border-top: 1px dashed var(--color-neutral-medium); /* Warm dashed border */
+  margin-top: 20px;
+}
+
+/* Action Buttons */
+.stafhom-action-button {
+  display: flex; /* For icon and text alignment */
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 600;
+  text-decoration: none; /* For Link components */
+  transition: background-color 0.2s ease, transform 0.2s ease,
+    box-shadow 0.2s ease;
+  gap: 8px; /* Space between icon and text */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Subtle shadow for buttons */
+  color: var(--color-neutral-white); /* Warm white text for buttons */
+}
+
+.stafhom-action-button:hover {
+  transform: translateY(-2px); /* Lift button on hover */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+}
+
+/* Specific Button Colors */
+.stafhom-view-btn {
+  background-color: var(--color-primary-main); /* Warm primary for "View All" */
+}
+
+.stafhom-view-btn:hover {
+  background-color: var(--color-primary-dark); /* Darker warm primary */
+}
+
+.stafhom-action-button:not(.stafhom-view-btn) {
+  background-color: var(--color-neutral-dark); /* Warm gray for other actions */
+}
+
+.stafhom-action-button:not(.stafhom-view-btn):hover {
+  background-color: var(--color-neutral-darker); /* Darker warm gray */
+}
+
+.stafhom-view-discounts-btn {
+  background-color: var(--color-accent-green); /* Warm green for discounts */
+}
+
+.stafhom-view-discounts-btn:hover {
+  background-color: var(--color-accent-green-dark); /* Darker warm green */
+}
+
+.global-discount-btn {
+  /* "Add Discount" button */
+  background-color: var(
+    --color-star-filled
+  ); /* Amber (using star-filled for a similar hue) */
+  color: var(--color-text-primary); /* Dark text for amber */
+  font-weight: 700;
+}
+.global-discount-btn:hover {
+  background-color: #e0a800; /* Original amber hover, as it's a good match */
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+  .stafhom-title {
+    font-size: 2.2em;
+  }
+
+  .stafhom-cards-wrapper {
+    grid-template-columns: 1fr; /* Stack cards vertically on small screens */
+    padding: 0 15px; /* Add horizontal padding */
+  }
+
+  .stafhom-card {
+    padding: 15px; /* Adjust card padding */
+  }
+
+  .stafhom-card-img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .stafhom-actions {
+    gap: 10px; /* Reduce gap between buttons */
+  }
+
+  .stafhom-action-button {
+    padding: 10px 15px; /* Adjust button padding */
+    font-size: 0.9em;
+  }
+}
+
+/* --- Modal Styles (reused from previous conversations) --- */
+/* This ensures your DiscountModal and ViewDiscountsModal pop up nicely */
+.modal-overlay {
+  /* Assuming your modal overlays use this class or similar */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent dark background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it's on top */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.modal-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  /* Assuming your modal content uses this class or similar */
+  background-color: var(--color-neutral-white); /* Warm white */
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+  padding: 30px;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+  transform: scale(0.9);
+  opacity: 0;
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+  width: 90%;
+  max-width: 500px; /* Default max-width for smaller modals */
+}
+
+.modal-overlay.open .modal-content {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.modal-close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  color: var(--color-text-light); /* Warm light text */
+  transition: color 0.2s ease, background-color 0.2s ease;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close-button:hover {
+  color: var(--color-text-primary); /* Warm primary text */
+  background-color: var(--color-neutral-light); /* Warm light background */
+}
+
+/* Styles for messages/spinners within modals */
+.modal-loading-message,
+.modal-error-message,
+.modal-submission-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px;
+  margin-top: 20px;
+  border-radius: 8px;
+  font-size: 0.95em;
+  font-weight: 500;
+}
+
+.modal-submission-message.success {
+  background-color: var(--message-success-bg); /* Warm success background */
+  color: var(--message-success-color); /* Warm success text */
+  border: 1px solid var(--message-success-bg); /* Warm success border */
+}
+
+.modal-submission-message.error {
+  background-color: var(--message-error-bg); /* Warm error background */
+  color: var(--message-error-color); /* Warm error text */
+  border: 1px solid var(--message-error-bg); /* Warm error border */
+}
+
+.modal-loading-message .spinner {
+  animation: spin 1s linear infinite;
+}

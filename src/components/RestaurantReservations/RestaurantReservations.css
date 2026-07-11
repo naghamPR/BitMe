@@ -1,0 +1,245 @@
+/* --- RestaurantReservations.css --- */
+
+/* --- Global Color Palette Variables (Ensuring consistency with other warm CSS files) --- */
+/* These variables are copied from the main warm color palette for local reference. */
+:root {
+  --color-primary-main: #d46a00; /* A rich burnt orange */
+  --color-primary-light: #ff9933; /* Brighter orange */
+  --color-primary-dark: #a34e00; /* Deeper burnt orange */
+
+  --color-accent-green: #808000; /* Olive Green for success/positive actions */
+  --color-accent-green-dark: #556b2f; /* Darker Olive Green */
+  --color-accent-purple: #8e44ad; /* A sophisticated amethyst/plum for special actions */
+  --color-accent-purple-dark: #6c3483; /* Darker amethyst */
+  --color-accent-red: #b22222; /* Firebrick red for danger/negative actions */
+  --color-accent-red-dark: #8b0000; /* Dark Red */
+
+  --color-neutral-white: #fffbf0; /* Warm off-white */
+  --color-neutral-light: #f8f5ef; /* Very light warm gray/cream for backgrounds */
+  --color-neutral-medium: #e0d9cc; /* Light warm gray/beige for borders/dividers */
+  --color-neutral-dark: #c2b7a8; /* Medium warm gray for subtle details */
+  --color-neutral-darker: #8a7f70; /* Dark warm gray for placeholder text */
+  --color-neutral-lightest: #fffdf8; /* Even lighter for specific backgrounds like lists */
+
+  --color-text-primary: #362f27; /* Dark warm charcoal for main text */
+  --color-text-secondary: #5e5346; /* Slightly lighter warm brown-gray for secondary text */
+  --color-text-light: #8a7f70; /* For less emphasis (same as neutral-darker) */
+
+  --color-star-filled: #ffc107; /* Bright yellow for stars */
+  --color-star-empty: var(--color-neutral-medium);
+  --color-heart-filled: var(--color-accent-red);
+  --color-error-message: var(--color-accent-red-dark);
+
+  --message-success-bg: #e6ffe6;
+  --message-success-color: #3b8a3b;
+  --message-error-bg: #ffebeb;
+  --message-error-color: #a73d3a;
+
+  --shadow-sm: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0px 8px 16px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0px 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Page Container --- */
+.restaurant-reservations {
+  /* Using the main div class from your JSX */
+  font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--color-neutral-light); /* Warm very light background */
+  color: var(--color-text-secondary);
+  min-height: calc(100vh - 80px); /* Adjust based on your navbar height */
+  padding: 40px 20px;
+  box-sizing: border-box;
+
+  margin: 0 auto; /* Center the page content */
+}
+
+/* --- Header --- */
+.restaurant-reservations h2 {
+  /* Targeting the main h2 directly */
+  text-align: center;
+  font-size: 2.8em;
+  color: var(--color-text-primary);
+  margin-bottom: 30px;
+  font-weight: 700;
+  position: relative;
+  padding-bottom: 15px;
+}
+.rr-header h1 {
+  color: #362f27;
+}
+
+.restaurant-reservations h2::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background-color: var(--color-primary-main); /* Warm orange/gold accent */
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+/* --- Loading, Error, No Reservations Messages --- */
+.restaurant-reservations > div > div:first-child:not(.reservation-card) {
+  /* This targets the first child div that's not a reservation card,
+     * which would be your loading, error, or no reservations message.
+     * It's a bit brittle if your JSX structure changes significantly. */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 20px;
+  margin: 30px auto;
+  background-color: var(--color-neutral-white);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  font-size: 1.1em;
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+/* Specific styles for "No reservations found" message */
+.restaurant-reservations > div > p {
+  /* Targeting the <p> for no reservations found directly */
+  text-align: center;
+  padding: 40px 20px;
+  background-color: var(--color-neutral-light);
+  border: 2px dashed var(--color-neutral-medium);
+  border-radius: 10px;
+  margin-top: 20px;
+  font-size: 1.1em;
+  color: var(--color-text-light);
+}
+
+/* --- Reservations Grid (Implicit) --- */
+/* This will style the div containing your .map() function */
+.restaurant-reservations > div {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(320px, 1fr)
+  ); /* Responsive grid for cards */
+  gap: 30px; /* Space between cards */
+  margin-top: 30px; /* Space from header/messages */
+}
+
+/* --- Reservation Card --- */
+.reservation-card {
+  background-color: var(--color-neutral-white);
+  border-radius: 15px; /* Softly rounded corners */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07); /* Modern, floating shadow */
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover effect */
+  border: 1px solid var(--color-neutral-light); /* Subtle warm border */
+  overflow: hidden; /* Ensures content stays within rounded corners */
+}
+
+.reservation-card:hover {
+  transform: translateY(-5px); /* Lift card on hover */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12); /* Enhanced shadow on hover */
+}
+
+/* Card Header (Reservation Title) */
+.reservation-card h3 {
+  /* Targeting the h3 inside reservation-card */
+  font-size: 1.5em;
+  color: var(--color-text-primary);
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-weight: 600;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--color-neutral-light);
+}
+
+/* Reservation Details (Paragraphs) */
+.reservation-card p {
+  /* Targeting all paragraphs inside reservation-card */
+  margin-bottom: 8px;
+  font-size: 1em;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.reservation-card p:last-of-type {
+  /* Adjust last paragraph margin */
+  margin-bottom: 15px;
+}
+
+/* Specific button styles (Assuming these are the only buttons in the card's div) */
+.reservation-card > div > .bg-green-500 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease,
+    box-shadow 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  background-color: var(
+    --color-accent-green
+  ); /* Warm green for finish action */
+  color: var(--color-neutral-white);
+  width: 100%; /* Make button full width */
+  max-width: 250px; /* Limit button width */
+  margin-top: 15px; /* Space from details above */
+}
+
+.reservation-card > div > .bg-green-500:hover {
+  background-color: var(--color-accent-green-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+  .restaurant-reservations {
+    padding: 20px 15px;
+  }
+
+  .restaurant-reservations h2 {
+    font-size: 2.2em;
+    margin-bottom: 20px;
+  }
+
+  .restaurant-reservations > div {
+    /* Adjusting grid for smaller screens */
+    grid-template-columns: 1fr; /* Stack cards vertically */
+    gap: 20px;
+  }
+
+  .reservation-card {
+    padding: 20px;
+  }
+
+  .reservation-card h3 {
+    font-size: 1.3em;
+    margin-bottom: 10px;
+  }
+
+  .reservation-card p {
+    font-size: 0.95em;
+  }
+
+  .reservation-card > div > .bg-green-500 {
+    padding: 10px 20px;
+    font-size: 0.9em;
+    max-width: unset; /* Remove max-width on mobile */
+  }
+}
+
+/* Spinner Animation (re-used, ensure it's in your main app.css or similar if not here) */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,79 @@
+.view-reservation-page {
+  background-color: #eae3dc;
+  height: 100vh;
+  padding-top: 100px; /* space under the navbar */
+  display: flex;
+  flex-direction: column;
+}
+
+.view-restaurants-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  padding: 0 20px;
+}
+.view-reservation-cards-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap; /* allow wrap on small screens */
+}
+
+.view-reservation-input-card {
+  position: relative;
+  width: 400px;
+  height: 300px;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: rgba(164, 112, 7, 0.811);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.view-reservation-input-card:hover {
+  background-color: rgba(158, 113, 40, 0.807);
+  transform: translateY(-8px);
+}
+.view-restaurant-title {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.view-reservation-card-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.5; /* transparent */
+  z-index: 1; /* put image below */
+}
+
+.view-reservation-card-content {
+  position: relative;
+  z-index: 2; /* 👈👈 this pushes content above image */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 30px;
+  gap: 20px;
+  text-align: center;
+}
+
+.view-reservation-submit-button {
+  padding: 12px 20px;
+  background-color: #9e4829;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.view-reservation-submit-button:hover {
+  background-color: #da977f;
+}

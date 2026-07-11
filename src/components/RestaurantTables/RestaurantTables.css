@@ -1,0 +1,537 @@
+/* --- RestaurantTables.css --- */
+
+/* --- Global Color Palette Variables (Ensuring consistency with other warm CSS files) --- */
+/* These variables are copied from the main warm color palette for local reference. */
+:root {
+  --color-primary-main: #d46a00; /* A rich burnt orange */
+  --color-primary-light: #ff9933; /* Brighter orange */
+  --color-primary-dark: #a34e00; /* Deeper burnt orange */
+
+  --color-accent-green: #808000; /* Olive Green for success/positive actions */
+  --color-accent-green-dark: #556b2f; /* Darker Olive Green */
+  --color-accent-purple: #8e44ad; /* A sophisticated amethyst/plum for special actions */
+  --color-accent-purple-dark: #6c3483; /* Darker amethyst */
+  --color-accent-red: #b22222; /* Firebrick red for danger/negative actions */
+  --color-accent-red-dark: #8b0000; /* Dark Red */
+
+  --color-neutral-white: #fffbf0; /* Warm off-white */
+  --color-neutral-light: #f8f5ef; /* Very light warm gray/cream for backgrounds */
+  --color-neutral-medium: #e0d9cc; /* Light warm gray/beige for borders/dividers */
+  --color-neutral-dark: #c2b7a8; /* Medium warm gray for subtle details */
+  --color-neutral-darker: #8a7f70; /* Dark warm gray for placeholder text */
+  --color-neutral-lightest: #fffdf8; /* Even lighter for specific backgrounds like lists */
+
+  --color-text-primary: #362f27; /* Dark warm charcoal for main text */
+  --color-text-secondary: #5e5346; /* Slightly lighter warm brown-gray for secondary text */
+  --color-text-light: #8a7f70; /* For less emphasis (same as neutral-darker) */
+
+  --color-star-filled: #ffc107; /* Bright yellow for stars */
+  --color-star-empty: var(--color-neutral-medium);
+  --color-heart-filled: var(--color-accent-red);
+  --color-error-message: var(--color-accent-red-dark);
+
+  --message-success-bg: #e6ffe6;
+  --message-success-color: #3b8a3b;
+  --message-error-bg: #ffebeb;
+  --message-error-color: #a73d3a;
+
+  --shadow-sm: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0px 8px 16px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0px 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Page Container --- */
+.restaurant-tables-container {
+  font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--color-neutral-light); /* Warm light background */
+  color: var(--color-text-secondary);
+  min-height: calc(100vh - 80px); /* Adjust based on navbar height */
+  padding: 40px 20px;
+  box-sizing: border-box;
+
+  margin: 0 auto;
+}
+
+/* --- Header --- */
+.rt-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--color-neutral-medium); /* Warm border */
+}
+
+.rt-header h2 {
+  font-size: 2.8em;
+  color: var(--color-text-primary);
+  margin: 0;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 12px; /* Space between icon and title */
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.rt-header h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background-color: var(--color-primary-main); /* Warm primary accent color */
+  margin-top: 10px;
+  border-radius: 2px;
+}
+
+.rt-add-table-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 25px;
+  background-color: var(--color-accent-green); /* Warm green for add button */
+  color: var(--color-neutral-white);
+  border: none;
+  border-radius: 8px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease,
+    box-shadow 0.2s ease;
+  box-shadow: 0 4px 10px rgba(128, 128, 0, 0.2); /* Shadow with warm green */
+}
+
+.rt-add-table-btn:hover {
+  background-color: var(--color-accent-green-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(128, 128, 0, 0.3);
+}
+
+/* --- Loading & Error Messages --- */
+.rt-loading-message,
+.rt-error-message,
+.rt-no-tables-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 20px;
+  margin: 30px auto;
+  background-color: var(--color-neutral-white);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  font-size: 1.1em;
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+.rt-loading-message .spinner {
+  animation: spin 1s linear infinite;
+  margin-bottom: 15px;
+  color: var(--color-primary-main); /* Warm primary color */
+}
+
+.rt-error-message {
+  background-color: var(--message-error-bg);
+  color: var(--message-error-color);
+  border: 1px solid var(--message-error-bg);
+}
+
+.rt-no-tables-found h3 {
+  font-size: 1.6em;
+  color: var(--color-text-primary);
+  margin-bottom: 10px;
+}
+
+.rt-no-tables-found p {
+  font-size: 1em;
+  color: var(--color-neutral-darker);
+}
+
+/* --- Table List Grid --- */
+.rt-table-list-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(300px, 1fr)
+  ); /* Responsive grid for cards */
+  gap: 30px;
+}
+
+/* --- Table Card --- */
+.rt-table-card {
+  background-color: var(--color-neutral-white);
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid var(--color-neutral-medium);
+}
+
+.rt-table-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.rt-table-type {
+  font-size: 1.8em;
+  color: var(--color-text-primary);
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-weight: 700;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--color-neutral-light);
+}
+
+.rt-table-details {
+  margin-bottom: 20px;
+}
+
+.rt-table-details p {
+  margin-bottom: 8px;
+  font-size: 1em;
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between icon and text */
+}
+
+.rt-table-details p:last-child {
+  margin-bottom: 0;
+}
+
+.rt-table-details span {
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.rt-table-details strong {
+  color: var(--color-text-primary);
+}
+
+/* Table Actions */
+.rt-table-actions {
+  margin-top: auto; /* Push buttons to bottom */
+  padding-top: 20px;
+  border-top: 1px solid var(--color-neutral-medium);
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  flex-wrap: wrap; /* Allow buttons to wrap */
+}
+
+.rt-action-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease,
+    box-shadow 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  color: var(--color-neutral-white);
+}
+
+.rt-action-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.rt-action-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.rt-edit-btn {
+  background-color: var(--color-primary-main); /* Warm primary */
+  color: var(--color-neutral-white);
+}
+.rt-edit-btn:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.rt-delete-btn {
+  background-color: var(--color-accent-red); /* Warm red */
+  color: var(--color-neutral-white);
+}
+.rt-delete-btn:hover {
+  background-color: var(--color-accent-red-dark);
+}
+
+/* --- Modal Styles --- */
+
+.rt-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Dark semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it's on top */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.rt-modal-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.rt-modal-box {
+  /* The actual modal content box */
+  background-color: var(--color-neutral-white);
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+  padding: 30px;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+  transform: scale(0.9);
+  opacity: 0;
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+  width: 90%;
+  max-width: 500px; /* Max width for readability */
+}
+
+.rt-modal-overlay.open .rt-modal-box {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.rt-modal-close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  color: var(--color-text-light);
+  transition: color 0.2s ease, background-color 0.2s ease;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rt-modal-close-btn:hover {
+  color: var(--color-text-primary);
+  background-color: var(--color-neutral-light);
+}
+
+.rt-modal-title {
+  font-size: 2em;
+  color: var(--color-text-primary);
+  margin-bottom: 25px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.rt-modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: left;
+}
+
+.rt-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rt-form-label {
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  font-size: 0.95em;
+}
+
+.rt-form-input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid var(--color-neutral-medium);
+  border-radius: 8px;
+  font-size: 1em;
+  color: var(--color-text-primary);
+  background-color: var(--color-neutral-lightest);
+  transition: all 0.2s ease-in-out;
+  box-sizing: border-box;
+}
+
+.rt-form-input::placeholder {
+  color: var(--color-neutral-darker);
+}
+
+.rt-form-input:focus {
+  outline: none;
+  border-color: var(--color-primary-main);
+  box-shadow: 0 0 0 3px rgba(212, 106, 0, 0.25);
+  background-color: var(--color-neutral-white);
+}
+
+.rt-form-message {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 0.95em;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+.rt-message-success {
+  background-color: var(--message-success-bg);
+  color: var(--message-success-color);
+  border: 1px solid var(--message-success-bg);
+}
+
+.rt-message-error {
+  background-color: var(--message-error-bg);
+  color: var(--message-error-color);
+  border: 1px solid var(--message-error-bg);
+}
+
+.rt-button-group {
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+.rt-btn-cancel,
+.rt-btn-save {
+  padding: 12px 25px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 600;
+  transition: background-color 0.2s ease, transform 0.2s ease,
+    box-shadow 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.rt-btn-cancel {
+  background-color: var(--color-neutral-dark);
+  color: var(--color-neutral-white);
+}
+.rt-btn-cancel:hover:not(:disabled) {
+  background-color: var(--color-neutral-darker);
+  transform: translateY(-2px);
+}
+
+.rt-btn-save {
+  background-color: var(--color-primary-main);
+  color: var(--color-neutral-white);
+}
+.rt-btn-save:hover:not(:disabled) {
+  background-color: var(--color-primary-dark);
+  transform: translateY(-2px);
+}
+
+.rt-btn-save:disabled,
+.rt-btn-cancel:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* Spinner (reused) */
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+  .restaurant-tables-container {
+    padding: 20px 15px;
+  }
+
+  .rt-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+  }
+
+  .rt-header h2 {
+    font-size: 2.2em;
+    justify-content: center;
+  }
+
+  .rt-table-list-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .rt-table-card {
+    padding: 20px;
+  }
+
+  .rt-table-type {
+    font-size: 1.5em;
+  }
+
+  .rt-table-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .rt-action-button {
+    width: 100%;
+    max-width: unset;
+    padding: 10px 15px;
+    font-size: 0.9em;
+  }
+
+  .rt-modal-box {
+    padding: 20px;
+  }
+
+  .rt-modal-title {
+    font-size: 1.6em;
+  }
+
+  .rt-button-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .rt-btn-cancel,
+  .rt-btn-save {
+    width: 100%;
+    justify-content: center;
+    padding: 10px 15px;
+  }
+}

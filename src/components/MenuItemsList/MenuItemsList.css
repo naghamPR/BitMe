@@ -1,0 +1,216 @@
+/* --- MenuItemsList.css --- */
+
+/* --- General Container --- */
+.menu-items-container {
+    background-color: #fcfcfc; /* Very light background for the list container */
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid #e9ecef; /* Subtle border */
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.03); /* Inner shadow for depth */
+}
+
+/* Section Title */
+.menu-items-container h4 {
+    font-size: 1.4em;
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.menu-items-container h4::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: #6a0572; /* Deep purple accent */
+    margin: 10px auto 0;
+    border-radius: 1.5px;
+}
+
+/* No Items Message */
+.no-items {
+    text-align: center;
+    font-style: italic;
+    color: #868e96;
+    padding: 20px 0;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border: 1px dashed #ced4da;
+}
+
+/* Items List (UL) */
+.items-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Space between each menu item */
+}
+
+/* --- Individual Menu Item --- */
+.menu-item {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 15px 20px; /* Slightly more horizontal padding */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Soft shadow */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px; /* Space between content and actions */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.menu-item:hover {
+    transform: translateY(-3px); /* Slight lift on hover */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); /* Enhanced shadow on hover */
+}
+
+.item-content {
+    flex-grow: 1; /* Allows content to take up available space */
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 5px;
+}
+
+.item-name {
+    font-size: 1.3em;
+    font-weight: 700;
+    color: #343a40;
+    flex-grow: 1; /* Allow name to take space */
+    margin-right: 10px; /* Space from price */
+}
+
+.item-price {
+    font-size: 1.2em;
+    font-weight: 700;
+    color: #28a745; /* Green for prices */
+    white-space: nowrap; /* Prevent price from wrapping */
+}
+
+.item-details {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.item-type {
+    font-size: 0.9em;
+    font-weight: 500;
+    color: #6c757d;
+    background-color: #e9ecef;
+    padding: 4px 8px;
+    border-radius: 5px;
+    align-self: flex-start; /* Align badge to start */
+    white-space: nowrap;
+}
+
+.item-description {
+    font-size: 0.9em;
+    color: #868e96;
+    font-style: italic;
+    margin: 0;
+}
+
+/* --- Item Actions (Buttons) --- */
+.item-actions {
+    display: flex;
+    flex-shrink: 0; /* Prevent actions from shrinking */
+    gap: 10px; /* Space between buttons */
+}
+
+.item-btn {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.08); /* Subtle shadow for buttons */
+}
+
+.item-btn:hover {
+    transform: translateY(-1px); /* Slight lift on hover */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.edit-btn {
+    background-color: #007bff; /* Blue for edit */
+    color: #fff;
+}
+.edit-btn:hover {
+    background-color: #0056b3;
+}
+
+.delete-btn {
+    background-color: #dc3545; /* Red for delete */
+    color: #fff;
+}
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .menu-item {
+        flex-direction: column; /* Stack content and actions vertically */
+        align-items: flex-start; /* Align all to the left */
+        padding: 15px; /* Adjust padding */
+        gap: 15px;
+    }
+
+    .item-header {
+        width: 100%; /* Take full width when stacked */
+        flex-direction: column; /* Stack name and price */
+        align-items: flex-start;
+        gap: 5px; /* Space between name and price */
+        border-bottom: 1px dotted #f0f2f5; /* Separator for header when stacked */
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+
+    .item-name {
+        font-size: 1.2em; /* Adjust font size */
+        margin-right: 0;
+    }
+
+    .item-price {
+        font-size: 1.1em; /* Adjust font size */
+        align-self: flex-end; /* Push price to the right */
+        width: 100%;
+        text-align: right;
+    }
+
+    .item-details {
+        width: 100%;
+    }
+
+    .item-type {
+        align-self: flex-start; /* Ensure badge is left-aligned */
+    }
+
+    .item-actions {
+        width: 100%; /* Make buttons take full width when stacked */
+        justify-content: flex-end; /* Align buttons to the right */
+        margin-left: 0;
+    }
+
+    .item-btn {
+        flex-grow: 1; /* Allow buttons to expand */
+        justify-content: center;
+        padding: 10px; /* Adjust padding */
+    }
+}

@@ -1,0 +1,119 @@
+/* --- Managerhom.css --- */
+
+/* --- Global Color Palette Variables (Ensuring consistency with other warm CSS files) --- */
+/* These variables are copied from the main warm color palette for local reference. */
+:root {
+  --color-primary-main: #d46a00; /* A rich burnt orange */
+  --color-primary-light: #ff9933; /* Brighter orange */
+  --color-primary-dark: #a34e00; /* Deeper burnt orange */
+
+  --color-accent-green: #808000; /* Olive Green for success/positive actions */
+  --color-accent-green-dark: #556b2f; /* Darker Olive Green */
+  --color-accent-purple: #8e44ad; /* A sophisticated amethyst/plum for special actions */
+  --color-accent-purple-dark: #6c3483; /* Darker amethyst */
+  --color-accent-red: #b22222; /* Firebrick red for danger/negative actions */
+  --color-accent-red-dark: #8b0000; /* Dark Red */
+
+  --color-neutral-white: #fffbf0; /* Warm off-white */
+  --color-neutral-light: #f8f5ef; /* Very light warm gray/cream for backgrounds */
+  --color-neutral-medium: #e0d9cc; /* Light warm gray/beige for borders/dividers */
+  --color-neutral-dark: #c2b7a8; /* Medium warm gray for subtle details */
+  --color-neutral-darker: #8a7f70; /* Dark warm gray for placeholder text */
+  --color-neutral-lightest: #fffdf8; /* Even lighter for specific backgrounds like lists */
+
+  --color-text-primary: #362f27; /* Dark warm charcoal for main text */
+  --color-text-secondary: #5e5346; /* Slightly lighter warm brown-gray for secondary text */
+  --color-text-light: #8a7f70; /* For less emphasis (same as neutral-darker) */
+
+  --color-star-filled: #ffc107; /* Bright yellow for stars */
+  --color-star-empty: var(--color-neutral-medium);
+  --color-heart-filled: var(--color-accent-red);
+  --color-error-message: var(--color-accent-red-dark);
+
+  --message-success-bg: #e6ffe6;
+  --message-success-color: #3b8a3b;
+  --message-error-bg: #ffebeb;
+  --message-error-color: #a73d3a;
+
+  --shadow-sm: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0px 8px 16px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0px 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.managerhom-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* center horizontally */
+  padding: 20px;
+  min-height: 100vh;
+  background-color: var(--color-neutral-light); /* Warm light background */
+}
+.managerhom-title {
+  color: #3f2f1e;
+}
+
+.managerhom-cards-wrapper {
+  display: flex;
+  gap: 30px; /* space between cards */
+  flex-wrap: wrap;
+  margin-top: 60px;
+  justify-content: center; /* center cards in the row */
+  max-width: 1200px; /* limit max width */
+  width: 100%;
+}
+
+.managerhom-card {
+  background: var(--color-neutral-white); /* Warm white */
+  border-radius: 12px;
+  box-shadow: var(--shadow-lg); /* Use existing shadow variable */
+  width: 350px; /* bigger width */
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s ease;
+}
+
+.managerhom-card:hover {
+  transform: translateY(-5px);
+}
+
+.managerhom-card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.managerhom-card-content h2 {
+  margin-bottom: 15px;
+  text-align: center;
+  color: var(--color-text-primary); /* Warm primary text */
+}
+
+.managerhom-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  width: 100%;
+}
+
+.managerhom-submit-button {
+  flex: 1;
+  padding: 10px 15px;
+  background-color: var(--color-primary-main); /* Warm primary color */
+  border: none;
+  border-radius: 8px;
+  color: var(--color-neutral-white); /* Warm white */
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.managerhom-submit-button:hover {
+  background-color: var(
+    --color-primary-dark
+  ); /* Darker warm primary on hover */
+}

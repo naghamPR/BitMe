@@ -1,0 +1,589 @@
+/* --- MenuOrderModal.css --- */
+/* This file contains all styles specific to MenuOrderModal component */
+
+/* --- Component-specific variables --- */
+:root {
+  --mom-modal-overlay-bg: rgba(0, 0, 0, 0.7);
+  --mom-modal-content-bg: var(--color-white);
+  --mom-modal-content-border: var(--color-gray-200);
+  --mom-modal-content-shadow: var(--shadow-xl);
+  --mom-modal-close-btn-color: var(--color-text-medium);
+  --mom-modal-close-btn-hover-bg: var(--color-gray-100);
+  --mom-modal-close-btn-hover-color: var(--color-text-dark);
+  --mom-modal-title-color: var(--color-text-dark);
+
+  --mom-section-header-color: var(--color-text-dark);
+  --mom-card-bg: var(--color-gray-50);
+  --mom-card-border: var(--color-gray-100);
+  --mom-card-shadow: var(--shadow-sm);
+
+  --mom-item-name-color: var(--color-text-dark);
+  --mom-item-price-color: var(--color-primary-600);
+  --mom-description-color: var(--color-text-light);
+
+  --mom-button-bg-add: var(--color-accent-green-500);
+  --mom-button-hover-bg-add: var(--color-accent-green-600);
+  --mom-button-bg-apply: var(--color-accent-purple-500);
+  --mom-button-hover-bg-apply: var(--color-accent-purple-600);
+  --mom-button-bg-confirm: var(--color-primary-500);
+  --mom-button-hover-bg-confirm: var(--color-primary-600);
+  --mom-button-bg-cancel: var(--color-gray-300);
+  --mom-button-hover-bg-cancel: var(--color-gray-400);
+
+  --mom-cart-bg: var(--color-white);
+  --mom-cart-border: var(--color-gray-200);
+  --mom-cart-shadow: var(--shadow-xl);
+  --mom-cart-header-color: var(--color-text-dark);
+  --mom-cart-item-border: var(--color-gray-100);
+  --mom-cart-quantity-bg: var(--color-gray-100);
+  --mom-cart-quantity-btn-bg: var(--color-gray-200);
+  --mom-cart-quantity-btn-hover-bg: var(--color-gray-300);
+
+  --mom-success-color: #059669; /* Green 700 */
+  --mom-error-color: #ef4444;   /* Red 500 */
+}
+
+/* --- Main Modal Structure --- */
+.mom-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--mom-modal-overlay-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.mom-modal-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mom-modal-content {
+  background-color: var(--mom-modal-content-bg);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: var(--mom-modal-content-shadow);
+  max-width: 95%; /* Adjust max-width for responsiveness */
+  width: 1200px; /* Wider for the menu/order layout */
+  position: relative;
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
+  max-height: 90vh;
+  overflow-y: auto; /* Enable scrolling for overall content */
+  border: 1px solid var(--mom-modal-content-border);
+}
+
+.mom-modal-overlay.open .mom-modal-content {
+  transform: scale(1);
+}
+
+.mom-modal-close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--mom-modal-close-btn-color);
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mom-modal-close-button:hover {
+  background-color: var(--mom-modal-close-btn-hover-bg);
+  color: var(--mom-modal-close-btn-hover-color);
+}
+
+.mom-modal-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--mom-modal-title-color);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  padding-right: 2.5rem;
+}
+
+/* --- Content Grid for Menus/Offers/Order Summary --- */
+.mom-content-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* Menus take 2/3, Summary/Offers take 1/3 */
+  gap: 2rem;
+  max-height: 100%; /* Important for internal scrolling */
+  overflow: hidden; /* Hide main overflow */
+}
+
+@media (max-width: 1024px) { /* Adjust for smaller screens */
+  .mom-content-grid {
+    grid-template-columns: 1fr; /* Stack vertically on smaller screens */
+    max-height: unset;
+    overflow-y: auto;
+  }
+}
+
+/* --- Menus Section (Left side) --- */
+.mom-menus-section {
+  padding-right: 1rem; /* Space from right section */
+  border-right: 1px solid var(--color-gray-100); /* Visual separator */
+  overflow-y: auto; /* Scrollable menus section */
+  max-height: 100%; /* Limit height to parent grid row */
+  padding-bottom: 1rem; /* Padding for scrollable content */
+}
+
+@media (max-width: 1024px) {
+  .mom-menus-section {
+    border-right: none;
+    border-bottom: 1px solid var(--color-gray-100); /* Separator when stacked */
+    padding-right: 0;
+    padding-bottom: 2rem;
+  }
+}
+
+
+.mom-menus-section h3, .mom-summary-section h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--mom-section-header-color);
+  margin-bottom: 1.25rem;
+  text-align: center;
+  padding-top: 0.5rem;
+}
+
+.mom-menus-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.mom-menu-card {
+  background-color: var(--mom-card-bg);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  box-shadow: var(--mom-card-shadow);
+  border: 1px solid var(--mom-card-border);
+}
+
+.mom-menu-card h4 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--mom-item-name-color);
+  margin-bottom: 0.75rem;
+}
+
+.mom-menu-description {
+  font-size: 0.95rem;
+  color: var(--mom-description-color);
+  margin-bottom: 1rem;
+}
+
+.mom-menu-items-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Responsive grid for items */
+  gap: 0.75rem;
+}
+
+.mom-menu-item {
+  background-color: var(--mom-modal-content-bg);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  box-shadow: var(--mom-card-shadow);
+  border: 1px solid var(--mom-card-border);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.mom-menu-item-name {
+  font-weight: 600;
+  color: var(--mom-item-name-color);
+  font-size: 1.05rem;
+}
+
+.mom-menu-item-description {
+  font-size: 0.875rem;
+  color: var(--mom-description-color);
+  flex-grow: 1;
+}
+
+.mom-menu-item-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--color-gray-100);
+}
+
+.mom-menu-item-price {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--mom-item-price-color);
+}
+
+/* --- Summary Section (Right side) --- */
+.mom-summary-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-height: 100%; /* Limit height to parent grid row */
+  overflow-y: auto; /* Scrollable section */
+  padding-bottom: 1rem;
+}
+
+.mom-no-data, .mom-no-items-in-menu {
+  text-align: center;
+  color: var(--mom-description-color);
+  font-style: italic;
+  padding: 0.75rem;
+}
+
+/* --- Offers List --- */
+.mom-offers-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.mom-offer-item-card {
+  background-color: var(--mom-card-bg);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  box-shadow: var(--mom-card-shadow);
+  border: 1px solid var(--mom-card-border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+.mom-offer-title {
+  font-size: 1.1rem;
+  color: var(--mom-item-name-color);
+}
+
+.mom-offer-description {
+  font-size: 0.85rem;
+  color: var(--mom-description-color);
+  flex-grow: 1;
+}
+
+.mom-offer-price-type, .mom-offer-validity {
+    font-size: 0.9rem;
+    color: var(--mom-description-color);
+}
+
+/* --- Order Cart Summary (bottom of right section) --- */
+.mom-order-cart-summary {
+  background-color: var(--mom-cart-bg);
+  border-radius: 1rem;
+  box-shadow: var(--mom-cart-shadow);
+  padding: 1.5rem;
+  border: 1px solid var(--mom-cart-border);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: auto; /* Push to bottom of summary section */
+}
+
+.mom-cart-overlay-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 901;
+  border-radius: 1rem;
+}
+
+.mom-cart-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--mom-cart-header-color);
+  border-bottom: 1px solid var(--mom-cart-item-border);
+  padding-bottom: 0.75rem;
+}
+
+.mom-cart-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.mom-cart-items-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+.mom-cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  border-bottom: 1px dashed var(--mom-cart-item-border);
+}
+
+.mom-cart-item.mom-offer-item {
+  background-color: var(--mom-card-bg);
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--mom-card-border);
+}
+
+.mom-cart-item:last-child {
+  border-bottom: none;
+}
+
+.mom-cart-item-info {
+  flex-grow: 1;
+}
+
+.mom-cart-item-name {
+  font-weight: 600;
+  color: var(--mom-item-name-color);
+  margin-bottom: 0.25rem;
+}
+
+.mom-cart-item-menu {
+  font-size: 0.8rem;
+  color: var(--mom-description-color);
+}
+
+.mom-cart-item-quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--mom-cart-quantity-bg);
+  border-radius: 0.5rem;
+  padding: 0.25rem;
+}
+
+.mom-quantity-button {
+  background-color: var(--mom-cart-quantity-btn-bg);
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.2rem;
+  cursor: pointer;
+  color: var(--mom-cart-header-color);
+  transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mom-quantity-button:hover {
+  background-color: var(--mom-cart-quantity-btn-hover-bg);
+}
+
+.mom-quantity-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.mom-quantity-display {
+  font-weight: 600;
+  font-size: 0.9rem;
+  min-width: 20px;
+  text-align: center;
+}
+
+.mom-cart-item-price {
+  font-weight: 700;
+  color: var(--mom-item-price-color);
+  font-size: 1rem;
+  margin-left: 1rem;
+  flex-shrink: 0;
+}
+
+.mom-cart-total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--mom-cart-header-color);
+  padding-top: 1rem;
+  border-top: 1px solid var(--mom-cart-border);
+}
+
+.mom-cart-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.mom-confirm-order-button, .mom-cancel-order-button {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mom-confirm-order-button {
+  background-color: var(--mom-button-bg-confirm);
+  color: var(--mom-button-text);
+}
+
+.mom-confirm-order-button:hover {
+  background-color: var(--mom-button-hover-bg-confirm);
+  box-shadow: var(--shadow-lg);
+}
+
+.mom-confirm-order-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.mom-cancel-order-button {
+  background-color: var(--mom-button-bg-cancel);
+  color: var(--mom-cart-header-color);
+}
+
+.mom-cancel-order-button:hover {
+  background-color: var(--mom-button-hover-bg-cancel);
+  box-shadow: var(--shadow-lg);
+}
+
+/* --- Inner Confirmation/Error Modal Styles (within MenuOrderModal) --- */
+.mom-modal-overlay-inner {
+  position: absolute; /* Position relative to parent modal */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1010; /* Above main modal content */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.mom-modal-overlay-inner.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mom-modal-content-inner {
+  background-color: var(--mom-modal-content-bg);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: var(--shadow-xl);
+  max-width: 90%;
+  width: 400px; /* Small width for confirmation */
+  position: relative;
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
+  overflow-y: auto;
+  border: 1px solid var(--mom-modal-content-border);
+  text-align: center;
+}
+
+.mom-modal-overlay-inner.open .mom-modal-content-inner {
+  transform: scale(1);
+}
+
+.mom-modal-close-button-inner {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: var(--mom-modal-close-btn-color);
+    padding: 0.3rem;
+    border-radius: 50%;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.mom-modal-close-button-inner:hover {
+    background-color: var(--mom-modal-close-btn-hover-bg);
+    color: var(--mom-modal-close-btn-hover-color);
+}
+
+
+.mom-success-title-inner {
+  color: var(--mom-success-color);
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.mom-error-title-inner {
+  color: var(--mom-error-color);
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.mom-order-message-inner {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--mom-cart-header-color);
+  margin-bottom: 0.5rem;
+}
+
+.mom-order-summary-message-inner {
+  font-size: 0.9rem;
+  color: var(--mom-description-color);
+  margin-bottom: 1rem;
+}
+
+.mom-action-button-inner {
+    background-color: var(--mom-button-bg-confirm); /* Reusing a confirmation style */
+    color: var(--mom-button-text);
+    padding: 0.6rem 1rem;
+    border-radius: 0.75rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    box-shadow: var(--shadow-md);
+    margin-top: 1rem;
+}
+
+.mom-action-button-inner:hover {
+    background-color: var(--mom-button-hover-bg-confirm);
+    box-shadow: var(--shadow-lg);
+}

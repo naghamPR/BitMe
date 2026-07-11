@@ -6,7 +6,7 @@ import { createRoutes } from "./router";
 import { useDispatch, useSelector } from "react-redux";
 
 function App() {
-  const user = useSelector((state) => state.authReducer.authData);
+  const user = useSelector((state) => state.auth?.authData || null);
   const router = createRoutes(user);
   const [darkMode, setDarkMode] = useState(0);
 

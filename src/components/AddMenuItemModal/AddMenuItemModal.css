@@ -1,0 +1,251 @@
+/* --- AddMenuItemModal.css --- */
+
+/* --- Modal Overlay --- */
+.add-menu-item-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent dark background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it's on top of everything */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    padding: 20px; /* Padding for mobile view */
+    box-sizing: border-box;
+}
+
+.add-menu-item-modal-overlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* --- Modal Content --- */
+.add-menu-item-modal-content {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25); /* Stronger shadow for floating effect */
+    padding: 30px;
+    position: relative;
+    max-height: 90vh; /* Max height to allow scrolling if content is long */
+    overflow-y: auto; /* Enable scrolling for content if it overflows */
+    transform: scale(0.9); /* Start slightly smaller for animation */
+    opacity: 0;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    width: 90%; /* Responsive width */
+    max-width: 500px; /* Max width for readability */
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #343a40;
+}
+
+.add-menu-item-modal-overlay.open .add-menu-item-modal-content {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* --- Close Button --- */
+.add-menu-item-modal-close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    color: #868e96; /* Light gray 'X' */
+    transition: color 0.2s ease, background-color 0.2s ease;
+    border-radius: 50%; /* Make it round */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-menu-item-modal-close-button:hover {
+    color: #212529; /* Darker on hover */
+    background-color: #f0f2f5; /* Subtle background on hover */
+}
+
+/* --- Modal Title --- */
+.add-menu-item-modal-title {
+    font-size: 2em;
+    color: #2c3e50;
+    margin-bottom: 25px;
+    text-align: center;
+    font-weight: 700;
+}
+
+/* --- Form Layout --- */
+.add-menu-item-modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between form groups */
+}
+
+.add-menu-item-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: left; /* Align labels and inputs to the left */
+}
+
+.add-menu-item-form-label {
+    font-weight: 600;
+    color: #495057;
+    font-size: 0.95em;
+}
+
+/* --- Input & Textarea Styles --- */
+.add-menu-item-form-input,
+.add-menu-item-form-textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ced4da; /* Light gray border */
+    border-radius: 8px;
+    font-size: 1em;
+    color: #495057;
+    background-color: #f8f9fa; /* Very light background for inputs */
+    transition: all 0.2s ease-in-out;
+    box-sizing: border-box; /* Include padding in element's total width */
+}
+
+.add-menu-item-form-input::placeholder,
+.add-menu-item-form-textarea::placeholder {
+    color: #adb5bd; /* Lighter placeholder text */
+}
+
+.add-menu-item-form-input:focus,
+.add-menu-item-form-textarea:focus {
+    outline: none;
+    border-color: #FF6F61; /* Coral accent on focus */
+    box-shadow: 0 0 0 3px rgba(255, 111, 97, 0.25); /* Subtle glowing shadow on focus */
+    background-color: #ffffff;
+}
+
+.add-menu-item-form-textarea {
+    resize: vertical; /* Allow vertical resizing */
+    min-height: 100px;
+}
+
+/* Custom styles for select input (dropdown arrow) */
+.add-menu-item-form-input[type="select"] {
+  -webkit-appearance: none; /* Remove default browser styling */
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23495057%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13%205.1L146.2%20202.7%2018.5%2074.5a17.6%2017.6%200%200%0a0-13-5.1%2017.6%2017.6%200%200%200%200%2024.7l130.4%20129.8a17.6%2017.6%200%200%200%2025.3%200l130.4-129.8a17.6%2017.6%200%200%0a0%200-24.7z%22%2F%3E%3C%2Fsvg%3E');
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 12px;
+}
+
+
+/* --- Submission Message --- */
+.submission-message {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+    font-weight: 500;
+    font-size: 0.95em;
+}
+
+.submission-message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #155724;
+}
+
+.submission-message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #721c24;
+}
+
+/* --- Action Buttons --- */
+.add-menu-item-modal-actions {
+    margin-top: 30px;
+    display: flex;
+    justify-content: flex-end; /* Align buttons to the right */
+    gap: 15px;
+}
+
+.add-menu-item-form-cancel-button,
+.add-menu-item-form-submit-button {
+    padding: 12px 25px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    display: inline-flex; /* For icon alignment */
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.add-menu-item-form-cancel-button {
+    background-color: #6c757d; /* Gray for cancel */
+    color: #fff;
+}
+.add-menu-item-form-cancel-button:hover:not(:disabled) {
+    background-color: #5a6268;
+    transform: translateY(-2px);
+}
+
+.add-menu-item-form-submit-button {
+    background-color: #FF6F61; /* Coral for submit */
+    color: #fff;
+}
+.add-menu-item-form-submit-button:hover:not(:disabled) {
+    background-color: #E05C4D;
+    transform: translateY(-2px);
+}
+
+.add-menu-item-form-submit-button:disabled,
+.add-menu-item-form-cancel-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+/* Spinner for loading state */
+.spinner {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .add-menu-item-modal-content {
+        padding: 20px;
+    }
+
+    .add-menu-item-modal-title {
+        font-size: 1.6em;
+    }
+
+    .add-menu-item-modal-actions {
+        flex-direction: column; /* Stack buttons vertically */
+        gap: 10px;
+    }
+
+    .add-menu-item-form-cancel-button,
+    .add-menu-item-form-submit-button {
+        width: 100%; /* Full width buttons */
+        justify-content: center;
+        padding: 10px 15px;
+        font-size: 0.9em;
+    }
+}

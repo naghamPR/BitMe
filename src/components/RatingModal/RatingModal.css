@@ -1,0 +1,291 @@
+/* Component-specific variables */
+:root {
+  --modal-overlay-bg: rgba(0, 0, 0, 0.7);
+  --modal-content-bg: var(
+    --color-neutral-white
+  ); /* Using warm palette variable */
+  --modal-content-border: var(
+    --color-neutral-medium
+  ); /* Using warm palette variable */
+  --modal-content-shadow: var(--shadow-xl);
+  --modal-close-btn-color: var(
+    --color-text-light
+  ); /* Using warm palette variable */
+  --modal-close-btn-hover-bg: var(
+    --color-neutral-light
+  ); /* Using warm palette variable */
+  --modal-close-btn-hover-color: var(
+    --color-text-primary
+  ); /* Using warm palette variable */
+  --modal-title-color: var(
+    --color-text-primary
+  ); /* Using warm palette variable */
+  --star-color-filled: var(
+    --color-star-filled
+  ); /* Using warm palette variable */
+  --star-color-empty: var(
+    --color-neutral-medium
+  ); /* Using warm palette variable */
+
+  --submit-btn-bg: var(--color-primary-main); /* Using warm palette variable */
+  --submit-btn-hover-bg: var(
+    --color-primary-dark
+  ); /* Using warm palette variable */
+  --unrate-btn-bg: var(--color-accent-red); /* Using warm palette variable */
+  --unrate-btn-hover-bg: var(
+    --color-accent-red-dark
+  ); /* Using warm palette variable */
+  --cancel-btn-bg: var(--color-neutral-dark); /* Using warm palette variable */
+  --cancel-btn-hover-bg: var(
+    --color-neutral-darker
+  ); /* Using warm palette variable */
+
+  --message-success-bg: #e6ffe6; /* Light warm green */
+  --message-success-color: #3b8a3b; /* Dark warm green */
+  --message-error-bg: #ffebeb; /* Light warm red */
+  --message-error-color: #a73d3a; /* Dark warm red */
+}
+
+.rating-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.rating-modal-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.rating-modal-content {
+  background-color: var(--modal-content-bg);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: var(--modal-content-shadow);
+  max-width: 90%;
+  width: 450px; /* Specific width for rating modal */
+  position: relative;
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
+  max-height: 90vh;
+  overflow-y: auto;
+  border: 1px solid var(--modal-content-border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.rating-modal-overlay.open .rating-modal-content {
+  transform: scale(1);
+}
+
+.rating-modal-close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--modal-close-btn-color);
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rating-modal-close-button:hover {
+  background-color: var(--modal-close-btn-hover-bg);
+  color: var(--modal-close-btn-hover-color);
+}
+
+.rating-modal-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--modal-title-color);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  padding-right: 2.5rem; /* Space for close button */
+}
+
+.rating-stars-container {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  justify-content: center;
+}
+
+.rating-star {
+  cursor: pointer;
+  color: var(--star-color-empty);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.rating-star.filled {
+  color: var(--star-color-filled);
+  fill: currentColor; /* Ensures the star is filled */
+}
+
+.rating-star:hover {
+  transform: scale(1.1);
+}
+
+.selected-rating-text {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-text-primary); /* Using warm palette variable */
+  margin-bottom: 1.5rem;
+}
+
+.rating-modal-message {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+  font-weight: 500;
+  width: 100%;
+  justify-content: center; /* Center the message */
+}
+
+.rating-modal-message.success {
+  background-color: var(--message-success-bg);
+  color: var(--message-success-color);
+  border: 1px solid #a7f3d0;
+}
+
+.rating-modal-message.error {
+  background-color: var(--message-error-bg);
+  color: var(--message-error-color);
+  border: 1px solid #fecaca;
+}
+
+.rating-modal-error-message {
+  font-size: 1.15rem;
+  color: var(--color-error-message); /* Using warm palette variable */
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.rating-modal-actions {
+  display: flex;
+  flex-wrap: wrap; /* Allow buttons to wrap */
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-neutral-medium); /* Using warm palette variable */
+  width: 100%;
+}
+
+.rating-modal-action-btn {
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: var(--shadow-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center; /* Center content in button */
+}
+
+.rating-modal-action-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.rating-modal-submit-btn {
+  background-color: var(--submit-btn-bg);
+  color: var(--color-neutral-white); /* Using warm palette variable */
+}
+
+.rating-modal-submit-btn:hover {
+  background-color: var(--submit-btn-hover-bg);
+  box-shadow: var(--shadow-md);
+}
+
+.rating-modal-unrate-btn {
+  background-color: var(--unrate-btn-bg);
+  color: var(--color-neutral-white); /* Using warm palette variable */
+}
+
+.rating-modal-unrate-btn:hover {
+  background-color: var(--unrate-btn-hover-bg);
+  box-shadow: var(--shadow-md);
+}
+
+.rating-modal-cancel-btn {
+  background-color: var(--cancel-btn-bg);
+  color: var(--color-text-primary); /* Using warm palette variable */
+}
+
+.rating-modal-cancel-btn:hover {
+  background-color: var(--cancel-btn-hover-bg);
+  box-shadow: var(--shadow-md);
+}
+
+/* --- Add Review Fields (Input/Textarea) Styles --- */
+.rating-modal-input-group {
+  width: 100%;
+  margin-bottom: 1.5rem;
+  text-align: left; /* Align label and input to the left */
+}
+
+.rating-modal-input-group label {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.rating-modal-input,
+.rating-modal-textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--color-neutral-medium);
+  border-radius: 0.6rem;
+  font-size: 1rem;
+  color: var(--color-text-primary);
+  background-color: var(--color-neutral-light);
+  transition: all 0.3s ease;
+  box-sizing: border-box; /* Include padding in width/height */
+}
+
+.rating-modal-textarea {
+  min-height: 100px;
+  resize: vertical; /* Allow vertical resizing */
+}
+
+.rating-modal-input::placeholder,
+.rating-modal-textarea::placeholder {
+  color: var(--color-neutral-darker);
+  opacity: 0.8;
+}
+
+.rating-modal-input:focus,
+.rating-modal-textarea:focus {
+  outline: none;
+  border-color: var(--color-primary-main);
+  box-shadow: 0 0 0 3px rgba(212, 106, 0, 0.2); /* Warm primary shadow */
+  background-color: var(--color-neutral-white);
+}

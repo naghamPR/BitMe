@@ -1,10 +1,12 @@
-/* .layout {
-  min-height: 100vh;
-  background-color: rgb(53, 188, 0);
+.layout {
+  min-height: 10vh;
+  /* background-color: rgb(53, 188, 0); */
+  /* width: 1000px; */
 }
 
 .content {
+  margin: 0;
   flex: 1;
-  padding: 10px;
-  padding-top: 60px;
-} */
+  /* padding: 10px; */
+  /* padding-top: 60px; */
+}

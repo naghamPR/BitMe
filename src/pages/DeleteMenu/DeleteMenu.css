@@ -1,0 +1,130 @@
+.delete-menu-page {
+  background-color: #eae3dc;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 50px;
+}
+
+.delete-menu-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  gap: 50px;
+}
+
+.input-card-delete-menu {
+  width: 500px;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: #f4e6d4;
+  box-shadow: 0 6px 25px #a35c38;
+  text-align: center;
+}
+
+.delete-menu-card-img {
+  width: 450px;
+  height: 700px;
+  border-radius: 16px;
+  background-image: url("../../assets/addresturant.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  animation: floatImage 3s ease-in-out infinite;
+}
+
+.card-content-delete-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 30px;
+  gap: 20px;
+  text-align: center;
+}
+
+.card-delete-menu-title {
+  font-size: 26px;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 20px;
+}
+
+.menu-item-details-summary {
+  margin-bottom: 30px;
+  text-align: left;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #eee;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.menu-item-details-summary p {
+  margin: 8px 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.menu-item-details-summary strong {
+  color: #000;
+}
+
+.confirmation-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.delete-button,
+.cancel-button {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+  flex-grow: 1;
+}
+
+.delete-button {
+  background-color: #a74713;
+  color: white;
+}
+
+.delete-button:hover {
+  background-color: #c99c2c;
+}
+
+.cancel-button {
+  background-color: #aaa;
+  color: #333;
+}
+
+.cancel-button:hover {
+  background-color: #999;
+}
+
+.delete-button:active,
+.cancel-button:active {
+  transform: scale(0.98);
+}
+
+/* Floating animation */
+@keyframes floatImage {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

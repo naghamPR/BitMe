@@ -1,83 +1,959 @@
-.restaurants-page {
-  min-height: 100vh;
-  background-color: #ffff;
+/* --- ResturantsDetails.css --- */
+
+/* --- Global Color Palette Variables (Centralized & Refined for Warmth) --- */
+/* These variables are taken from your most recent warm color palette */
+:root {
+  /* Core Brand Colors (shifted to warm earthy tones) */
+  --color-primary-main: #d46a00; /* A rich burnt orange */
+  --color-primary-light: #ff9933; /* Brighter orange */
+  --color-primary-dark: #a34e00; /* Deeper burnt orange */
+
+  /* Accent Colors (for highlights, buttons - balanced and less 'loud') */
+  --color-accent-green: #808000; /* Olive Green for success/positive actions */
+  --color-accent-green-dark: #556b2f; /* Darker Olive Green */
+  --color-accent-purple: #d46a00; /* A sophisticated amethyst/plum for special actions */
+  --color-accent-purple-dark: #a34e00; /* Darker amethyst */
+  --color-accent-red: #b22222; /* Firebrick red for danger/negative actions */
+  --color-accent-red-dark: #8b0000; /* Dark Red */
+
+  /* Neutral/Grayscale Palette (for backgrounds, text, borders - formal and clean) */
+  --color-neutral-white: #fffbf0; /* Warm off-white */
+  --color-neutral-light: #e0d9cc; /* Very light warm gray/cream for backgrounds */
+  --color-neutral-medium: #e0d9cc; /* Light warm gray/beige for borders/dividers */
+  --color-neutral-dark: #c2b7a8; /* Medium warm gray for subtle details */
+  --color-neutral-darker: #8a7f70; /* Dark warm gray for placeholder text */
+  --color-neutral-lightest: #fffdf8; /* Even lighter for specific backgrounds like lists */
+
+  /* Text Colors (Readable and formal) */
+  --color-text-primary: #362f27; /* Dark warm charcoal for main text */
+  --color-text-secondary: #5e5346; /* Slightly lighter warm brown-gray for secondary text */
+  --color-text-light: #8a7f70; /* For less emphasis (same as neutral-darker) */
+
+  /* Specific UI Colors */
+  --color-star-filled: #ffc107; /* Bright yellow for stars */
+  --color-star-empty: var(--color-neutral-medium);
+  --color-heart-filled: var(--color-accent-red);
+  --color-error-message: var(--color-accent-red-dark);
+
+  /* Derived colors for specific contexts */
+  --message-success-bg: #e6ffe6;
+  --message-success-color: #3b8a3b;
+  --message-error-bg: #ffebeb;
+  --message-error-color: #a73d3a;
+
+  /* Shadows (Subtle and modern, contributing to depth) */
+  --shadow-sm: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0px 8px 16px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0px 12px 24px rgba(0, 0, 0, 0.2);
+
+  /* Mapping old specific color names to new warm palette, if they were used */
+  --color-white: var(--color-neutral-white);
+  --color-gray-100: var(--color-neutral-light);
+  --color-gray-200: var(--color-neutral-medium);
+  --color-gray-300: var(--color-neutral-dark); /* for specific uses */
+  --color-gray-50: var(--color-neutral-lightest); /* for specific uses */
+  --color-error: var(
+    --color-accent-red-dark
+  ); /* Direct mapping for error color */
+  --color-primary-100: #ffebd6; /* Specific light primary */
 }
 
-.restaurant-details-card {
-  position: relative;
-  width: 95%;
-  height: 400px;
-  border-radius: 16px;
-  background-size: cover;
-  background-position: center;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
-  margin: auto;
-  margin-top: 10px;
-  display: flex;
-  align-items: center;
-}
-
-.restaurant-details-overlay {
+/* --- Page and Video Background Setup --- */
+html,
+body {
+  margin: 0;
+  padding: 0;
   width: 100%;
   height: 100%;
-  border-radius: 16px;
-  background: rgba(0, 0, 0, 0.5); /* خلفية شفافة فوق الصورة */
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 0 30px;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--color-text-secondary); /* Warm dark text for readability */
+  line-height: 1.6;
+  background-color: var(
+    --color-neutral-light
+  ); /* Warm fallback background color */
+  position: relative; /* For the video background */
+  box-sizing: border-box; /* Include padding/border in total width/height */
 }
 
-.restaurant-details-info {
-  margin-top: 500px;
-  margin-bottom: 500px;
-  width: 50%;
-  color: white;
-  margin-left: 900px;
+/* Fixed background video for the entire page */
+.rd-background-video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -3; /* Even further behind the poster */
+  background-size: cover;
+  filter: brightness(0.6) blur(2px); /* Darken and blur slightly */
+  transition: filter 0.3s ease;
+}
+
+/* --- Main Page Container (content over video) --- */
+.rd-page-container {
+  width: 100%; /* Ensure it fills the full width of the viewport */
+  max-width: 100%; /* Prevents it from exceeding 100% of its parent, effectively full width */
+  margin: 50px auto; /* Keep vertical margin, center horizontally */
+  padding: 30px clamp(20px, 5%, 80px); /* Responsive horizontal padding for inner content */
+  background-color: rgba(
+    var(--color-neutral-white-rgb),
+    0.95
+  ); /* Slightly transparent warm white for content clarity */
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2); /* Stronger shadow for floating effect */
+  min-height: calc(100vh - 100px); /* Fill screen minus margins */
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  backdrop-filter: blur(2px); /* يعطي شعور بالعمق */
+  position: relative; /* Necessary for z-index and potential child positioning */
+  z-index: 1; /* Above the video background */
+}
+/* Helper for rgba with CSS variables for RGB components */
+.rd-page-container {
+  --color-neutral-white-rgb: 255, 251, 240;
+  /* RGB values for #FFFBF0 */
 }
 
-.button-group {
+/* --- Loading and Error Messages --- */
+.rd-loading-message,
+.rd-error-message {
   display: flex;
-  gap: 12px;
-  margin-top: 500px;
-  margin-right: 500px;
-  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 30px;
+  margin: 30px auto;
+  background-color: var(--color-neutral-medium); /* Warm background */
+  color: var(--color-text-secondary); /* Warm text */
+  border-radius: 8px;
+  font-size: 1.1em;
+  font-weight: 500;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
-.action-btn {
-  padding: 10px 20px;
-  background-color: #ffec70;
-  border: 2px solid black;
-  border-radius: 10px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+.rd-error-message {
+  background-color: var(--message-error-bg); /* Warm error background */
+  color: var(--message-error-color); /* Warm error text */
+  border: 1px solid var(--message-error-bg); /* Warm error border */
+}
+.rd-error-message .icon {
+  margin-right: 8px; /* Space between icon and text */
 }
 
-.action-btn:hover {
-  background-color: #f9da4b;
-}
-.restaurant-gallery {
-  margin-top: 60px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
-  padding: 0 20px 60px 20px;
+/* --- Restaurant Details Card (Main Content Card) --- */
+.rd-detail-card {
+  width: 100%; /* Take full width of parent */
+  padding: 0; /* Handled by .rd-page-container */
+  box-shadow: none; /* Let .rd-page-container handle shadow */
+  background: none; /* Let .rd-page-container handle background */
+  border-radius: 0; /* Let .rd-page-container handle border-radius */
 }
 
-.gallery-img {
-  width: 100%;
+/* --- Back Link --- */
+.rd-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-accent-purple); /* Warm purple */
+  text-decoration: none;
+  font-weight: 600;
+  margin-bottom: 25px;
+  transition: color 0.2s ease;
+}
+
+.rd-back-link:hover {
+  color: var(--color-accent-purple-dark); /* Darker warm purple on hover */
+}
+
+/* --- Restaurant Title --- */
+.rd-title {
+  font-size: 3em;
+  color: var(--color-text-primary); /* Warm text */
+  text-align: center;
+  margin-bottom: 25px;
+  font-weight: 700;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.rd-title::after {
+  content: "";
+  display: block;
+  width: 100px;
+  height: 4px;
+  background-color: var(--color-primary-main); /* Warm primary color */
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+/* --- Media Container (Image and Video) --- */
+.rd-media-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px; /* Space between image and video */
+  margin-bottom: 40px;
+  position: relative; /* For image positioning */
+  padding-top: 10px; /* Adjust if image should slightly overlap a header */
+}
+
+/* Restaurant Image - Facebook-like Profile Picture */
+.rd-image {
+  width: 250px; /* Fixed size for circular image */
   height: 250px;
-  object-fit: cover;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-  transition: transform 0.3s ease;
+  object-fit: cover; /* Cover the area, crop if needed */
+  border-radius: 50%; /* Circular shape */
+  border: 5px solid var(--color-white); /* Warm white border */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* Stronger shadow for profile pic */
+  margin-bottom: 15px; /* Space below image */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.gallery-img:hover {
-  transform: scale(1.05);
+.rd-image:hover {
+  transform: scale(1.03); /* Slight zoom on hover */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Video Wrapper within the media container */
+.rd-video-wrapper {
+  width: 100%;
+  max-width: 600px; /* Max width for embedded video */
+  border-radius: 12px; /* Rounded corners for the video player */
+  overflow: hidden; /* Ensures video corners are rounded */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  background-color: #000; /* Fallback for video player */
+}
+
+.rd-video {
+  width: 100%;
+  max-height: 25rem; /* Max height for video */
+  display: block;
+}
+
+/* --- New: More Images Section --- */
+.rd-more-images-section {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding-top: 30px;
+  border-top: 1px solid var(--color-neutral-medium); /* Warm border */
+  text-align: center;
+}
+
+.rd-section-title {
+  font-size: 2em;
+  font-weight: 700;
+  color: var(--color-text-primary); /* Warm text */
+  margin-bottom: 25px;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.rd-section-title::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 3px;
+  background-color: var(--color-primary-main); /* Warm primary color */
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+.rd-more-images-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem; /* Space between images */
+  margin-top: 1.5rem;
+}
+
+.rd-extra-image {
+  width: 100%;
+  height: 180px; /* Fixed height for consistency */
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-neutral-medium); /* Warm border */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.rd-extra-image:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-md);
+}
+
+/* --- Info Text Sections --- */
+.rd-info-section {
+  margin-top: 40px; /* Ensure space after images */
+}
+
+.rd-info-text {
+  font-size: 1.1em;
+  color: var(--color-text-secondary); /* Warm text */
+  margin-bottom: 12px;
+  display: flex;
+  align-items: baseline;
+  padding-left: 10px; /* Indent slightly */
+}
+
+.rd-info-label {
+  font-weight: 600;
+  color: var(--color-text-primary); /* Warm text */
+  min-width: 140px; /* Align labels consistently */
+  flex-shrink: 0;
+}
+
+/* --- Rating Section --- */
+.rd-rating-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid var(--color-neutral-medium); /* Warm border */
+  flex-wrap: wrap; /* Allow wrapping on small screens */
+}
+
+.rd-star-rating {
+  display: flex;
+  gap: 3px;
+  color: var(--color-neutral-dark); /* Default star color (warm gray) */
+}
+
+.rd-star-filled {
+  color: var(--color-star-filled); /* Gold for filled stars */
+}
+.rd-star-empty {
+  color: var(
+    --color-neutral-medium
+  ); /* Explicitly define empty star color (warm medium gray) */
+}
+
+.rd-rating-value {
+  font-size: 1.2em;
+  font-weight: 700;
+  color: var(--color-accent-green); /* Warm green for ratings */
+}
+
+.rd-user-specific-rating {
+  font-size: 0.9em;
+  color: var(--color-text-light); /* Warm light text */
+  font-style: italic;
+}
+
+/* --- Section Buttons Grid --- */
+.rd-section-buttons-grid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(200px, 1fr)
+  ); /* Responsive grid */
+  gap: 20px;
+  padding-top: 30px;
+  border-top: 1px solid var(--color-neutral-medium); /* Warm border */
+}
+
+.rd-section-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  background-color: var(
+    --color-primary-main
+  ); /* Warm primary color for general actions */
+  color: var(--color-white);
+  border: none;
+  border-radius: 8px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease,
+    box-shadow 0.2s ease;
+  gap: 10px; /* Space for icons */
+  box-shadow: 0 4px 10px rgba(212, 106, 0, 0.2); /* Shadow with warm primary color */
+}
+
+.rd-section-button:hover {
+  background-color: var(
+    --color-primary-dark
+  ); /* Darker warm primary on hover */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(212, 106, 0, 0.3); /* Darker shadow with warm primary color */
+}
+
+.rd-section-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.rd-book-event-button {
+  background-color: var(
+    --color-accent-purple
+  ); /* Unique warm purple for booking event */
+  box-shadow: 0 4px 10px rgba(142, 68, 173, 0.2); /* Shadow with warm purple */
+}
+
+.rd-book-event-button:hover {
+  background-color: var(
+    --color-accent-purple-dark
+  ); /* Darker warm purple on hover */
+  box-shadow: 0 6px 15px rgba(142, 68, 173, 0.3); /* Darker shadow with warm purple */
+}
+
+/* --- Modals (General Popup Styles) --- */
+.rd-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* Ensure it's on top of everything */
+  opacity: 0; /* Start hidden for animation */
+  visibility: hidden; /* Start hidden for animation */
+  transition: opacity 0.3s ease, visibility 0.3s ease; /* Smooth fade-in/out */
+  padding: 20px; /* For small screens */
+  box-sizing: border-box;
+}
+
+.rd-modal-overlay.open {
+  opacity: 1; /* Make visible */
+  visibility: visible; /* Make visible */
+}
+
+.rd-modal-content {
+  background-color: var(--color-white); /* Warm white */
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+  max-width: 90%;
+  width: 600px; /* Default width for most modals */
+  position: relative;
+  transform: scale(0.95); /* Start slightly smaller for animation */
+  transition: transform 0.3s ease; /* Smooth transform transition */
+  max-height: 90vh;
+  overflow-y: auto;
+  border: 1px solid var(--color-gray-200); /* Warm border */
+}
+
+.rd-modal-overlay.open .rd-modal-content {
+  transform: scale(1); /* Scale up to full size */
+}
+
+.rd-large-modal {
+  /* Specific for menus modal */
+  width: 900px;
+  max-width: 90%;
+}
+
+.rd-modal-close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--color-text-medium); /* Warm text */
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rd-modal-close-button:hover {
+  background-color: var(--color-gray-100); /* Warm light gray */
+  color: var(--color-text-dark); /* Warm dark text */
+}
+
+.rd-modal-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-text-dark); /* Warm dark text */
+  margin-bottom: 1.5rem;
+  text-align: center;
+  padding-right: 2.5rem; /* Space for close button */
+}
+
+/* General list styling within modals */
+.rd-modal-list-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.rd-modal-list-item {
+  background-color: var(--color-gray-50); /* Warm light background */
+  border-radius: 0.75rem;
+  padding: 1rem;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-gray-100); /* Warm border */
+  color: var(--color-text-medium); /* Warm text */
+  font-size: 0.95rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.rd-modal-list-item p {
+  margin: 0;
+}
+
+.rd-modal-list-item-label {
+  font-weight: 600;
+  color: var(--color-text-dark); /* Warm text */
+  margin-right: 0.25rem;
+}
+
+.rd-modal-no-data,
+.rd-modal-no-items {
+  text-align: center;
+  color: var(--color-text-light); /* Warm light text */
+  font-style: italic;
+  padding: 1rem;
+}
+
+/* Menu-specific modal styles */
+.rd-modal-menus-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.rd-modal-menu-card {
+  background-color: var(--color-gray-50); /* Warm light background */
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-gray-200); /* Warm border */
+}
+
+.rd-modal-menu-card h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text-dark); /* Warm text */
+  margin-bottom: 0.75rem;
+}
+
+.rd-modal-menu-description {
+  font-size: 0.95rem;
+  color: var(--color-text-light); /* Warm light text */
+  margin-bottom: 1rem;
+}
+
+.rd-modal-menu-items-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 0.75rem;
+}
+
+.rd-modal-menu-item {
+  background-color: var(--color-white); /* Warm white */
+  border-radius: 0.75rem;
+  padding: 1rem;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-gray-100); /* Warm border */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.rd-modal-menu-item-name {
+  font-weight: 600;
+  color: var(--color-text-dark); /* Warm text */
+  font-size: 1.05rem;
+}
+
+.rd-modal-menu-item-description {
+  font-size: 0.875rem;
+  color: var(--color-text-light); /* Warm light text */
+  flex-grow: 1;
+}
+
+.rd-modal-menu-item-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--color-gray-100); /* Warm dashed border */
+}
+
+.rd-modal-menu-item-price {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-primary-dark); /* Deeper warm primary */
+}
+
+/* --- Action Buttons within Modals --- */
+.rd-action-button {
+  background-color: var(--color-accent-green); /* Warm green */
+  color: var(--color-white);
+  padding: 0.6rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: var(--shadow-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rd-action-button:hover {
+  background-color: var(--color-accent-green-dark); /* Darker warm green */
+  box-shadow: var(--shadow-md);
+}
+
+.rd-reserve-button {
+  background-color: var(--color-primary-main); /* Warm primary */
+}
+
+.rd-reserve-button:hover {
+  background-color: var(--color-primary-dark); /* Darker warm primary */
+}
+
+.rd-add-to-order-button {
+  background-color: var(--color-accent-green); /* Warm green */
+}
+
+.rd-add-to-order-button:hover {
+  background-color: var(--color-accent-green-dark); /* Darker warm green */
+}
+
+.rd-apply-offer-button {
+  background-color: var(--color-accent-purple); /* Warm purple */
+}
+
+.rd-apply-offer-button:hover {
+  background-color: var(--color-accent-purple-dark); /* Darker warm purple */
+}
+
+/* --- Order Cart Summary (Specific to RestaurantDetail) --- */
+.rd-order-cart-summary {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  background-color: var(--color-white); /* Warm white */
+  border-radius: 1rem;
+  box-shadow: var(--shadow-xl);
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 380px;
+  z-index: 900;
+  border: 1px solid var(--color-gray-200); /* Warm border */
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transform: translateY(100%);
+  opacity: 0;
+  animation: rd-slideInFromBottom 0.5s forwards ease-out;
+}
+
+/* Animation for the cart sliding in */
+@keyframes rd-slideInFromBottom {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.rd-cart-overlay-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(
+    var(--color-white-rgb),
+    0.8
+  ); /* Warm white with transparency */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 901;
+  border-radius: 1rem;
+}
+/* Helper for rgba with CSS variables for RGB components */
+.rd-cart-overlay-loading {
+  --color-white-rgb: 255, 251, 240; /* RGB values for #FFFBF0 */
+}
+
+.rd-cart-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--color-text-dark); /* Warm text */
+  border-bottom: 1px solid var(--color-gray-100); /* Warm border */
+  padding-bottom: 0.75rem;
+}
+
+.rd-cart-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.rd-cart-items-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+.rd-cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  border-bottom: 1px dashed var(--color-gray-100); /* Warm dashed border */
+}
+
+.rd-cart-item.rd-offer-item {
+  background-color: var(--color-gray-50); /* Warm light background */
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-primary-100); /* Very light warm primary border */
+}
+
+.rd-cart-item:last-child {
+  border-bottom: none;
+}
+
+.rd-cart-item-info {
+  flex-grow: 1;
+}
+
+.rd-cart-item-name {
+  font-weight: 600;
+  color: var(--color-text-dark); /* Warm text */
+  margin-bottom: 0.25rem;
+}
+
+.rd-cart-item-menu {
+  font-size: 0.8rem;
+  color: var(--color-text-light); /* Warm light text */
+}
+
+.rd-cart-item-quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-gray-100); /* Warm light background */
+  border-radius: 0.5rem;
+  padding: 0.25rem;
+}
+
+.rd-quantity-button {
+  background-color: var(--color-gray-200); /* Warm medium background */
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.2rem;
+  cursor: pointer;
+  color: var(--color-text-dark); /* Warm text */
+  transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rd-quantity-button:hover {
+  background-color: var(--color-gray-300); /* Darker warm gray */
+}
+
+.rd-quantity-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.rd-quantity-display {
+  font-weight: 600;
+  font-size: 0.9rem;
+  min-width: 20px;
+  text-align: center;
+}
+
+.rd-cart-item-price {
+  font-weight: 700;
+  color: var(--color-primary-dark); /* Deeper warm primary */
+  font-size: 1rem;
+  margin-left: 1rem;
+  flex-shrink: 0;
+}
+
+.rd-cart-total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-text-dark); /* Warm text */
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-gray-200); /* Warm border */
+}
+
+.rd-cart-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.rd-confirm-order-button,
+.rd-cancel-order-button {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rd-confirm-order-button {
+  background-color: var(--color-accent-green); /* Warm green */
+  color: var(--color-white);
+}
+
+.rd-confirm-order-button:hover {
+  background-color: var(--color-accent-green-dark); /* Darker warm green */
+  box-shadow: var(--shadow-lg);
+}
+
+.rd-confirm-order-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.rd-cancel-order-button {
+  background-color: var(--color-accent-red); /* Warm red */
+  color: var(--color-white);
+}
+
+.rd-cancel-order-button:hover {
+  background-color: var(--color-accent-red-dark); /* Darker warm red */
+  box-shadow: var(--shadow-lg);
+}
+
+/* Order Confirmation/Error Modal Specific Styles */
+.rd-success-title {
+  color: var(--color-accent-green-dark); /* Darker warm green */
+  text-align: center;
+}
+
+.rd-error-title {
+  color: var(--color-error); /* Warm error red */
+  text-align: center;
+}
+
+.rd-order-message {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: var(--color-text-dark); /* Warm text */
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.rd-order-summary-message {
+  font-size: 1rem;
+  color: var(--color-text-medium); /* Warm text */
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Notification (for reservation/event booking alerts) */
+.notification {
+  position: fixed;
+  top: 80px; /* Below navbar */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fffaf0; /* Warm light yellow */
+  color: #a37200; /* Dark warm yellow text */
+  padding: 15px 25px;
+  border-radius: 8px;
+  border: 1px solid #ffe8b3; /* Warm yellow border */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Ensure it's above other content but below modals */
+  font-size: 1em;
+  font-weight: 500;
+  text-align: center;
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
+}
+/* You can add a class like .notification.hide and rule { opacity: 0; } to fade it out */
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+  .rd-page-container {
+    margin: 20px auto;
+    padding: 15px;
+  }
+
+  .rd-title {
+    font-size: 2.2em;
+  }
+
+  .rd-image {
+    width: 180px;
+    height: 180px;
+  }
+
+  .rd-section-buttons-grid {
+    grid-template-columns: 1fr; /* Stack buttons on smaller screens */
+  }
+
+  .rd-info-text {
+    flex-direction: column; /* Stack label and value */
+    align-items: flex-start;
+  }
+  .rd-info-label {
+    min-width: unset;
+    margin-bottom: 5px;
+  }
+
+  .rd-modal-content {
+    padding: 20px;
+  }
+
+  .rd-modal-title {
+    font-size: 1.6em;
+  }
+
+  .rd-modal-list-grid {
+    grid-template-columns: 1fr; /* Stack list items */
+  }
+
+  .rd-modal-menus-container {
+    grid-template-columns: 1fr;
+  }
+
+  .rd-cart-actions {
+    flex-direction: column; /* Stack cart buttons */
+    gap: 10px;
+  }
 }

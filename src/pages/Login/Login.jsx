@@ -2,7 +2,7 @@ import "./Login.scss";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { logIn } from "../../action/authAction";
+import { logIn } from "../../actions/authActions";
 
 const Login = () => {
   const Navigate = useNavigate();
@@ -13,7 +13,6 @@ const Login = () => {
     email: "",
     password: "",
   });
-  console.log("ff");
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(logIn(data));
@@ -37,7 +36,7 @@ const Login = () => {
       <img src={""} alt="" />
       <div className="header">
         <h1>
-          Sign In to <span> BiteMe </span> WebSite
+          Sign In to <span> BiteBook </span> WebSite
         </h1>
         <h3>
           Don't have an account ?{" "}

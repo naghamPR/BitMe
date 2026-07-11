@@ -1,0 +1,229 @@
+/* --- DiscountManager.css (Earthy Theme) --- */
+
+:root {
+  /* Earthy Restaurant Palette */
+  --color-warm-beige: #fdf7f0;
+  --color-rich-brown: #6b4f3b;
+  --color-soft-terracotta: #d88c63;
+  --color-deep-terracotta: #c3734b;
+  --color-muted-olive: #a39e82;
+  --color-creamy-white: #fffaf3;
+  --color-dark-coffee: #3e2c23;
+
+  --input-border: #d6c8b3;
+  --input-focus-border: #c3734b;
+  --input-focus-shadow: rgba(211, 134, 90, 0.35);
+
+  --shadow-light: 0 1px 4px rgba(0, 0, 0, 0.05);
+  --shadow-medium: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  --btn-green: #739e82;
+  --btn-green-hover: #5f846e;
+
+  --btn-red: #b95d4a;
+  --btn-red-hover: #a34c3a;
+
+  --btn-gray: #d2c7bc;
+  --btn-gray-hover: #beb1a5;
+}
+
+.discount-manager-panel {
+  padding: 1.5rem;
+  background-color: var(--color-warm-beige);
+  border-radius: 1rem;
+  border: 1px solid var(--input-border);
+  box-shadow: var(--shadow-light);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.discount-manager-panel-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-rich-brown);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.discount-manager-form-card {
+  background-color: var(--color-creamy-white);
+  border-radius: 1rem;
+  box-shadow: var(--shadow-medium);
+  padding: 1.5rem;
+  border: 1px solid var(--input-border);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.discount-manager-form-label {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-rich-brown);
+  margin-bottom: 0.4rem;
+}
+
+.discount-manager-form-input {
+  width: 100%;
+  padding: 0.75rem 0.5rem;
+  border: 1px solid var(--input-border);
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  background-color: var(--color-warm-beige);
+  color: var(--color-dark-coffee);
+  transition: all 0.2s ease-in-out;
+}
+
+.discount-manager-form-input:focus {
+  outline: none;
+  border-color: var(--input-focus-border);
+  box-shadow: 0 0 0 3px var(--input-focus-shadow);
+  background-color: var(--color-creamy-white);
+}
+
+.discount-manager-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--input-border);
+}
+
+.discount-manager-form-cancel-button,
+.discount-manager-form-submit-button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.discount-manager-form-cancel-button {
+  background-color: var(--btn-gray);
+  color: var(--color-dark-coffee);
+}
+.discount-manager-form-cancel-button:hover {
+  background-color: var(--btn-gray-hover);
+  box-shadow: var(--shadow-medium);
+}
+
+.discount-manager-form-submit-button {
+  background-color: var(--btn-green);
+  color: var(--color-creamy-white);
+}
+.discount-manager-form-submit-button:hover {
+  background-color: var(--btn-green-hover);
+  box-shadow: var(--shadow-medium);
+}
+.discount-manager-form-submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.submission-message {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.95rem;
+  margin-top: 1rem;
+}
+
+.submission-message.success {
+  background-color: #eaf5ee;
+  color: var(--btn-green);
+}
+
+.submission-message.error {
+  background-color: #faeae8;
+  color: var(--btn-red);
+}
+
+/* List Style (Optional if you add existing discounts later) */
+.discount-manager-existing-title {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--input-border);
+}
+
+.discount-manager-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.discount-manager-item-card {
+  background-color: var(--color-creamy-white);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  box-shadow: var(--shadow-light);
+  border: 1px solid var(--input-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.discount-manager-item-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-medium);
+}
+
+.discount-manager-code {
+  font-weight: 700;
+  color: var(--color-rich-brown);
+  font-size: 1.1rem;
+}
+
+.discount-manager-amount,
+.discount-manager-expiry {
+  font-size: 0.95rem;
+  color: var(--color-muted-olive);
+}
+
+.discount-manager-item-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.discount-manager-action-btn {
+  padding: 0.5rem 0.8rem;
+  border-radius: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.discount-manager-edit-btn {
+  background-color: var(--color-soft-terracotta);
+  color: var(--color-creamy-white);
+}
+.discount-manager-edit-btn:hover {
+  background-color: var(--color-deep-terracotta);
+}
+
+.discount-manager-delete-btn {
+  background-color: var(--btn-red);
+  color: var(--color-creamy-white);
+}
+.discount-manager-delete-btn:hover {
+  background-color: var(--btn-red-hover);
+}

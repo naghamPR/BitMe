@@ -1,52 +1,207 @@
-/* NavBar.css */
+/* --- NavBar.css --- */
+
+/* Base styles for body and HTML to ensure full-height, no margin issues */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: border-box; /* Include padding/border in element's total width/height */
+}
+
+/* Ensure root element also has proper box-sizing */
+#root {
+  box-sizing: border-box;
+}
+
+/* --- Navbar Container --- */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #0a0a0a; /* Dark background */
-  padding: 20px 60px;
-  position: sticky;
+  padding: 15px 30px;
+  background-color: #ffffff; /* White background */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Soft shadow for depth */
+  position: sticky; /* Keeps navbar at the top when scrolling */
   top: 0;
-  z-index: 100;
-  box-shadow: 2px 5px 8px rgb(184, 81, 3);
+  z-index: 100; /* Ensures navbar is above other content */
 }
 
+/* --- Navbar Logo --- */
 .navbar-logo a {
-  color: #ffffff;
-  font-size: 28px;
-  font-weight: bold;
+  font-size: 1.8em;
+  font-weight: 700;
+  color: #6a0572; /* Deep purple for brand identity */
   text-decoration: none;
+  transition: color 0.3s ease;
 }
 
-.navbar-links {
+.navbar-logo a:hover {
+  color: #4a0352; /* Darker purple on hover */
+}
+
+/* --- Desktop Links --- */
+.navbar-links.desktop-links {
   display: flex;
-  gap: 40px;
+  align-items: center;
+  gap: 25px; /* Space between links */
 }
 
 .navbar-links a {
-  color: #ffffff;
-  font-size: 18px;
-  font-weight: 500;
+  color: #343a40; /* Dark gray for links */
   text-decoration: none;
+  font-size: 1em;
+  font-weight: 500;
+  padding: 8px 0; /* Vertical padding for hover effect */
+  position: relative; /* For underline effect */
   transition: color 0.3s ease;
-  position: relative;
 }
 
+.navbar-links a:hover {
+  color: #6a0572; /* Highlight color on hover */
+}
+
+/* Underline effect on hover for desktop links */
 .navbar-links a::after {
-  content: "";
+  content: '';
   position: absolute;
-  width: 0%;
+  width: 0;
   height: 2px;
-  bottom: -5px;
+  bottom: 0;
   left: 0;
-  background-color: rgb(184, 81, 3);
-  transition: width 0.3s;
+  background-color: #6a0572;
+  transition: width 0.3s ease-out;
 }
 
 .navbar-links a:hover::after {
   width: 100%;
 }
 
-.navbar-links a:hover {
-  color: rgb(218, 165, 80); /* Hover text color */
+/* Specific logout link style */
+.navbar-links .logout-link {
+  color: #dc3545; /* Red for logout */
+  font-weight: 700;
+}
+
+.navbar-links .logout-link:hover {
+  color: #c82333; /* Darker red on hover */
+}
+.navbar-links .logout-link::after { /* Disable underline for logout */
+  display: none;
+}
+
+
+/* --- Mobile Menu Icon (Hamburger) --- */
+.menu-icon {
+  display: none; /* Hidden by default on desktop */
+  cursor: pointer;
+  color: #343a40; /* Icon color */
+  transition: color 0.3s ease;
+}
+
+.menu-icon:hover {
+  color: #6a0572; /* Highlight on hover */
+}
+
+/* --- Mobile Menu Overlay --- */
+.navbar-mobile-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Dark semi-transparent background */
+  z-index: 99; /* Below main navbar, above page content */
+  display: flex;
+  justify-content: flex-end; /* Align content to the right (slide in from right) */
+  transition: background-color 0.3s ease;
+}
+
+.navbar-mobile-links {
+  background-color: #ffffff; /* White panel */
+  width: 280px; /* Width of the slide-out menu */
+  max-width: 80%; /* Max width for very small screens */
+  height: 100%;
+  padding: 40px 25px;
+  box-shadow: -8px 0 20px rgba(0, 0, 0, 0.2); /* Shadow for slide-out effect */
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Space between mobile links */
+  transform: translateX(100%); /* Start off-screen to the right */
+  animation: slideIn 0.3s forwards; /* Animation to slide in */
+  overflow-y: auto; /* Allow scrolling if many links */
+  position: relative; /* For close button positioning */
+}
+
+/* Close button inside the mobile menu */
+.mobile-menu-close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  color: #868e96;
+  transition: color 0.2s ease, background-color 0.2s ease;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-menu-close-button:hover {
+  color: #212529;
+  background-color: #f0f2f5;
+}
+
+
+/* Mobile menu links style */
+.navbar-mobile-links a {
+  color: #343a40;
+  text-decoration: none;
+  font-size: 1.1em;
+  font-weight: 600;
+  padding: 10px 0;
+  border-bottom: 1px solid #e9ecef; /* Separator for links */
+  transition: color 0.3s ease, padding-left 0.3s ease;
+}
+
+.navbar-mobile-links a:hover {
+  color: #6a0572;
+  padding-left: 5px; /* Slight indentation on hover */
+}
+
+.navbar-mobile-links a:last-child {
+  border-bottom: none; /* No border for the last link */
+}
+
+/* Slide-in animation for mobile menu */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 768px) { /* Adjust breakpoint as needed */
+  .navbar-links.desktop-links {
+    display: none; /* Hide desktop links on small screens */
+  }
+
+  .menu-icon {
+    display: block;
+  }
+
+  .navbar {
+    padding: 15px 20px; 
+  }
+
+  .navbar-logo a {
+    font-size: 1.6em; 
+  }
 }

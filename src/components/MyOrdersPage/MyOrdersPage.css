@@ -1,0 +1,1049 @@
+/* --- MyOrdersPage.css --- */
+
+/* --- Global Color Palette Variables (Ensuring consistency with other warm CSS files) --- */
+/* These variables are copied from the main warm color palette for local reference. */
+:root {
+  --color-primary-main: #d46a00; /* A rich burnt orange */
+  --color-primary-light: #ff9933; /* Brighter orange */
+  --color-primary-dark: #a34e00; /* Deeper burnt orange */
+
+  --color-accent-green: #808000; /* Olive Green for success/positive actions */
+  --color-accent-green-dark: #556b2f; /* Darker Olive Green */
+  --color-accent-purple: #8e44ad; /* A sophisticated amethyst/plum for special actions */
+  --color-accent-purple-dark: #6c3483; /* Darker amethyst */
+  --color-accent-red: #b22222; /* Firebrick red for danger/negative actions */
+  --color-accent-red-dark: #8b0000; /* Dark Red */
+
+  --color-neutral-white: #fffbf0; /* Warm off-white */
+  --color-neutral-light: #f8f5ef; /* Very light warm gray/cream for backgrounds */
+  --color-neutral-medium: #e0d9cc; /* Light warm gray/beige for borders/dividers */
+  --color-neutral-dark: #c2b7a8; /* Medium warm gray for subtle details */
+  --color-neutral-darker: #8a7f70; /* Dark warm gray for placeholder text */
+  --color-neutral-lightest: #fffdf8; /* Even lighter for specific backgrounds like lists */
+
+  --color-text-primary: #362f27; /* Dark warm charcoal for main text */
+  --color-text-secondary: #5e5346; /* Slightly lighter warm brown-gray for secondary text */
+  --color-text-light: #8a7f70; /* For less emphasis (same as neutral-darker) */
+
+  --color-star-filled: #ffc107; /* Bright yellow for stars */
+  --color-star-empty: var(--color-neutral-medium);
+  --color-heart-filled: var(--color-accent-red);
+  --color-error-message: var(--color-accent-red-dark);
+
+  --message-success-bg: #e6ffe6;
+  --message-success-color: #3b8a3b;
+  --message-error-bg: #ffebeb;
+  --message-error-color: #a73d3a;
+
+  --shadow-sm: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0px 8px 16px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0px 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Basic Reset & Font */
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(
+    --color-neutral-light
+  ); /* Light warm background for the page */
+  color: var(--color-text-primary);
+}
+
+/* --- Page Container --- */
+.mo-page-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: var(--color-neutral-white);
+  border-radius: 12px;
+  box-shadow: var(--shadow-md); /* Using warm shadow variable */
+  min-height: 80vh; /* Ensure it takes up enough vertical space */
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Header Section --- */
+.mo-header {
+  text-align: center;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--color-neutral-medium); /* Warm border */
+}
+
+.mo-header h1 {
+  font-size: 3em;
+  color: var(--color-text-primary);
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.mo-header p {
+  font-size: 1.1em;
+  color: var(--color-text-secondary);
+}
+
+/* --- Loading and Error Messages (Page Level) --- */
+.mo-loading-message,
+.mo-error-message {
+  text-align: center;
+  padding: 50px 20px;
+  font-size: 1.2em;
+  color: var(--color-text-secondary);
+  background-color: var(--color-neutral-lightest);
+  border-radius: 8px;
+  margin: 20px auto;
+  box-shadow: var(--shadow-sm);
+}
+
+.mo-error-message {
+  color: var(--message-error-color);
+  background-color: var(--message-error-bg);
+  border: 1px solid var(--message-error-color);
+}
+
+/* --- No Orders Found Section --- */
+.mo-no-orders-found {
+  text-align: center;
+  padding: 60px 20px;
+  background-color: var(--color-neutral-white);
+  border: 2px dashed var(--color-neutral-medium);
+  border-radius: 10px;
+  margin-top: 30px;
+}
+
+.mo-no-orders-found h3 {
+  font-size: 1.8em;
+  color: var(--color-text-secondary);
+  margin-bottom: 15px;
+}
+
+.mo-no-orders-found p {
+  font-size: 1.1em;
+  color: var(--color-text-light);
+  margin-bottom: 25px;
+}
+
+.mo-browse-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 30px;
+  background-color: var(--color-primary-main); /* Warm primary button color */
+  color: var(--color-neutral-white);
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(212, 106, 0, 0.2); /* Shadow with warm primary RGB */
+}
+
+.mo-browse-button:hover {
+  background-color: var(
+    --color-primary-dark
+  ); /* Darker warm primary on hover */
+  transform: translateY(-2px);
+}
+
+/* --- Orders Grid --- */
+.mo-orders-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  margin-top: 20px;
+}
+
+/* --- Order Card --- */
+.mo-order-card {
+  background-color: var(--color-neutral-white);
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  border: 1px solid var(--color-neutral-light); /* Warm light border */
+}
+
+.mo-order-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.mo-order-summary p {
+  margin-bottom: 8px;
+  font-size: 1em;
+  color: var(--color-text-secondary);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mo-order-summary strong {
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+/* Order Status Badge */
+.mo-order-status {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.85em;
+  font-weight: 700;
+  text-transform: capitalize;
+  display: inline-block; /* Ensures padding works */
+  margin-left: 10px; /* Space from status label */
+}
+
+.mo-order-status.pending {
+  background-color: var(--color-primary-light); /* Warm light orange */
+  color: var(--color-primary-dark); /* Dark warm orange text */
+}
+
+.mo-order-status.completed {
+  background-color: var(--message-success-bg); /* Warm light green */
+  color: var(--message-success-color); /* Dark warm green text */
+}
+
+.mo-order-status.cancelled {
+  background-color: var(--message-error-bg); /* Warm light red */
+  color: var(--message-error-color); /* Dark warm red text */
+}
+
+/* Order Details Section */
+.mo-order-details-section {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid var(--color-neutral-light);
+}
+
+.mo-order-details-section h4 {
+  font-size: 1.1em;
+  color: var(--color-text-primary);
+  margin-bottom: 10px;
+}
+
+.mo-order-items-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mo-order-item-detail {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px dotted var(--color-neutral-light);
+  font-size: 0.95em;
+  color: var(--color-text-secondary);
+}
+
+.mo-order-item-detail:last-child {
+  border-bottom: none;
+}
+
+/* Order Actions */
+.mo-order-actions {
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 1px solid var(--color-neutral-light);
+  display: flex;
+  flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+  gap: 10px; /* Space between action buttons */
+  justify-content: center; /* Center buttons horizontally */
+}
+
+.mo-action-button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95em;
+  font-weight: 600;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  display: inline-flex; /* For icon alignment */
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Space between icon and text */
+}
+
+/* Specific Action Button Colors */
+.mo-edit-order-button {
+  background-color: var(--color-primary-main); /* Warm primary (orange) */
+  color: var(--color-neutral-white);
+}
+.mo-edit-order-button:hover:not(:disabled) {
+  background-color: var(--color-primary-dark);
+  transform: translateY(-1px);
+}
+
+.mo-delete-order-button {
+  background-color: var(--color-accent-red); /* Warm red */
+  color: var(--color-neutral-white);
+}
+.mo-delete-order-button:hover:not(:disabled) {
+  background-color: var(--color-accent-red-dark);
+  transform: translateY(-1px);
+}
+
+.mo-payment-button {
+  background-color: var(--color-accent-green); /* Warm green */
+  color: var(--color-neutral-white);
+}
+.mo-payment-button:hover:not(:disabled) {
+  background-color: var(--color-accent-green-dark);
+  transform: translateY(-1px);
+}
+
+.mo-split-bill-button {
+  background-color: var(--color-accent-purple); /* Warm purple */
+  color: var(--color-neutral-white);
+}
+.mo-split-bill-button:hover:not(:disabled) {
+  background-color: var(--color-accent-purple-dark);
+  transform: translateY(-1px);
+}
+
+.mo-action-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.mo-order-completed-message {
+  font-weight: 600;
+  color: var(--message-success-color); /* Warm green */
+  font-size: 1.1em;
+  padding: 10px;
+  border: 1px solid var(--message-success-color);
+  border-radius: 8px;
+}
+
+/* --- MODAL STYLES (for all popups: Payment, Delete, Edit, Calculator) --- */
+
+.mo-modal-overlay-custom {
+  position: fixed; /* Ensures it covers the entire viewport */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent dark background */
+  display: flex; /* Use flexbox for centering */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  z-index: 1001; /* Ensure it's above everything else */
+  opacity: 0; /* Start hidden for animation */
+  visibility: hidden; /* Start hidden for animation */
+  transition: opacity 0.3s ease, visibility 0.3s ease; /* Smooth fade-in/out */
+  padding: 20px; /* Padding for mobile views */
+  box-sizing: border-box;
+}
+
+.mo-modal-overlay-custom.open {
+  opacity: 1; /* Fade in */
+  visibility: visible; /* Make visible */
+}
+
+.mo-modal-content {
+  background-color: var(--color-neutral-white);
+  border-radius: 12px;
+  box-shadow: var(--shadow-lg);
+  padding: 30px;
+  position: relative; /* For the close button */
+  max-height: 90vh; /* Max height to allow scrolling if content is long */
+  overflow-y: auto; /* Enable scrolling for content if it overflows */
+  transform: scale(0.9); /* Start slightly smaller for animation */
+  opacity: 0; /* Start hidden for animation */
+  transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth scale and fade */
+}
+
+.mo-modal-overlay-custom.open .mo-modal-content {
+  transform: scale(1); /* Scale up to full size */
+  opacity: 1; /* Fade in */
+}
+
+/* Specific modal sizes */
+.mo-modal-content.mo-small-modal {
+  max-width: 450px;
+  width: 90%;
+}
+
+.mo-modal-content.mo-large-modal {
+  max-width: 800px;
+  width: 95%;
+}
+
+.mo-modal-content.mo-calculator-modal {
+  max-width: 900px; /* Wider for split bill columns */
+  width: 95%;
+}
+
+.mo-modal-title {
+  font-size: 2em;
+  color: var(--color-text-primary);
+  margin-bottom: 25px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.mo-modal-close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  color: var(--color-text-light);
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mo-modal-close-button:hover {
+  color: var(--color-text-primary);
+}
+
+/* General message container inside modals */
+.mo-message-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 15px;
+  border-radius: 8px;
+  margin-top: 20px;
+  font-weight: 500;
+  font-size: 0.95em;
+}
+
+.mo-message-container.success {
+  background-color: var(--message-success-bg);
+  color: var(--message-success-color);
+  border: 1px solid var(--message-success-bg);
+}
+
+.mo-message-container.error {
+  background-color: var(--message-error-bg);
+  color: var(--message-error-color);
+  border: 1px solid var(--message-error-bg);
+}
+
+/* Modal Actions (buttons at the bottom of modals) */
+.mo-modal-actions {
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end; /* Align buttons to the right */
+  gap: 15px;
+}
+
+.mo-cancel-button {
+  background-color: var(--color-neutral-dark);
+  color: var(--color-neutral-white);
+}
+.mo-cancel-button:hover:not(:disabled) {
+  background-color: var(--color-neutral-darker);
+}
+
+.mo-delete-confirm-button {
+  background-color: var(--color-accent-red);
+  color: var(--color-neutral-white);
+}
+.mo-delete-confirm-button:hover:not(:disabled) {
+  background-color: var(--color-accent-red-dark);
+}
+
+.mo-process-payment-button,
+.mo-save-changes-button {
+  background-color: var(--color-primary-main);
+  color: var(--color-neutral-white);
+}
+.mo-process-payment-button:hover:not(:disabled),
+.mo-save-changes-button:hover:not(:disabled) {
+  background-color: var(--color-primary-dark);
+}
+
+/* --- Payment Modal Specifics --- */
+.mo-payment-total {
+  font-size: 1.2em;
+  margin-bottom: 25px;
+  color: var(--color-text-secondary);
+}
+
+.mo-wallet-balance-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: var(
+    --color-neutral-lightest
+  ); /* Very light warm background */
+  border: 1px solid var(--color-neutral-medium); /* Warm medium border */
+  border-radius: 8px;
+  padding: 10px 15px;
+  margin-bottom: 20px;
+  font-size: 1.1em;
+  color: var(--color-text-primary);
+}
+.mo-wallet-balance-display .spinner {
+  margin-right: 0;
+}
+
+.mo-payment-method-options h3 {
+  font-size: 1.1em;
+  margin-bottom: 15px;
+  color: var(--color-text-secondary);
+}
+
+.mo-payment-method-options-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(120px, 1fr)
+  ); /* Responsive grid for options */
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.mo-payment-option-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 15px;
+  border: 1px solid var(--color-neutral-medium);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  background-color: var(--color-neutral-lightest);
+}
+
+.mo-payment-option-label:hover {
+  border-color: var(--color-primary-main);
+  background-color: var(--color-neutral-light);
+}
+
+.mo-payment-option-label input[type="radio"] {
+  accent-color: var(--color-primary-main); /* Style the radio button itself */
+  width: 18px;
+  height: 18px;
+}
+
+.mo-payment-option-label.mo-disabled-option {
+  opacity: 0.7;
+  cursor: not-allowed;
+  background-color: var(--color-neutral-light);
+  color: var(--color-text-light);
+  border-color: var(--color-neutral-medium);
+}
+
+.mo-insufficient-funds-text {
+  font-size: 0.85em;
+  color: var(--color-accent-red); /* Warm red color */
+  margin-left: auto; /* Pushes text to the right */
+  font-weight: normal;
+}
+
+.mo-payment-input-group {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.mo-payment-input-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.mo-payment-input {
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid var(--color-neutral-dark);
+  border-radius: 8px;
+  font-size: 1em;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.mo-payment-input:focus {
+  outline: none;
+  border-color: var(--color-primary-main);
+  box-shadow: 0 0 0 3px rgba(212, 106, 0, 0.25); /* Warm primary shadow */
+}
+
+/* Top Up Wallet Section */
+.mo-top-up-wallet-section {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px dashed var(--color-neutral-medium);
+  text-align: center;
+}
+
+.mo-top-up-wallet-section h3 {
+  font-size: 1.1em;
+  margin-bottom: 15px;
+  color: var(--color-text-secondary);
+}
+
+.mo-top-up-wallet-controls {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.mo-top-up-input {
+  flex-grow: 1;
+  max-width: 200px;
+  padding: 10px 15px;
+  border: 1px solid var(--color-neutral-dark);
+  border-radius: 8px;
+  font-size: 1em;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.mo-top-up-input:focus {
+  outline: none;
+  border-color: var(--color-accent-green);
+  box-shadow: 0 0 0 3px rgba(128, 128, 0, 0.25); /* Warm green shadow */
+}
+
+.mo-top-up-wallet-button {
+  background-color: var(--color-accent-green);
+  color: var(--color-neutral-white);
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.mo-top-up-wallet-button:hover:not(:disabled) {
+  background-color: var(--color-accent-green-dark);
+}
+
+/* --- Edit Order Modal Specifics --- */
+.mo-edit-order-current-summary {
+  background-color: var(--color-neutral-lightest);
+  border: 1px solid var(--color-neutral-medium);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.mo-edit-order-current-summary h3 {
+  font-size: 1.3em;
+  color: var(--color-text-primary);
+  margin-bottom: 15px;
+}
+
+.mo-edit-order-current-items-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mo-edit-order-current-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--color-neutral-light);
+}
+
+.mo-edit-order-current-item:last-child {
+  border-bottom: none;
+}
+
+.mo-edit-order-current-item p {
+  margin: 0;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  flex-grow: 1;
+}
+
+.mo-item-quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 0 15px;
+}
+
+.mo-quantity-button {
+  background-color: var(--color-neutral-medium);
+  border: 1px solid var(--color-neutral-dark);
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+
+.mo-quantity-button:hover {
+  background-color: var(--color-neutral-dark);
+}
+
+.mo-quantity-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.mo-quantity-display {
+  font-weight: 600;
+  color: var(--color-text-primary);
+  min-width: 25px; /* Ensures consistent width */
+  text-align: center;
+}
+
+.mo-item-price-display {
+  font-weight: 600;
+  color: var(--color-accent-green);
+}
+
+.mo-edit-order-current-offer {
+  background-color: var(--color-neutral-lightest);
+  border: 1px solid var(--color-neutral-medium);
+  border-radius: 8px;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.mo-no-items-in-cart {
+  font-style: italic;
+  color: var(--color-text-light);
+  text-align: center;
+  padding: 15px;
+  background-color: var(--color-neutral-light);
+  border-radius: 8px;
+}
+
+.mo-edit-order-total {
+  font-size: 1.3em;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid var(--color-neutral-medium);
+  text-align: right;
+}
+
+.mo-edit-order-add-section {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px dashed var(--color-neutral-medium);
+  text-align: left;
+}
+
+.mo-edit-order-add-section h3 {
+  font-size: 1.3em;
+  color: var(--color-text-primary);
+  margin-bottom: 20px;
+}
+
+.mo-loading-message-modal,
+.mo-error-message-modal,
+.mo-no-menus-available-message {
+  text-align: center;
+  padding: 20px;
+  font-size: 1em;
+  color: var(--color-text-secondary);
+  background-color: var(--color-neutral-lightest);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.mo-error-message-modal {
+  color: var(--message-error-color);
+  background-color: var(--message-error-bg);
+  border: 1px solid var(--message-error-color);
+}
+
+.mo-edit-order-menus-container,
+.mo-edit-order-offers-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.mo-edit-order-menu-card {
+  background-color: var(--color-neutral-white);
+  border: 1px solid var(--color-neutral-medium);
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: var(--shadow-sm);
+}
+
+.mo-edit-order-menu-card h4 {
+  font-size: 1.1em;
+  color: var(--color-text-primary);
+  margin-top: 0;
+  margin-bottom: 15px;
+  border-bottom: 1px solid var(--color-neutral-light);
+  padding-bottom: 10px;
+}
+
+.mo-edit-order-menu-items-list,
+.mo-edit-order-offers-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mo-edit-order-menu-item,
+.mo-edit-order-offer-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px dotted var(--color-neutral-light);
+  font-size: 0.95em;
+  color: var(--color-text-secondary);
+}
+
+.mo-edit-order-menu-item:last-child,
+.mo-edit-order-offer-item:last-child {
+  border-bottom: none;
+}
+
+.mo-add-item-small-button,
+.mo-apply-offer-small-button {
+  background-color: var(--color-accent-green);
+  color: var(--color-neutral-white);
+  padding: 6px 12px;
+  border-radius: 5px;
+  font-size: 0.85em;
+}
+
+.mo-add-item-small-button:hover,
+.mo-apply-offer-small-button:hover {
+  background-color: var(--color-accent-green-dark);
+}
+
+.mo-no-items-in-menu {
+  font-style: italic;
+  color: var(--color-text-light);
+  text-align: center;
+  padding: 10px;
+}
+
+/* --- Bill Calculator Modal Specifics --- */
+.mo-calculator-modal {
+  /* Inherits general modal-content styles */
+  display: flex;
+  flex-direction: column; /* Stack header/input then columns */
+}
+
+.mo-calculator-order-total {
+  font-size: 1.2em;
+  margin-bottom: 25px;
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+.mo-calculator-num-people-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px dashed var(--color-neutral-medium);
+}
+
+.mo-calculator-label {
+  font-size: 1.1em;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mo-calculator-input {
+  width: 80px;
+  padding: 8px 12px;
+  border: 1px solid var(--color-neutral-dark);
+  border-radius: 8px;
+  font-size: 1em;
+  text-align: center;
+}
+
+.mo-calculator-columns-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two columns for items and shares */
+  gap: 30px;
+}
+
+.mo-calculator-column {
+  border: 1px solid var(--color-neutral-medium);
+  border-radius: 10px;
+  padding: 20px;
+  background-color: var(--color-neutral-lightest);
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.03);
+}
+
+.mo-calculator-column-title {
+  font-size: 1.25em;
+  color: var(--color-text-primary);
+  margin-top: 0;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--color-neutral-medium);
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.mo-calculator-empty-message {
+  font-style: italic;
+  color: var(--color-text-light);
+  text-align: center;
+  padding: 20px;
+}
+
+.mo-available-items-list,
+.mo-person-items-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mo-calculator-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--color-neutral-light);
+  font-size: 0.95em;
+  color: var(--color-text-secondary);
+}
+
+.mo-calculator-item:last-child {
+  border-bottom: none;
+}
+
+.mo-assign-buttons-group {
+  display: flex;
+  gap: 5px;
+}
+
+.mo-assign-person-button {
+  background-color: var(--color-primary-main); /* Warm primary */
+  color: var(--color-neutral-white);
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
+  font-size: 0.85em;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.mo-assign-person-button:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.mo-calculator-remaining-total {
+  font-size: 1.1em;
+  font-weight: 600;
+  color: var(--color-accent-red); /* Warm red for remaining balance */
+  margin-top: 20px;
+  text-align: center;
+}
+
+.mo-person-share-card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.mo-person-share-card {
+  border: 1px solid var(--color-neutral-dark);
+  border-radius: 10px;
+  padding: 15px;
+  background-color: var(--color-neutral-white);
+}
+
+.mo-person-share-card-title {
+  font-size: 1.1em;
+  color: var(--color-text-primary);
+  margin-top: 0;
+  margin-bottom: 15px;
+  border-bottom: 1px solid var(--color-neutral-medium);
+  padding-bottom: 10px;
+}
+
+.mo-person-empty-items-message {
+  font-style: italic;
+  color: var(--color-text-light);
+  padding: 10px;
+}
+
+.mo-person-total {
+  font-size: 1.15em;
+  font-weight: 700;
+  color: var(--color-accent-green); /* Warm green for totals */
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--color-neutral-light);
+  text-align: right;
+}
+
+.mo-remove-item-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-accent-red); /* Warm red */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.mo-remove-item-button:hover {
+  background-color: var(--message-error-bg); /* Warm light red hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .mo-orders-grid,
+  .mo-calculator-columns-grid {
+    grid-template-columns: 1fr; /* Stack columns on smaller screens */
+  }
+
+  .mo-modal-content {
+    padding: 20px;
+  }
+
+  .mo-modal-title {
+    font-size: 1.6em;
+  }
+
+  .mo-order-actions {
+    flex-direction: column; /* Stack buttons always */
+  }
+
+  .mo-payment-method-options-grid {
+    grid-template-columns: 1fr; /* Stack payment options */
+  }
+
+  .mo-calculator-num-people-control {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

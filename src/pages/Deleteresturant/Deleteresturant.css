@@ -1,0 +1,119 @@
+.deleteresturant-page {
+  background-color: #eae3dc;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-start; /* align left */
+  align-items: center;
+  padding-left: 50px; /* some left padding for spacing */
+  gap: 50px; /* space between card and image */
+  position: relative; /* to contain the image */
+}
+
+/* Container for content and image side by side */
+.deleteresturant-input-card {
+  justify-content: flex-start;
+  position: relative;
+  padding-top: 30px;
+  width: 450px;
+  height: 700px;
+  border-radius: 16px;
+  background-color: #f4e6d4;
+  box-shadow: 0 6px 25px #a35c38;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 30px;
+  box-sizing: border-box;
+  z-index: 2; /* content above image */
+}
+
+/* Move image outside the card and to the right */
+.deleteresturant-card-img {
+  position: absolute;
+  top: 20px;
+  right: 0;
+  transform: translateY(-50%);
+  width: auto;
+  height: auto;
+  background: none;
+  z-index: 1;
+}
+
+.deleteresturant-card-img::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 450px;
+  height: 700px;
+  background-image: url("../../assets/addresturant.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  animation: floatImage 3s ease-in-out infinite;
+}
+
+.deleteresturant-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; /* Stretch to full width */
+  gap: 10px; /* Small gap between all elements */
+  text-align: left;
+  width: 100%;
+}
+
+.deleteresturant-card-title {
+  font-size: 28px;
+  font-weight: bold;
+  color: black;
+  text-align: center;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+}
+
+.input-label {
+  font-size: 16px;
+  color: rgb(0, 0, 0);
+  margin-top: 10px;
+  margin-bottom: 4px;
+}
+
+.input-field1 {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.input-field1:focus {
+  border-color: #000;
+}
+
+.deleteresturant-submit-button {
+  padding: 12px 20px;
+  background-color: #7d3c25;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+  align-self: flex-start;
+}
+
+.deleteresturant-submit-button:hover {
+  background-color: #5a4a42;
+}
+@keyframes floatImage {
+  0% {
+    transform: translateY(-50%) translateX(0);
+  }
+  50% {
+    transform: translateY(-50%) translateX(-10px);
+  }
+  100% {
+    transform: translateY(-50%) translateX(0);
+  }
+}

@@ -1,0 +1,216 @@
+/* --- UpdateDiscountModal.css --- */
+/* This file contains all styles specific to UpdateDiscountModal component */
+
+/* --- Component-specific variables --- */
+:root {
+  --modal-overlay-bg: rgba(0, 0, 0, 0.7);
+  --modal-content-bg: var(--color-white);
+  --modal-content-border: var(--color-gray-200);
+  --modal-content-shadow: var(--shadow-xl);
+  --modal-close-btn-color: var(--color-text-medium);
+  --modal-close-btn-hover-bg: var(--color-gray-100);
+  --modal-close-btn-hover-color: var(--color-text-dark);
+  --modal-title-color: var(--color-text-dark);
+
+  --form-label-color: var(--color-text-dark);
+  --form-input-bg: var(--color-gray-50);
+  --form-input-border: var(--color-gray-300);
+  --form-input-focus-border: var(--color-primary-500);
+  --form-input-focus-shadow: rgba(99, 102, 241, 0.3);
+
+  --form-cancel-btn-bg: var(--color-gray-300);
+  --form-cancel-btn-hover-bg: var(--color-gray-400);
+  --form-submit-btn-bg: var(--color-primary-500); /* Primary color for submit */
+  --form-submit-btn-hover-bg: var(--color-primary-600);
+
+  /* Messages (reused from global, but can be redefined if needed) */
+  --message-success-bg: #d1fae5;
+  --message-success-color: #059669;
+  --message-error-bg: #fee2e2;
+  --message-error-color: #ef4444;
+}
+
+.udm-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.udm-modal-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.udm-modal-content {
+  background-color: var(--modal-content-bg);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: var(--modal-content-shadow);
+  max-width: 90%;
+  width: 600px; /* Standard width for this modal */
+  position: relative;
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
+  max-height: 90vh;
+  overflow-y: auto;
+  border: 1px solid var(--modal-content-border);
+}
+
+.udm-modal-overlay.open .udm-modal-content {
+  transform: scale(1);
+}
+
+.udm-modal-close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--modal-close-btn-color);
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.udm-modal-close-button:hover {
+  background-color: var(--modal-close-btn-hover-bg);
+  color: var(--color-text-dark);
+}
+
+.udm-modal-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--modal-title-color);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  padding-right: 2.5rem;
+}
+
+.udm-modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.udm-form-group {
+  margin-bottom: 0; /* Override default form-group margin */
+}
+
+.udm-form-label {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--form-label-color);
+  margin-bottom: 0.4rem;
+}
+
+.udm-form-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--form-input-border);
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  color: var(--color-text-dark);
+  background-color: var(--form-input-bg);
+  transition: all 0.2s ease-in-out;
+}
+
+.udm-form-input::placeholder {
+  color: var(--color-text-placeholder);
+}
+
+.udm-form-input:focus {
+  outline: none;
+  border-color: var(--form-input-focus-border);
+  box-shadow: 0 0 0 3px var(--form-input-focus-shadow);
+  background-color: var(--color-white);
+}
+
+.udm-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-gray-100);
+}
+
+.udm-form-cancel-button,
+.udm-form-submit-button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: var(--shadow-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.udm-form-cancel-button {
+  background-color: var(--form-cancel-btn-bg);
+  color: var(--color-text-dark);
+}
+
+.udm-form-cancel-button:hover {
+  background-color: var(--form-cancel-btn-hover-bg);
+  box-shadow: var(--shadow-md);
+}
+
+.udm-form-submit-button {
+  background-color: var(--form-submit-btn-bg);
+  color: var(--color-white);
+}
+
+.udm-form-submit-button:hover {
+  background-color: var(--form-submit-btn-hover-bg);
+  box-shadow: var(--shadow-md);
+}
+
+.udm-form-submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Submission messages (reused from global, but can be redefined if needed) */
+.udm-submission-message {
+  /* Renamed for consistency */
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+  font-weight: 500;
+  text-align: left;
+}
+
+.udm-submission-message.success {
+  background-color: var(--message-success-bg);
+  color: var(--message-success-color);
+  border: 1px solid #a7f3d0;
+}
+
+.udm-submission-message.error {
+  background-color: var(--message-error-bg);
+  color: var(--message-error-color);
+  border: 1px solid #fecaca;
+}

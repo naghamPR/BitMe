@@ -1,0 +1,223 @@
+/* Profile.css */
+.profile-page {
+  min-height: 100vh;
+  background-color: #eae3dc; /* Match theme */
+  color: #ffffff;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Styles for Unauthenticated View */
+.profile-unauthenticated {
+  justify-content: center; /* Center the message box vertically */
+}
+
+.auth-message-box {
+  background-color: #f4e6d4; /* Match card background */
+  padding: 40px;
+  border-radius: 16px;
+  text-align: center;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 6px 20px #da977f;
+}
+
+.auth-message-box h2 {
+  font-size: 28px;
+  color: #3b2f2f; /* Theme accent */
+  margin-bottom: 15px;
+}
+
+.auth-message-box p {
+  font-size: 18px;
+  color: #3b2f2f;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.auth-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.auth-button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-button {
+  background-color: #7d3c25; /* Theme accent */
+  color: white;
+}
+
+.register-button {
+  background-color: #7d3c25; /* Darker gray */
+  color: white;
+}
+
+.auth-button:hover {
+  transform: translateY(-3px);
+}
+
+.login-button:hover {
+  box-shadow: 0 5px 10px #a35c38;
+}
+
+.register-button:hover {
+  box-shadow: 0 5px 10px #a35c38;
+}
+
+/* Styles for Authenticated View */
+.profile-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.profile-picture {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+  border: 4px solid #efe14e; /* Theme accent border */
+  box-shadow: 0 4px 15px rgba(239, 225, 78, 0.2);
+  background-color: #555; /* Placeholder background */
+}
+
+.profile-header h1 {
+  font-size: 36px;
+  color: #efe14e;
+  margin-bottom: 5px;
+}
+
+.profile-email {
+  font-size: 18px;
+  color: #bdc3c7;
+}
+
+.profile-content {
+  background-color: #313020; /* Match card background */
+  padding: 30px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 700px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+}
+
+.profile-content h2 {
+  font-size: 24px;
+  color: #efe14e;
+  margin-bottom: 25px; /* Increased margin */
+  border-bottom: 2px solid #efe14e;
+  padding-bottom: 10px;
+}
+
+.profile-bio {
+  font-size: 16px;
+  color: #e0e0e0;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.edit-profile-button {
+  display: block;
+  margin: 20px auto 0;
+  padding: 10px 20px;
+  background-color: #efe14e;
+  color: #0a0a0a;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.edit-profile-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 10px rgba(239, 225, 78, 0.3);
+}
+
+/* Edit Form Styles */
+.profile-edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-weight: bold;
+  color: #bdc3c7;
+}
+
+.form-group input[type="text"],
+.form-group textarea,
+.form-group input[type="file"] {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #555;
+  background-color: #444;
+  color: #fff;
+  font-size: 16px;
+}
+
+.form-group input[type="file"] {
+  padding: 5px;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.save-button,
+.cancel-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.save-button {
+  background-color: #efe14e; /* Theme accent */
+  color: #0a0a0a;
+}
+
+.cancel-button {
+  background-color: #6c757d; /* Gray */
+  color: white;
+}
+
+.save-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 10px rgba(239, 225, 78, 0.3);
+}
+
+.cancel-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}

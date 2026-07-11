@@ -1,131 +1,150 @@
-/* Home.css */
-.home {
-  height: 100vh;
-  background-color: #ffffff;
-  color: #000000;
+/* Set full beige background */
+.body {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+  background-color: #eae3dc; /* Warm beige */
+  height: 100%;
+  width: 100%;
+}
+
+/* Ensure .body stretches full page */
+.body {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  position: relative;
-  overflow: hidden;
 }
 
-/* Top Left & Bottom Right images */
-.corner-image {
-  position: absolute;
-  width: 180px;
-  height: auto;
-  opacity: 0.8;
-  /* z-index: 1; */
-  border-radius: 50%; /* nice rounded corners */
-  object-fit: cover;
-  box-shadow: 0 20px 20px rgba(210, 22, 22, 0.1);
-  transition: transform 0.5s ease;
+/* Main content layout */
+.main-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
 }
 
-.corner-image:hover {
-  transform: scale(1.05); /* small zoom on hover */
-}
-.corner-text {
-  position: absolute;
-  max-width: 300px;
-  padding: 20px;
-  background: rgba(205, 164, 164, 0.236);
-  color: #050404;
-  font-size: 14px;
-  border-radius: 15px;
-  backdrop-filter: blur(5px);
-}
-
-.top-left-text {
-  top: 90px;
-  left: 150px;
+/* Inner container card */
+.container {
+  display: flex;
+  align-items: center;
+  background-color: #f4e6d4; /* Lighter beige card */
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  max-width: 1000px;
+  width: 100%;
+  animation: slideFadeIn 1.2s ease-out forwards;
 }
 
-.bottom-right-text {
-  bottom: 110px;
-  right: 150px;
+/* Image side */
+.image-container {
+  flex: 1;
+  animation: zoomBounceIn 1.5s ease-out forwards;
 }
 
-.top-left {
-  top: 40px;
-  left: -55px;
+.animated-image {
+  max-width: 100%;
+  border-radius: 40px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+.animated-image:hover {
+  transform: scale(1);
 }
 
-.bottom-right {
-  bottom: 90px;
-  right: -55px;
+/* Text and buttons side */
+.text-container {
+  flex: 1;
+  padding-left: 30px;
+  color: #3b2f2f;
+  animation: fadeUp 1.8s ease-out forwards;
 }
 
-/* Home Content */
-.home-content {
-  text-align: center;
-  margin-top: 170px;
-  z-index: 2;
-}
-
-.slide-in {
-  font-size: 56px;
-  font-weight: bold;
+.text-container h1 {
+  font-family: "Playfair Display", serif;
+  font-size: 3rem;
+  color: #7d3c25;
   margin-bottom: 20px;
-  animation: slideIn 1s ease forwards;
-  opacity: 0;
 }
 
-.fade-in {
-  font-size: 20px;
-  color: #000000;
-  margin-bottom: 30px;
-  animation: fadeIn 2s ease forwards;
-  opacity: 0;
+.text-container p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #5a4a42;
 }
 
-.home-button {
-  padding: 12px 32px;
-  font-size: 18px;
-  color: #0a0a0a;
-  background-color: rgb(184, 81, 3);
+/* Buttons side-by-side with space */
+.button-group {
+  display: flex;
+  gap: 16px;
+  margin-top: 20px;
+}
 
+/* Button style */
+.reserve-button,
+.offer-button {
+  padding: 12px 24px;
+  font-size: 1rem;
+  background-color: #7d3c25;
+  color: white;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s;
+  transition: background-color 0.3s ease;
 }
 
-.home-button:hover {
-  background-color: rgb(218, 165, 80);
-  transform: translateY(-2px);
+.reserve-button:hover,
+.offer-button:hover {
+  background-color: #a35c38;
 }
 
-/* Footer */
+/* Footer fixed and full width */
 .footer {
   width: 100%;
-  padding: 20px 0;
+  background-color: #7d3c25;
+  color: white;
   text-align: center;
-  background: #0a0a0a;
-  font-size: 14px;
-  color: #2a3031;
-  z-index: 2;
-  border-top: 1px solid #111214;
+  padding: 20px 0;
+  font-size: 1rem;
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+  border-top: 5px solid #5a4a42;
 }
 
 /* Animations */
-@keyframes slideIn {
-  0% {
-    transform: translateY(50px);
+@keyframes slideFadeIn {
+  from {
     opacity: 0;
+    transform: translateY(80px);
   }
-  100% {
-    transform: translateY(0px);
+  to {
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@keyframes fadeIn {
+@keyframes zoomBounceIn {
   0% {
+    transform: scale(0.5);
     opacity: 0;
   }
-  100% {
+  60% {
+    transform: scale(1.05);
     opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

@@ -1,0 +1,126 @@
+.add-order-page {
+  /* Changed from add-order-page */
+  background-color: #eae3dc;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 50px;
+}
+
+.add-order-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  gap: 50px;
+}
+
+.input-card-add-order {
+  /* Changed from input-card */
+  position: relative;
+  width: 450px; /* Kept width from original AddOrder.css */
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: #f4e6d4;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1); /* Kept shadow */
+}
+
+.add-order-card-img {
+  /* Changed from add-card-img */
+  width: 450px;
+  height: 700px;
+  border-radius: 16px;
+  background-image: url("../../assets/addresturant.jpg"); /* Changed image to addresturant.jpg */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  animation: floatImage 3s ease-in-out infinite;
+}
+
+.card-content-add-order {
+  /* Changed from card-content */
+  position: relative;
+  z-index: 2; /* Matched z-index */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 30px; /* Matched padding */
+  gap: 20px; /* Added gap */
+  text-align: center;
+}
+
+.card-add-order-title {
+  /* Changed from card-title */
+  font-size: 24px;
+  font-weight: bold;
+  color: black; /* Matched color */
+  margin-bottom: 25px; /* Kept margin */
+}
+
+.input-field5 {
+  /* Changed from input-field */
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 15px; /* Kept margin */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  box-sizing: border-box; /* Kept box-sizing */
+}
+
+.input-field5:focus {
+  /* Added focus style */
+  border-color: #000;
+}
+
+.textarea-field {
+  /* Kept specific style for textarea */
+  min-height: 80px;
+  resize: vertical;
+}
+
+/* Style for select dropdown */
+select.input-field5 {
+  appearance: none; /* Remove default arrow */
+  background-color: white;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 30px; /* Make space for arrow */
+}
+
+.submit-add-order-button {
+  /* Changed from submit-button */
+  width: 100%; /* Kept width */
+  padding: 12px 20px;
+  background-color: #cc8b1a; /* Matched color */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold; /* Kept font-weight */
+  transition: background-color 0.3s ease; /* Kept transition */
+  margin-top: 10px; /* Kept margin */
+}
+
+.submit-add-order-button:hover {
+  /* Matched hover style */
+  background-color: #f1eb5294;
+}
+
+/* Floating animation */
+@keyframes floatImage {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

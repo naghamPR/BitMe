@@ -1,0 +1,196 @@
+/* --- BookEventForm.css --- */
+/* This file contains styles specific to BookEventForm component */
+
+/* --- Component-specific variables --- */
+:root {
+  --bef-primary-color: #6366f1; /* Indigo 500 */
+  --bef-primary-hover-color: #4f46e5; /* Indigo 600 */
+  --bef-success-color: #10b981; /* Emerald 500 */
+  --bef-success-hover-color: #059669; /* Emerald 600 */
+  --bef-danger-color: #ef4444; /* Red 500 */
+  --bef-danger-hover-color: #dc2626; /* Red 600 */
+
+  --bef-bg-light: #f9fafb; /* Gray 50 */
+  --bef-bg-medium: #f3f4f6; /* Gray 100 */
+  --bef-border-light: #e5e7eb; /* Gray 200 */
+  --bef-border-medium: #d1d5db; /* Gray 300 */
+
+  --bef-text-dark: #111827; /* Gray 900 */
+  --bef-text-medium: #374151; /* Gray 700 */
+  --bef-text-light: #6b7280; /* Gray 500 */
+  --bef-text-placeholder: #9ca3af; /* Gray 400 */
+
+  --bef-white: #ffffff;
+
+  /* Shadows */
+  --bef-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --bef-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --bef-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* --- Global Utilities (for this component) --- */
+.spinner { /* Reused global spinner style */
+  animation: bef-spin 1s linear infinite;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 0.5rem;
+}
+
+@keyframes bef-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.bef-submission-message {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+    font-weight: 500;
+    text-align: left;
+}
+
+.bef-submission-message.success {
+  background-color: #d1fae5;
+  color: #059669;
+  border: 1px solid #a7f3d0;
+}
+
+.bef-submission-message.error {
+  background-color: #fee2e2;
+  color: #ef4444;
+  border: 1px solid #fecaca;
+}
+
+/* --- Form Card and Title --- */
+.bef-form-card { /* Replaced Card component styling */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+ 
+}
+
+
+
+
+.bef-form-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--bef-text-dark);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.bef-close-button {
+  position: absolute; /* Position it absolutely within the .bef-form-card */
+  top: 15px; /* Adjust as needed */
+  right: 15px; /* Adjust as needed */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  color: var(--bef-text-light); /* Gray 500 */
+  display: flex; /* Ensures icon is centered if it's the only content */
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease-in-out;
+}
+/* --- Form Elements --- */
+.bef-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem; /* Spacing between form groups */
+   z-index: 9999;
+   background: #fffaf0; /* warm light beige */
+  padding: 4rem;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 6px 20px rgba(150, 75, 0, 0.3);
+  position: relative;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.bef-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.bef-form-label {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--bef-text-dark);
+}
+
+.bef-form-input,
+.bef-form-textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--bef-border-medium);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  color: var(--bef-text-dark);
+  background-color: var(--bef-bg-light);
+  transition: all 0.2s ease-in-out;
+}
+
+.bef-form-input::placeholder,
+.bef-form-textarea::placeholder {
+  color: var(--bef-text-placeholder);
+}
+
+.bef-form-input:focus,
+.bef-form-textarea:focus {
+  outline: none;
+  border-color: var(--bef-primary-color);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
+  background-color: var(--bef-white);
+}
+
+.bef-form-textarea {
+  resize: vertical;
+  min-height: 5rem;
+}
+
+/* --- Form Submit Button --- */
+.bef-submit-button {
+  background-color: var(--bef-primary-color);
+  color: var(--bef-white);
+  padding: 0.8rem 2rem;
+  border-radius: 0.75rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: var(--bef-shadow-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%; /* Make button full width */
+  margin-top: 1.5rem; /* Space from last input */
+}
+
+.bef-submit-button:hover {
+  background-color: var(--bef-primary-hover-color);
+  box-shadow: var(--bef-shadow-lg);
+  transform: translateY(-2px);
+}
+
+.bef-submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}

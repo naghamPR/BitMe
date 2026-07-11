@@ -1,0 +1,175 @@
+/* --- ManageRestaurantMenus.css --- */
+
+/* --- Global Color Palette Variables (Ensuring consistency with other warm CSS files) --- */
+/* These variables are copied from the main warm color palette for local reference. */
+:root {
+  --color-primary-main: #d46a00; /* A rich burnt orange */
+  --color-primary-light: #ff9933; /* Brighter orange */
+  --color-primary-dark: #a34e00; /* Deeper burnt orange */
+
+  --color-accent-green: #808000; /* Olive Green for success/positive actions */
+  --color-accent-green-dark: #556b2f; /* Darker Olive Green */
+  --color-accent-purple: #8e44ad; /* A sophisticated amethyst/plum for special actions */
+  --color-accent-purple-dark: #6c3483; /* Darker amethyst */
+  --color-accent-red: #b22222; /* Firebrick red for danger/negative actions */
+  --color-accent-red-dark: #8b0000; /* Dark Red */
+
+  --color-neutral-white: #fffbf0; /* Warm off-white */
+  --color-neutral-light: #f8f5ef; /* Very light warm gray/cream for backgrounds */
+  --color-neutral-medium: #e0d9cc; /* Light warm gray/beige for borders/dividers */
+  --color-neutral-dark: #c2b7a8; /* Medium warm gray for subtle details */
+  --color-neutral-darker: #8a7f70; /* Dark warm gray for placeholder text */
+  --color-neutral-lightest: #fffdf8; /* Even lighter for specific backgrounds like lists */
+
+  --color-text-primary: #362f27; /* Dark warm charcoal for main text */
+  --color-text-secondary: #5e5346; /* Slightly lighter warm brown-gray for secondary text */
+  --color-text-light: #8a7f70; /* For less emphasis (same as neutral-darker) */
+
+  --color-star-filled: #ffc107; /* Bright yellow for stars */
+  --color-star-empty: var(--color-neutral-medium);
+  --color-heart-filled: var(--color-accent-red);
+  --color-error-message: var(--color-accent-red-dark);
+
+  --message-success-bg: #e6ffe6;
+  --message-success-color: #3b8a3b;
+  --message-error-bg: #ffebeb;
+  --message-error-color: #a73d3a;
+
+  --shadow-sm: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0px 8px 16px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0px 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* --- General Page Layout --- */
+.manager-menus-page {
+  font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--color-neutral-light); /* Warm light background */
+  color: var(--color-text-secondary);
+  min-height: calc(100vh - 80px); /* Adjust based on navbar height */
+  padding: 30px 15px; /* Reduced padding for more compactness */
+  box-sizing: border-box;
+  /* Slightly narrower max-width for better flow */
+  margin: 0 auto; /* Center the page content */
+}
+
+/* --- Page Header --- */
+.page-title {
+  font-size: 2.5em; /* Slightly smaller title */
+  color: var(--color-text-primary);
+  text-align: center;
+  margin-bottom: 8px; /* Reduced margin */
+  font-weight: 700;
+  position: relative;
+  padding-bottom: 8px; /* Reduced padding */
+}
+
+.page-title::after {
+  content: "";
+  display: block;
+  width: 80px; /* Shorter underline */
+  height: 3px; /* Thinner underline */
+  background-color: var(--color-primary-main); /* A warm orange/amber accent */
+  margin: 8px auto 0; /* Adjusted margin */
+  border-radius: 1.5px;
+}
+
+.page-description {
+  font-size: 1em; /* Slightly smaller description font */
+  color: var(--color-text-light);
+  text-align: center;
+  margin-bottom: 30px; /* Reduced space below description */
+}
+
+.add-res-menu-container,
+.menu-list-container {
+  background-color: var(--color-neutral-white);
+  border-radius: 10px; /* Slightly less rounded corners for a sleeker look */
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05); /* Softer shadow */
+  margin-bottom: 0px;
+}
+
+.add-res-menu-container h2,
+.menu-list-container h2 {
+  font-size: 1.6em;
+  color: var(--color-text-primary);
+  margin-top: 0;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 600;
+  position: relative;
+}
+
+.add-res-menu-container h2::after,
+.menu-list-container h2::after {
+  content: "";
+  display: block;
+  width: 50px; /* Shorter underline */
+  height: 2.5px; /* Thinner underline */
+  background-color: var(--color-primary-main);
+  margin: 8px auto 0; /* Adjusted margin */
+  border-radius: 1.25px;
+}
+
+/* --- Reused Loading/Error Styles --- */
+.loading-message,
+.error-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 25px; /* Reduced padding */
+  margin: 25px auto; /* Adjusted margin */
+  background-color: var(--color-neutral-white);
+  border-radius: 10px; /* Adjusted border-radius */
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05); /* Softer shadow */
+  font-size: 1em; /* Slightly smaller font size */
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+.loading-message .spinner {
+  animation: spin 1s linear infinite;
+  color: var(--color-primary-main);
+}
+
+.error-message {
+  background-color: var(--message-error-bg); /* Lighter warm error background */
+  color: var(--message-error-color); /* Darker warm red for text */
+  border: 1px solid var(--message-error-bg);
+}
+
+/* Basic spinner animation */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+  .manager-menus-page {
+    padding: 20px 10px; /* Further reduced padding */
+  }
+
+  .page-title {
+    font-size: 2em; /* Smaller on mobile */
+  }
+
+  .page-description {
+    font-size: 0.95em;
+  }
+
+  .add-res-menu-container,
+  .menu-list-container {
+    padding: 18px; /* Further reduced padding */
+  }
+
+  .add-res-menu-container h2,
+  .menu-list-container h2 {
+    font-size: 1.4em; /* Smaller headings on mobile */
+  }
+}

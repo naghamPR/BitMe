@@ -1,0 +1,190 @@
+/* CalculateBill.css - Styled to match Menu.css */
+.bill-page {
+  background-color: eae3dc; /* Match menu page background */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding: 20px; /* Add some padding */
+}
+
+.bill-card {
+  /* Use a card similar to menu */
+  position: relative;
+  background-color: #f4e6d4; /* Match menu card background */
+  width: 500px; /* Match menu card width */
+  min-height: 90vh; /* Match menu card height */
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px #a35c38; /* Match menu shadow */
+  overflow: hidden; /* Hide overflow */
+  z-index: 1; /* Ensure content is above background */
+}
+
+.bill-background-image {
+  /* Background image like menu */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.3; /* Match menu opacity */
+  z-index: 0; /* Stay behind */
+}
+
+.bill-title {
+  /* Title style like menu */
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: black; /* Match menu title color */
+  margin-bottom: 20px;
+  position: relative; /* Ensure it's above background */
+  z-index: 1;
+}
+
+.bill-summary {
+  /* Remove background/shadow from summary itself, card provides it */
+  width: 100%;
+  max-width: 100%; /* Fit within card */
+  position: relative; /* Ensure it's above background */
+  z-index: 1;
+}
+
+.bill-summary h2 {
+  font-size: 20px; /* Slightly smaller than main title */
+  color: black; /* Match menu text color */
+  margin-bottom: 15px;
+  border-bottom: 1px solid #ddd; /* Match menu item border */
+  padding-bottom: 8px;
+  text-align: center;
+}
+
+.bill-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.bill-table th,
+.bill-table td {
+  padding: 8px 10px; /* Adjust padding */
+  text-align: left;
+  border-bottom: 1px solid #ddd; /* Match menu item border */
+  color: black; /* Match menu text color */
+  font-size: 14px; /* Adjust font size */
+}
+
+.bill-table th {
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #555; /* Darker gray for headers */
+}
+
+.bill-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.bill-table tfoot td {
+  border-top: 2px solid #ed8f14; /* Orange separator for total */
+  padding-top: 10px;
+  font-weight: bold;
+}
+
+.total-label {
+  text-align: right !important;
+  font-size: 16px;
+  color: black;
+}
+
+.total-amount {
+  font-size: 18px;
+  color: black;
+}
+
+.bill-actions {
+  /* Style action buttons like menu */
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+  position: relative; /* Ensure it's above background */
+  z-index: 1;
+}
+
+.back-button,
+.print-button {
+  /* Style like menu buttons */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: white;
+}
+
+.back-button {
+  background-color: #333; /* Dark gray */
+}
+.back-button:hover {
+  background-color: #ed8f14; /* Orange hover */
+}
+
+.print-button {
+  background-color: #ed8f14; /* Orange */
+}
+.print-button:hover {
+  background-color: #d47f12; /* Darker orange hover */
+}
+
+/* Styles for Empty Bill Page */
+.bill-empty {
+  justify-content: center;
+  text-align: center;
+  position: relative; /* Ensure it's above background */
+  z-index: 1;
+  padding-top: 50px; /* Add some space */
+}
+
+.bill-empty h2 {
+  font-size: 22px;
+  color: black;
+  margin-bottom: 15px;
+}
+
+.bill-empty p {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .bill-card {
+    width: 95%;
+    min-height: auto;
+  }
+  .bill-table th,
+  .bill-table td {
+    padding: 6px 5px;
+    font-size: 12px;
+  }
+  .total-label {
+    font-size: 14px;
+  }
+  .total-amount {
+    font-size: 16px;
+  }
+  .back-button,
+  .print-button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}

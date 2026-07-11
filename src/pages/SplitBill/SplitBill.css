@@ -1,0 +1,366 @@
+/* SplitBill.css - Styled to match Menu.css */
+.split-bill-page {
+  background-color: #eae3dc; /* Match menu page background */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding: 20px; /* Add some padding */
+}
+
+.split-bill-card {
+  /* Use a card similar to menu */
+  position: relative;
+  background-color: #f4e6d4; /* Match menu card background */
+  width: 500px; /* Match menu card width */
+  min-height: 90vh; /* Match menu card height */
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px #a35c38; /* Match menu shadow */
+  overflow-y: auto; /* Allow scrolling if content exceeds height */
+  z-index: 1; /* Ensure content is above background */
+}
+
+.split-bill-background-image {
+  /* Background image like menu */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Consider a relevant background image for splitting bill */
+  background-image: url("../../assets/reservation.jpg"); /* Placeholder image */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.3; /* Match menu opacity */
+  z-index: 0; /* Stay behind */
+}
+
+.split-bill-title {
+  /* Title style like menu */
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: black; /* Match menu title color */
+  margin-bottom: 20px;
+  position: relative; /* Ensure it's above background */
+  z-index: 1;
+}
+
+.customer-controls {
+  /* Style controls within the card */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px; /* Reduced margin */
+  background-color: rgba(230, 128, 4, 0.1); /* Light orange background */
+  padding: 10px 15px;
+  border-radius: 8px;
+  max-width: 100%; /* Fit within card */
+  position: relative; /* Ensure it's above background */
+  z-index: 1;
+}
+
+.customer-controls label {
+  font-size: 16px; /* Adjust size */
+  font-weight: bold;
+  color: black; /* Match text color */
+}
+
+.customer-count-selector {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.customer-count-selector button {
+  /* Style like menu buttons */
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.customer-count-selector button:hover {
+  background-color: #ed8f14;
+}
+
+.customer-count-selector button:disabled {
+  background-color: #ccc;
+  color: #888;
+  cursor: not-allowed;
+}
+
+.customer-count-selector span {
+  font-size: 18px;
+  font-weight: bold;
+  color: black;
+  min-width: 25px;
+  text-align: center;
+}
+
+.assignment-section {
+  /* Style assignment section within card */
+  max-width: 100%; /* Fit within card */
+  margin: 0 auto 20px auto; /* Reduced margin */
+  /* Remove background/shadow, card provides it */
+  padding: 0; /* Remove padding */
+  position: relative; /* Ensure it's above background */
+  z-index: 1;
+}
+
+.assignment-section h2 {
+  font-size: 20px;
+  color: black;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 8px;
+  text-align: center;
+}
+
+.assignment-item {
+  margin-bottom: 15px; /* Reduced margin */
+  padding-bottom: 15px;
+  border-bottom: 1px dashed #ccc; /* Lighter dashed border */
+}
+
+.assignment-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.assignment-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 10px;
+}
+
+.assignment-item-header h3 {
+  font-size: 18px;
+  color: black;
+  margin: 0;
+  font-weight: bold;
+}
+
+.unassigned-qty {
+  font-size: 12px;
+  color: #dc3545; /* Red for unassigned */
+  font-weight: bold;
+}
+
+/* Reduce size of assignment inputs - make it more compact */
+.customer-assignment-inputs {
+  display: grid;
+  /* Adjust columns for smaller size, maybe 2 columns max */
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px; /* Reduced gap */
+}
+
+.customer-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.customer-input-group label {
+  font-size: 14px;
+  color: #555;
+}
+
+.quantity-selector {
+  /* Reuse style from Order.css */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.quantity-selector button {
+  /* Reuse style from Order.css */
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px; /* Smaller buttons */
+  height: 24px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.quantity-selector button:hover {
+  background-color: #ed8f14;
+}
+
+.quantity-selector button:disabled {
+  background-color: #ccc;
+  color: #888;
+  cursor: not-allowed;
+}
+
+.quantity-selector span {
+  font-size: 14px;
+  font-weight: bold;
+  min-width: 20px;
+  text-align: center;
+  color: black;
+}
+
+.customer-bills-section {
+  /* Style bills section */
+  max-width: 100%; /* Fit within card */
+  margin: 20px auto 0 auto; /* Reduced margin */
+  position: relative; /* Ensure it's above background */
+  z-index: 1;
+}
+
+.customer-bills-section h2 {
+  font-size: 20px;
+  color: black;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Reduce size of bill cards */
+.customer-bills-grid {
+  display: grid;
+  /* Adjust columns for smaller size */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px; /* Reduced gap */
+}
+
+.customer-bill-card {
+  background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent white */
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border: 1px solid #eee;
+}
+
+.customer-bill-card h3 {
+  font-size: 16px;
+  color: black;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+}
+
+.customer-bill-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.customer-bill-table th,
+.customer-bill-table td {
+  padding: 5px 3px; /* Reduced padding */
+  text-align: left;
+  font-size: 12px; /* Smaller font */
+  color: black;
+}
+
+.customer-bill-table th {
+  font-weight: bold;
+  color: #555;
+}
+
+.customer-bill-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.customer-bill-table tfoot td {
+  border-top: 1px solid #ed8f14;
+  padding-top: 8px;
+  font-weight: bold;
+  color: black;
+}
+
+.customer-bill-table tfoot td:first-child {
+  text-align: right;
+  color: black;
+}
+
+.no-items-assigned {
+  color: #555;
+  font-style: italic;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 12px;
+}
+
+.split-bill-actions {
+  /* Style actions like menu */
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  position: relative; /* Ensure it's above background */
+  z-index: 1;
+}
+
+/* Inherit back-button styles from CalculateBill.css */
+.back-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  background-color: #333;
+  color: white;
+}
+
+.back-button:hover {
+  background-color: #ed8f14;
+}
+
+/* Styles for Empty Bill Page (inherited or defined) */
+.bill-empty {
+  justify-content: center;
+  text-align: center;
+  position: relative; /* Ensure it's above background */
+  z-index: 1;
+  padding-top: 50px; /* Add some space */
+}
+
+.bill-empty h2 {
+  font-size: 22px;
+  color: black;
+  margin-bottom: 15px;
+}
+
+.bill-empty p {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .split-bill-card {
+    width: 95%;
+    min-height: auto;
+  }
+  .customer-assignment-inputs {
+    grid-template-columns: 1fr; /* Stack inputs */
+  }
+  .customer-bills-grid {
+    grid-template-columns: 1fr; /* Stack bill cards */
+  }
+}

@@ -1,0 +1,265 @@
+/* --- MyWaitlist.css --- */
+
+/* --- Global Color Palette Variables (Ensuring consistency with other warm CSS files) --- */
+/* These variables are copied from the main warm color palette for local reference. */
+:root {
+  --color-primary-main: #d46a00; /* A rich burnt orange */
+  --color-primary-light: #ff9933; /* Brighter orange */
+  --color-primary-dark: #a34e00; /* Deeper burnt orange */
+
+  --color-accent-green: #808000; /* Olive Green for success/positive actions */
+  --color-accent-green-dark: #556b2f; /* Darker Olive Green */
+  --color-accent-purple: #8e44ad; /* A sophisticated amethyst/plum for special actions */
+  --color-accent-purple-dark: #6c3483; /* Darker amethyst */
+  --color-accent-red: #b22222; /* Firebrick red for danger/negative actions */
+  --color-accent-red-dark: #8b0000; /* Dark Red */
+
+  --color-neutral-white: #fffbf0; /* Warm off-white */
+  --color-neutral-light: #f8f5ef; /* Very light warm gray/cream for backgrounds */
+  --color-neutral-medium: #e0d9cc; /* Light warm gray/beige for borders/dividers */
+  --color-neutral-dark: #c2b7a8; /* Medium warm gray for subtle details */
+  --color-neutral-darker: #8a7f70; /* Dark warm gray for placeholder text */
+  --color-neutral-lightest: #fffdf8; /* Even lighter for specific backgrounds like lists */
+
+  --color-text-primary: #362f27; /* Dark warm charcoal for main text */
+  --color-text-secondary: #5e5346; /* Slightly lighter warm brown-gray for secondary text */
+  --color-text-light: #8a7f70; /* For less emphasis (same as neutral-darker) */
+
+  --color-star-filled: #ffc107; /* Bright yellow for stars */
+  --color-star-empty: var(--color-neutral-medium);
+  --color-heart-filled: var(--color-accent-red);
+  --color-error-message: var(--color-accent-red-dark);
+
+  --message-success-bg: #e6ffe6;
+  --message-success-color: #3b8a3b;
+  --message-error-bg: #ffebeb;
+  --message-error-color: #a73d3a;
+
+  --shadow-sm: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0px 8px 16px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0px 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Main Container */
+.my-waitlist-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: var(--color-neutral-light); /* Warm light background */
+  border-radius: 12px;
+  box-shadow: var(--shadow-md); /* Using warm shadow variable */
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--color-text-primary); /* Warm primary text */
+}
+
+/* Header */
+.waitlist-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.waitlist-header h2 {
+  font-size: 2.5em;
+  color: var(--color-text-primary); /* Warm primary text */
+  margin-bottom: 10px;
+  position: relative;
+  display: inline-block;
+}
+
+.waitlist-header h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: var(--color-primary-main); /* Warm primary brand color */
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+/* Empty Waitlist Message */
+.empty-waitlist {
+  text-align: center;
+  padding: 40px;
+  background-color: var(--color-neutral-white); /* Warm white */
+  border-radius: 10px;
+  border: 1px dashed var(--color-neutral-medium); /* Warm dashed border */
+  color: var(--color-text-light); /* Warm light text */
+  font-size: 1.1em;
+}
+
+/* Loading and Error States */
+.my-waitlist-container.loading,
+.my-waitlist-container.error-message {
+  text-align: center;
+  padding: 50px;
+  font-size: 1.2em;
+  color: var(--color-text-secondary); /* Warm secondary text */
+}
+
+.my-waitlist-container.error-message {
+  color: var(--message-error-color); /* Warm error text */
+  background-color: var(--message-error-bg); /* Warm error background */
+  border: 1px solid var(--message-error-color); /* Warm error border */
+}
+
+/* Grid Layout for Waitlist Items */
+.waitlist-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(300px, 1fr)
+  ); /* Responsive grid */
+  gap: 25px;
+}
+
+/* Individual Waitlist Card */
+.waitlist-card {
+  background-color: var(--color-neutral-white); /* Warm white */
+  border-radius: 12px;
+  box-shadow: var(--shadow-md); /* Using warm shadow variable */
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+}
+
+.waitlist-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg); /* Enhanced warm shadow on hover */
+}
+
+.card-header {
+  background-color: var(--color-primary-main); /* Warm primary brand color */
+  color: var(--color-neutral-white);
+  padding: 18px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2em;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(255, 251, 240, 0.2); /* Translucent warm white border */
+}
+
+.card-header h3 {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Space between icon and text */
+}
+
+/* Status Badge */
+.status-badge {
+  background-color: rgba(
+    255,
+    251,
+    240,
+    0.2
+  ); /* Translucent warm white for badge background */
+  color: var(--color-neutral-white);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85em;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.status-badge.status-waiting {
+  background-color: var(--color-star-filled); /* Warm yellow for waiting */
+  color: var(--color-text-primary); /* Dark text for contrast */
+}
+
+.status-badge.status-seated {
+  background-color: var(--color-accent-green); /* Warm green for seated */
+}
+
+.status-badge.status-cancelled {
+  background-color: var(--color-accent-red); /* Warm red for cancelled */
+}
+
+/* Card Body (details) */
+.card-body {
+  padding: 20px;
+  flex-grow: 1; /* Allows it to take up remaining space in flex column */
+}
+
+.card-body p {
+  margin-bottom: 12px;
+  font-size: 1em;
+  color: var(--color-text-secondary); /* Warm secondary text */
+  display: flex; /* Aligns icon and text */
+  align-items: center;
+  gap: 10px; /* Space between icon and text */
+}
+
+.card-body p:last-child {
+  margin-bottom: 0;
+}
+
+.card-body strong {
+  color: var(--color-text-primary); /* Warm primary text */
+  font-weight: 600;
+}
+
+/* Duplicated button styles, ensuring consistency and removal of old hardcoded values */
+.accept-btn,
+.reject-btn,
+.finish-btn {
+  margin-right: 10px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--color-neutral-white); /* White text for all buttons */
+  transition: all 0.2s ease-in-out; /* Add transition for hover effects */
+}
+
+.accept-btn {
+  background-color: var(--color-accent-green); /* Warm green */
+}
+
+.accept-btn:hover:not(:disabled) {
+  background-color: var(
+    --color-accent-green-dark
+  ); /* Darker warm green on hover */
+}
+
+.reject-btn {
+  background-color: var(--color-accent-red); /* Warm red */
+}
+
+.reject-btn:hover:not(:disabled) {
+  background-color: var(--color-accent-red-dark); /* Darker warm red on hover */
+}
+
+.finish-btn {
+  background-color: var(--color-primary-main); /* Warm primary (orange) */
+}
+
+.finish-btn:hover:not(:disabled) {
+  background-color: var(--color-primary-dark); /* Darker warm orange on hover */
+}
+
+.accept-btn:disabled,
+.reject-btn:disabled,
+.finish-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.success-message {
+  color: var(--message-success-color); /* Warm green success message */
+  margin-top: 1rem;
+}
+
+.error-message {
+  color: var(--message-error-color); /* Warm red error message */
+  margin-top: 1rem;
+}
+
+.button-group {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}

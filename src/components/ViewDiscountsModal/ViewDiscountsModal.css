@@ -1,0 +1,296 @@
+/* --- ViewDiscountsModal.css --- */
+
+/* --- Global Color Palette Variables (Ensuring consistency with other warm CSS files) --- */
+/* These variables are copied from the main warm color palette for local reference. */
+:root {
+  --color-primary-main: #d46a00; /* A rich burnt orange */
+  --color-primary-light: #ff9933; /* Brighter orange */
+  --color-primary-dark: #a34e00; /* Deeper burnt orange */
+
+  --color-accent-green: #808000; /* Olive Green for success/positive actions */
+  --color-accent-green-dark: #556b2f; /* Darker Olive Green */
+  --color-accent-purple: #8e44ad; /* A sophisticated amethyst/plum for special actions */
+  --color-accent-purple-dark: #6c3483; /* Darker amethyst */
+  --color-accent-red: #b22222; /* Firebrick red for danger/negative actions */
+  --color-accent-red-dark: #8b0000; /* Dark Red */
+
+  --color-neutral-white: #fffbf0; /* Warm off-white */
+  --color-neutral-light: #f8f5ef; /* Very light warm gray/cream for backgrounds */
+  --color-neutral-medium: #e0d9cc; /* Light warm gray/beige for borders/dividers */
+  --color-neutral-dark: #c2b7a8; /* Medium warm gray for subtle details */
+  --color-neutral-darker: #8a7f70; /* Dark warm gray for placeholder text */
+  --color-neutral-lightest: #fffdf8; /* Even lighter for specific backgrounds like lists */
+
+  --color-text-primary: #362f27; /* Dark warm charcoal for main text */
+  --color-text-secondary: #5e5346; /* Slightly lighter warm brown-gray for secondary text */
+  --color-text-light: #8a7f70; /* For less emphasis (same as neutral-darker) */
+
+  --color-star-filled: #ffc107; /* Bright yellow for stars */
+  --color-star-empty: var(--color-neutral-medium);
+  --color-heart-filled: var(--color-accent-red);
+  --color-error-message: var(--color-accent-red-dark);
+
+  --message-success-bg: #e6ffe6;
+  --message-success-color: #3b8a3b;
+  --message-error-bg: #ffebeb;
+  --message-error-color: #a73d3a;
+
+  --shadow-sm: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0px 8px 16px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0px 12px 24px rgba(0, 0, 0, 0.2);
+
+  /* Component-specific variables mapped to the warm palette */
+  --modal-overlay-bg: rgba(0, 0, 0, 0.7); /* Can remain dark for contrast */
+  --modal-content-bg: var(--color-neutral-white);
+  --modal-content-border: var(--color-neutral-medium);
+  --modal-content-shadow: var(--shadow-xl);
+  --modal-close-btn-color: var(--color-text-light);
+  --modal-close-btn-hover-bg: var(--color-neutral-light);
+  --modal-close-btn-hover-color: var(--color-text-primary);
+  --modal-title-color: var(--color-text-primary);
+
+  --item-card-bg: var(--color-neutral-lightest);
+  --item-card-border: var(--color-neutral-light);
+  --item-card-shadow: var(--shadow-sm);
+  --item-card-hover-shadow: var(--shadow-md);
+
+  --button-bg: var(--color-primary-main);
+  --button-hover-bg: var(--color-primary-dark);
+  --button-text-color: var(--color-neutral-white);
+
+  --loading-color: var(--color-text-secondary);
+  --error-color: var(--color-error-message);
+}
+
+.vd-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.2); /* Use variable for consistency */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.vd-modal-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.vd-modal-content {
+  background-color: var(--modal-content-bg);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: var(--modal-content-shadow);
+  max-width: 90%;
+  width: 600px;
+  position: relative;
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
+  max-height: 90vh;
+  overflow-y: auto;
+  border: 1px solid var(--modal-content-border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.vd-modal-overlay.open .vd-modal-content {
+  transform: scale(1);
+}
+
+.vd-modal-close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--modal-close-btn-color);
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vd-modal-close-button:hover {
+  background-color: var(--modal-close-btn-hover-bg);
+  color: var(--modal-close-btn-hover-color);
+}
+
+.vd-modal-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--modal-title-color);
+  margin-bottom: 1.5rem;
+  padding-right: 2.5rem;
+}
+
+/* Messages */
+.vd-loading-message,
+.vd-error-message,
+.vd-no-data {
+  text-align: center;
+  font-style: italic;
+  color: var(--loading-color);
+  padding: 1rem;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.vd-error-message {
+  color: var(--error-color);
+  border: 1px solid var(--error-color);
+  border-radius: 0.5rem;
+  background-color: rgba(
+    178,
+    34,
+    34,
+    0.1
+  ); /* Using rgba from --color-accent-red */
+}
+
+/* Discount List */
+.vd-discount-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+.vd-discount-item-card {
+  background-color: var(--item-card-bg);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  box-shadow: var(--item-card-shadow);
+  border: 1px solid var(--item-card-border);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.vd-discount-item-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--item-card-hover-shadow);
+}
+
+.vd-discount-item-card p {
+  margin: 0;
+  text-align: left;
+  width: 100%;
+}
+
+.vd-discount-code {
+  font-weight: 700;
+  color: var(--color-text-primary);
+  font-size: 1.1rem;
+}
+
+.vd-discount-amount,
+.vd-discount-expiry {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+}
+
+.vd-discount-description {
+  font-style: italic;
+  color: var(--color-text-light);
+}
+
+/* Styles for the edit and delete buttons within each discount item card */
+.vd-item-actions {
+  display: flex;
+  gap: 0.5rem; /* Space between the edit and delete buttons */
+  margin-top: 0.5rem; /* Space from the discount details above */
+  width: 100%; /* Ensure actions take full width */
+  justify-content: flex-end; /* Align buttons to the right */
+}
+
+.vd-action-btn.vd-edit-btn {
+  background-color: var(--color-primary-light); /* Warm orange for edit */
+  color: var(--color-text-primary); /* Dark text for contrast */
+  padding: 0.5rem 1rem; /* Smaller padding for in-card buttons */
+  border-radius: 0.5rem; /* Slightly less rounded than main buttons */
+  font-size: 0.9rem; /* Smaller font size */
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+}
+
+.vd-action-btn.vd-edit-btn:hover {
+  background-color: var(--color-primary-main); /* Darker orange on hover */
+  color: var(--color-neutral-white); /* White text on hover */
+  box-shadow: var(--shadow-md);
+}
+
+.vd-action-btn.vd-delete-btn {
+  background-color: var(--color-accent-red); /* Warm red for delete */
+  color: var(--color-neutral-white);
+  padding: 0.5rem 1rem; /* Smaller padding for in-card buttons */
+  border-radius: 0.5rem; /* Slightly less rounded than main buttons */
+  font-size: 0.9rem; /* Smaller font size */
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+}
+
+.vd-action-btn.vd-delete-btn:hover {
+  background-color: var(--color-accent-red-dark); /* Darker warm red on hover */
+  box-shadow: var(--shadow-md);
+}
+
+/* Modal Action Buttons */
+.vd-modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-neutral-light); /* Changed to use warm neutral */
+  width: 100%;
+}
+
+.vd-action-button {
+  background-color: var(--button-bg);
+  color: var(--button-text-color);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: var(--shadow-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.vd-action-button:hover {
+  background-color: var(--button-hover-bg);
+  box-shadow: var(--shadow-lg);
+}
+
+.vd-action-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+}

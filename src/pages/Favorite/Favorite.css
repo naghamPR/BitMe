@@ -1,0 +1,188 @@
+/* Favorite.css */
+.favorite-page {
+  min-height: 100vh;
+  background-color: #eae3dc; /* Match theme */
+  color: #ffffff;
+  padding: 20px;
+}
+
+.favorite-title {
+  text-align: center;
+  font-size: 48px;
+  margin-bottom: 20px; /* Reduced margin */
+  color: #3b2f2f; /* Match theme accent */
+  animation: slideIn 1s ease forwards;
+}
+
+.favorite-subtitle {
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 40px; /* Increased margin */
+  color: #3b2f2f; /* Lighter gray */
+}
+
+.favorite-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+  text-align: center;
+}
+
+.favorite-empty h2 {
+  font-size: 28px;
+  color: #efe14e;
+  margin-bottom: 20px;
+}
+
+.favorite-empty p {
+  font-size: 18px;
+  color: #94a3b8;
+  max-width: 500px;
+  margin-bottom: 30px;
+}
+
+.browse-button {
+  padding: 12px 24px;
+  background-color: #efe14e;
+  color: #0a0a0a;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.browse-button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(239, 225, 78, 0.3);
+}
+
+.favorites-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  padding: 0 20px;
+}
+
+.favorite-card {
+  background-color: #f4e6d4; /* Match theme card background */
+  padding: 20px;
+  border-radius: 16px;
+  text-align: center;
+  color: #3b2f2f;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  position: relative;
+}
+
+.favorite-card:hover {
+  transform: translateY(-8px);
+  background-color: #eecc9f; /* Slightly lighter on hover */
+}
+
+.favorite-image {
+  width: 200px;
+  height: 140px;
+  margin-bottom: 20px;
+  object-fit: cover;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.favorite-card h2 {
+  font-size: 24px;
+  margin: 10px 0 5px;
+}
+
+.favorite-card p {
+  font-size: 16px;
+  color: #694f4f;
+}
+
+/* Button on top right to remove from favorites page */
+.favorite-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  color: #ff4757; /* Red heart */
+  transition: transform 0.3s ease;
+}
+
+.favorite-button:hover {
+  transform: scale(1.2);
+}
+
+.card-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.view-button,
+.remove-button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.view-button {
+  background-color: #7d3c25;
+  color: white;
+  box-shadow: 0 4px 10px #da977f;
+}
+
+.remove-button {
+  background-color: #7d3c25; /* Red remove button */
+  color: white;
+  box-shadow: 0 4px 10px #da977f;
+}
+
+.view-button:hover,
+.remove-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Animation */
+@keyframes slideIn {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .favorite-title {
+    font-size: 36px;
+  }
+
+  .favorites-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .favorite-title {
+    font-size: 28px;
+  }
+
+  .favorites-grid {
+    grid-template-columns: 1fr;
+  }
+}

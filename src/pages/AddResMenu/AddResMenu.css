@@ -1,0 +1,280 @@
+/* --- AddResMenu.css --- */
+/* This file contains all styles specific to AddResMenu component */
+
+/* --- Global Color Palette Variables (Ensuring consistency with other warm CSS files) --- */
+/* These variables are copied from the main warm color palette for local reference. */
+:root {
+  --color-primary-main: #d46a00; /* A rich burnt orange */
+  --color-primary-light: #ff9933; /* Brighter orange */
+  --color-primary-dark: #a34e00; /* Deeper burnt orange */
+
+  --color-accent-green: #808000; /* Olive Green for success/positive actions */
+  --color-accent-green-dark: #556b2f; /* Darker Olive Green */
+  --color-accent-purple: #8e44ad; /* A sophisticated amethyst/plum for special actions */
+  --color-accent-purple-dark: #6c3483; /* Darker amethyst */
+  --color-accent-red: #b22222; /* Firebrick red for danger/negative actions */
+  --color-accent-red-dark: #8b0000; /* Dark Red */
+
+  --color-neutral-white: #fffbf0; /* Warm off-white */
+  --color-neutral-light: #f8f5ef; /* Very light warm gray/cream for backgrounds */
+  --color-neutral-medium: #e0d9cc; /* Light warm gray/beige for borders/dividers */
+  --color-neutral-dark: #c2b7a8; /* Medium warm gray for subtle details */
+  --color-neutral-darker: #8a7f70; /* Dark warm gray for placeholder text */
+  --color-neutral-lightest: #fffdf8; /* Even lighter for specific backgrounds like lists */
+
+  --color-text-primary: #362f27; /* Dark warm charcoal for main text */
+  --color-text-secondary: #5e5346; /* Slightly lighter warm brown-gray for secondary text */
+  --color-text-light: #8a7f70; /* For less emphasis (same as neutral-darker) */
+
+  --color-star-filled: #ffc107; /* Bright yellow for stars */
+  --color-star-empty: var(--color-neutral-medium);
+  --color-heart-filled: var(--color-accent-red);
+  --color-error-message: var(--color-accent-red-dark);
+
+  --message-success-bg: #e6ffe6;
+  --message-success-color: #3b8a3b;
+  --message-error-bg: #ffebeb;
+  --message-error-color: #a73d3a;
+
+  --shadow-sm: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0px 8px 16px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0px 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* --- General Container --- */
+.add-menu-container {
+  font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px; /* Padding inside the AddResMenu section */
+  border-radius: 10px;
+  background-color: var(
+    --color-neutral-lightest
+  ); /* Warm light background for the section */
+  margin-bottom: 30px; /* Space from the MenuList below */
+  text-align: center; /* Center content horizontally */
+}
+
+.add-menu-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 25px; /* Generous padding for a prominent button */
+  background-color: var(
+    --color-accent-green
+  ); /* Warm green for adding new items */
+  color: var(--color-neutral-medium);
+  border: none;
+  border-radius: 8px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease,
+    box-shadow 0.2s ease;
+  width: auto; /* Button fits content */
+}
+
+.add-menu-button:hover {
+  background-color: var(
+    --color-accent-green-dark
+  ); /* Darker warm green on hover */
+  transform: translateY(-2px); /* Slight lift */
+  box-shadow: 0 6px 15px rgba(128, 128, 0, 0.3); /* Enhanced shadow with warm green */
+}
+
+/* --- Menu Form Container (Expanded State) --- */
+.menu-form-container {
+  padding: 25px; /* Inner padding for the form content */
+  background-color: var(
+    --color-neutral-white
+  ); /* Warm white background for the form itself */
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07); /* Subtle shadow for the form */
+  border: 1px solid var(--color-neutral-medium); /* Warm border */
+  transition: all 0.3s ease-in-out; /* Smooth transition for expansion */
+  text-align: left; /* Align form elements to the left */
+}
+
+/* Form Title */
+.form-title {
+  font-size: 1.8em;
+  color: var(--color-text-primary);
+  margin-top: 0;
+  margin-bottom: 25px; /* Space below title */
+  text-align: center;
+  font-weight: 700;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.form-title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: var(
+    --color-primary-main
+  ); /* Warm accent color for title underline */
+  margin: 10px auto 0;
+  border-radius: 1.5px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* Space between label and input */
+  margin-bottom: 20px; /* Space between form groups */
+}
+
+.form-label {
+  font-weight: 600;
+  color: var(--color-text-primary); /* Warm primary text for visibility */
+  font-size: 0.95em;
+}
+
+/* Input and Textarea Styles */
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid var(--color-neutral-dark); /* Warm dark gray border */
+  border-radius: 8px; /* Rounded corners */
+  font-size: 1em;
+  color: var(--color-text-primary); /* Warm primary text */
+  background-color: var(
+    --color-neutral-white
+  ); /* Warm white background for inputs */
+  transition: all 0.2s ease-in-out;
+  box-sizing: border-box; /* Include padding in element's total width */
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: var(
+    --color-neutral-darker
+  ); /* Warm darker gray for placeholder text */
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--color-primary-main); /* Warm primary accent on focus */
+  box-shadow: 0 0 0 3px rgba(212, 106, 0, 0.25); /* Subtle glow on focus with warm primary */
+}
+
+.form-textarea {
+  resize: vertical; /* Allow vertical resizing */
+  min-height: 90px; /* Minimum height */
+}
+
+.form-actions {
+  margin-top: 30px; /* Space above buttons */
+  display: flex;
+  justify-content: flex-end; /* Align buttons to the right */
+  gap: 15px; /* Space between buttons */
+}
+
+.submit-button,
+.cancel-button {
+  padding: 12px 25px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 600;
+  transition: background-color 0.2s ease, transform 0.2s ease,
+    box-shadow 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Subtle shadow */
+  display: inline-flex; /* For icon alignment */
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.submit-button {
+  background-color: var(--color-primary-main); /* Warm orange for submit */
+  color: var(--color-neutral-white);
+}
+
+.submit-button:hover:not(:disabled) {
+  background-color: var(--color-primary-dark); /* Darker warm orange on hover */
+  transform: translateY(-2px); /* Slight lift */
+  box-shadow: 0 4px 12px rgba(212, 106, 0, 0.2); /* Enhanced shadow with warm primary */
+}
+
+.cancel-button {
+  background-color: var(--color-neutral-dark); /* Warm gray for cancel */
+  color: var(--color-neutral-white);
+}
+
+.cancel-button:hover:not(:disabled) {
+  background-color: var(--color-neutral-darker); /* Darker warm gray on hover */
+  transform: translateY(-2px);
+}
+
+.submit-button:disabled,
+.cancel-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* Spinner for loading state */
+.loading-spinner .spinner {
+  animation: spin 1s linear infinite;
+  margin-right: 8px;
+  color: var(--color-neutral-white); /* Warm white spinner for dark buttons */
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .add-menu-container {
+    padding: 15px; /* Adjusted padding */
+  }
+
+  .add-menu-button {
+    padding: 10px 20px; /* Smaller button on mobile */
+    font-size: 0.9em;
+  }
+
+  .menu-form-container {
+    padding: 20px; /* Adjusted form padding */
+  }
+
+  .form-title {
+    font-size: 1.6em; /* Smaller title on mobile */
+    margin-bottom: 20px;
+  }
+
+  .form-group {
+    margin-bottom: 15px; /* Reduced margin */
+  }
+
+  .form-input,
+  .form-textarea {
+    padding: 10px 12px; /* Smaller input padding */
+    font-size: 0.9em;
+  }
+
+  .form-actions {
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 10px; /* Reduced gap */
+  }
+
+  .submit-button,
+  .cancel-button {
+    width: 100%;
+    justify-content: center;
+    padding: 10px 15px;
+    font-size: 0.9em;
+  }
+}

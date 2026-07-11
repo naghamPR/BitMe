@@ -1,0 +1,209 @@
+:root {
+  --color-primary-500: #d46a00; /* warm amber (Burnt Orange) */
+  --color-primary-600: #a34e00; /* deeper amber (Darker Burnt Orange) */
+  --color-text-dark: #362f27; /* dark warm charcoal */
+  --color-text-medium: #5e5346; /* muted warm brown-gray */
+  --color-white: #fffbf0; /* warm ivory */
+  --color-gray-100: #f8f5ef; /* creamy beige */
+  --color-gray-200: #e0d9cc; /* light rose-beige (Light warm gray/beige) */
+  --color-error: #b22222; /* warm red (Firebrick Red) */
+
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08),
+    0 2px 4px -1px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.08),
+    0 10px 10px -5px rgba(0, 0, 0, 0.03);
+}
+
+/* --- Modal Overlay & Content (Unique to MapDisplayModal) --- */
+.mdm-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.mdm-modal-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mdm-modal-content {
+  background-color: var(--color-white);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: var(--shadow-xl);
+  max-width: 90%;
+  position: relative;
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
+  max-height: 90vh;
+  overflow-y: auto; /* Enable scrolling for content if needed */
+  border: 1px solid var(--color-gray-200);
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content within modal */
+  text-align: center;
+}
+
+.mdm-modal-overlay.open .mdm-modal-content {
+  transform: scale(1);
+}
+
+.mdm-small-modal {
+  /* For error/no data messages */
+  width: 400px;
+}
+
+.mdm-large-modal {
+  /* For the map itself */
+  width: 800px; /* Wider for map */
+  max-width: 95%; /* Adjust for very small screens */
+  height: 600px; /* Fixed height for the map modal */
+  padding-bottom: 1rem; /* Adjust padding if action buttons are at bottom */
+}
+
+.mdm-modal-close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--color-text-medium);
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mdm-modal-close-button:hover {
+  background-color: var(--color-gray-100);
+  color: var(--color-text-dark);
+}
+
+.mdm-modal-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  margin-bottom: 1.5rem;
+  padding-right: 2.5rem; /* Space for close button */
+}
+
+/* --- Map Container Specific Styles --- */
+.mdm-map-container {
+  width: 100%;
+  height: 450px; /* Height of the map within the modal */
+  border: 1px solid var(--color-gray-200);
+  border-radius: 0.5rem;
+  overflow: hidden; /* Ensures map content respects border-radius */
+  box-shadow: var(--shadow-md);
+  margin-bottom: 1rem;
+}
+
+.mdm-map-instance {
+  height: 100%; /* Important for Leaflet to fill container */
+  width: 100%;
+  border-radius: 0.5rem; /* Match container border-radius */
+}
+
+/* Leaflet default styles are handled by 'leaflet/dist/leaflet.css' */
+/* Custom styles for Leaflet elements if needed (e.g., popups) */
+.leaflet-popup-content-wrapper {
+  border-radius: 8px !important;
+  padding: 10px !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+.leaflet-popup-content {
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  color: var(--color-text-dark);
+}
+.leaflet-popup-content strong {
+  font-weight: 700;
+  color: var(--color-primary-600);
+}
+
+/* --- Coordinates Display --- */
+.mdm-coordinates-display {
+  font-size: 1rem;
+  color: var(--color-text-medium);
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+.mdm-coordinates-display span {
+  font-weight: 600;
+  color: var(--color-primary-500);
+  margin-left: 0.5rem;
+}
+
+/* --- Modal Action Buttons --- */
+.mdm-modal-actions {
+  display: flex;
+  justify-content: center; /* Center buttons horizontally */
+  gap: 1rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-gray-100);
+  width: 100%; /* Occupy full width for actions row */
+}
+
+.mdm-action-button {
+  background-color: var(--color-primary-500);
+  color: var(--color-white);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: var(--shadow-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.mdm-action-button:hover {
+  background-color: var(--color-primary-600);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.mdm-action-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* --- Error Messages (within modal) --- */
+.mdm-error-message {
+  font-size: 1.1rem;
+  color: var(--color-error);
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  border: 1px solid currentColor;
+  border-radius: 0.5rem;
+  background-color: rgba(
+    178,
+    34,
+    34,
+    0.1
+  ); /* light red background, updated to warm red */
+}

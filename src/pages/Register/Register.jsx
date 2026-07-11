@@ -2,7 +2,7 @@ import "./Register.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { signUp } from "../../action/authAction";
+import { signUp } from "../../actions/authActions";
 
 const Register = () => {
   const Navigate = useNavigate();
@@ -13,6 +13,8 @@ const Register = () => {
     name: "",
     email: "",
     password: "",
+    phone: "",
+    role: 2,
   });
 
   const handelChange = (e) => {
@@ -25,7 +27,7 @@ const Register = () => {
   const handelSubmit = (e) => {
     e.preventDefault();
 
-    // dispatch(signUp(data));
+    dispatch(signUp(data));
   };
 
   useEffect(() => {
@@ -60,6 +62,14 @@ const Register = () => {
               value={data.name}
               onChange={handelChange}
               placeholder="Name"
+            />
+            <input
+              required
+              type="text"
+              name="phone"
+              value={data.phone}
+              onChange={handelChange}
+              placeholder="phone"
             />
             <input
               required
